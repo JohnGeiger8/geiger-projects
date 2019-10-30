@@ -1,0 +1,518 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2E7DFBCB23694B4D0038CE99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DFBCA23694B4D0038CE99 /* AppDelegate.swift */; };
+		2E7DFBCD23694B4D0038CE99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DFBCC23694B4D0038CE99 /* SceneDelegate.swift */; };
+		2E7DFBCF23694B4D0038CE99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DFBCE23694B4D0038CE99 /* ViewController.swift */; };
+		2E7DFBD223694B4D0038CE99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E7DFBD023694B4D0038CE99 /* Main.storyboard */; };
+		2E7DFBD423694B4F0038CE99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E7DFBD323694B4F0038CE99 /* Assets.xcassets */; };
+		2E7DFBD723694B4F0038CE99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E7DFBD523694B4F0038CE99 /* LaunchScreen.storyboard */; };
+		2E7DFBE223694B4F0038CE99 /* VirtualWardrobeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DFBE123694B4F0038CE99 /* VirtualWardrobeTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2E7DFBDE23694B4F0038CE99 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2E7DFBBF23694B4D0038CE99 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2E7DFBC623694B4D0038CE99;
+			remoteInfo = VirtualWardrobe;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2E7DFBC723694B4D0038CE99 /* VirtualWardrobe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualWardrobe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E7DFBCA23694B4D0038CE99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2E7DFBCC23694B4D0038CE99 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		2E7DFBCE23694B4D0038CE99 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2E7DFBD123694B4D0038CE99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2E7DFBD323694B4F0038CE99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2E7DFBD623694B4F0038CE99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2E7DFBD823694B4F0038CE99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2E7DFBDD23694B4F0038CE99 /* VirtualWardrobeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VirtualWardrobeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E7DFBE123694B4F0038CE99 /* VirtualWardrobeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualWardrobeTests.swift; sourceTree = "<group>"; };
+		2E7DFBE323694B4F0038CE99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2E7DFBC423694B4D0038CE99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E7DFBDA23694B4F0038CE99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2E7DFBBE23694B4D0038CE99 = {
+			isa = PBXGroup;
+			children = (
+				2E7DFBC923694B4D0038CE99 /* VirtualWardrobe */,
+				2E7DFBE023694B4F0038CE99 /* VirtualWardrobeTests */,
+				2E7DFBC823694B4D0038CE99 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2E7DFBC823694B4D0038CE99 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2E7DFBC723694B4D0038CE99 /* VirtualWardrobe.app */,
+				2E7DFBDD23694B4F0038CE99 /* VirtualWardrobeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2E7DFBC923694B4D0038CE99 /* VirtualWardrobe */ = {
+			isa = PBXGroup;
+			children = (
+				2E7DFBEC23694BA50038CE99 /* Controller */,
+				2E7DFBF123694BE50038CE99 /* Storyboard */,
+				2E7DFBEF23694BCD0038CE99 /* Model */,
+				2E7DFBEE23694BC10038CE99 /* View */,
+				2E7DFBF223694BFE0038CE99 /* Delegate */,
+				2E7DFBF023694BDE0038CE99 /* Other */,
+			);
+			path = VirtualWardrobe;
+			sourceTree = "<group>";
+		};
+		2E7DFBE023694B4F0038CE99 /* VirtualWardrobeTests */ = {
+			isa = PBXGroup;
+			children = (
+				2E7DFBE123694B4F0038CE99 /* VirtualWardrobeTests.swift */,
+				2E7DFBE323694B4F0038CE99 /* Info.plist */,
+			);
+			path = VirtualWardrobeTests;
+			sourceTree = "<group>";
+		};
+		2E7DFBEC23694BA50038CE99 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2E7DFBCE23694B4D0038CE99 /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		2E7DFBEE23694BC10038CE99 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		2E7DFBEF23694BCD0038CE99 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		2E7DFBF023694BDE0038CE99 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				2E7DFBD323694B4F0038CE99 /* Assets.xcassets */,
+				2E7DFBD823694B4F0038CE99 /* Info.plist */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+		2E7DFBF123694BE50038CE99 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				2E7DFBD023694B4D0038CE99 /* Main.storyboard */,
+				2E7DFBD523694B4F0038CE99 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		2E7DFBF223694BFE0038CE99 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				2E7DFBCA23694B4D0038CE99 /* AppDelegate.swift */,
+				2E7DFBCC23694B4D0038CE99 /* SceneDelegate.swift */,
+			);
+			name = Delegate;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2E7DFBC623694B4D0038CE99 /* VirtualWardrobe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2E7DFBE623694B500038CE99 /* Build configuration list for PBXNativeTarget "VirtualWardrobe" */;
+			buildPhases = (
+				2E7DFBC323694B4D0038CE99 /* Sources */,
+				2E7DFBC423694B4D0038CE99 /* Frameworks */,
+				2E7DFBC523694B4D0038CE99 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VirtualWardrobe;
+			productName = VirtualWardrobe;
+			productReference = 2E7DFBC723694B4D0038CE99 /* VirtualWardrobe.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2E7DFBDC23694B4F0038CE99 /* VirtualWardrobeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2E7DFBE923694B500038CE99 /* Build configuration list for PBXNativeTarget "VirtualWardrobeTests" */;
+			buildPhases = (
+				2E7DFBD923694B4F0038CE99 /* Sources */,
+				2E7DFBDA23694B4F0038CE99 /* Frameworks */,
+				2E7DFBDB23694B4F0038CE99 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2E7DFBDF23694B4F0038CE99 /* PBXTargetDependency */,
+			);
+			name = VirtualWardrobeTests;
+			productName = VirtualWardrobeTests;
+			productReference = 2E7DFBDD23694B4F0038CE99 /* VirtualWardrobeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2E7DFBBF23694B4D0038CE99 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1110;
+				LastUpgradeCheck = 1110;
+				ORGANIZATIONNAME = "John Geiger";
+				TargetAttributes = {
+					2E7DFBC623694B4D0038CE99 = {
+						CreatedOnToolsVersion = 11.1;
+					};
+					2E7DFBDC23694B4F0038CE99 = {
+						CreatedOnToolsVersion = 11.1;
+						TestTargetID = 2E7DFBC623694B4D0038CE99;
+					};
+				};
+			};
+			buildConfigurationList = 2E7DFBC223694B4D0038CE99 /* Build configuration list for PBXProject "VirtualWardrobe" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2E7DFBBE23694B4D0038CE99;
+			productRefGroup = 2E7DFBC823694B4D0038CE99 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2E7DFBC623694B4D0038CE99 /* VirtualWardrobe */,
+				2E7DFBDC23694B4F0038CE99 /* VirtualWardrobeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2E7DFBC523694B4D0038CE99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E7DFBD723694B4F0038CE99 /* LaunchScreen.storyboard in Resources */,
+				2E7DFBD423694B4F0038CE99 /* Assets.xcassets in Resources */,
+				2E7DFBD223694B4D0038CE99 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E7DFBDB23694B4F0038CE99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2E7DFBC323694B4D0038CE99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E7DFBCF23694B4D0038CE99 /* ViewController.swift in Sources */,
+				2E7DFBCB23694B4D0038CE99 /* AppDelegate.swift in Sources */,
+				2E7DFBCD23694B4D0038CE99 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2E7DFBD923694B4F0038CE99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2E7DFBE223694B4F0038CE99 /* VirtualWardrobeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2E7DFBDF23694B4F0038CE99 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2E7DFBC623694B4D0038CE99 /* VirtualWardrobe */;
+			targetProxy = 2E7DFBDE23694B4F0038CE99 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2E7DFBD023694B4D0038CE99 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2E7DFBD123694B4D0038CE99 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2E7DFBD523694B4F0038CE99 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2E7DFBD623694B4F0038CE99 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2E7DFBE423694B4F0038CE99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2E7DFBE523694B4F0038CE99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2E7DFBE723694B500038CE99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = VirtualWardrobe/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = edu.psu.cse.jqg5562.VirtualWardrobe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2E7DFBE823694B500038CE99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = VirtualWardrobe/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = edu.psu.cse.jqg5562.VirtualWardrobe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2E7DFBEA23694B500038CE99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = VirtualWardrobeTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = edu.psu.cse.jqg5562.VirtualWardrobeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VirtualWardrobe.app/VirtualWardrobe";
+			};
+			name = Debug;
+		};
+		2E7DFBEB23694B500038CE99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = VirtualWardrobeTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = edu.psu.cse.jqg5562.VirtualWardrobeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VirtualWardrobe.app/VirtualWardrobe";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2E7DFBC223694B4D0038CE99 /* Build configuration list for PBXProject "VirtualWardrobe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E7DFBE423694B4F0038CE99 /* Debug */,
+				2E7DFBE523694B4F0038CE99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2E7DFBE623694B500038CE99 /* Build configuration list for PBXNativeTarget "VirtualWardrobe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E7DFBE723694B500038CE99 /* Debug */,
+				2E7DFBE823694B500038CE99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2E7DFBE923694B500038CE99 /* Build configuration list for PBXNativeTarget "VirtualWardrobeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E7DFBEA23694B500038CE99 /* Debug */,
+				2E7DFBEB23694B500038CE99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2E7DFBBF23694B4D0038CE99 /* Project object */;
+}
