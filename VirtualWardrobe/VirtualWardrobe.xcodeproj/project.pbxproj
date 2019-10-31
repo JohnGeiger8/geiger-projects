@@ -14,6 +14,7 @@
 		2E7DFBD423694B4F0038CE99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E7DFBD323694B4F0038CE99 /* Assets.xcassets */; };
 		2E7DFBD723694B4F0038CE99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E7DFBD523694B4F0038CE99 /* LaunchScreen.storyboard */; };
 		2E7DFBE223694B4F0038CE99 /* VirtualWardrobeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DFBE123694B4F0038CE99 /* VirtualWardrobeTests.swift */; };
+		2E7DFBF4236A827D0038CE99 /* WardrobeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DFBF3236A827D0038CE99 /* WardrobeModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		2E7DFBDD23694B4F0038CE99 /* VirtualWardrobeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VirtualWardrobeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E7DFBE123694B4F0038CE99 /* VirtualWardrobeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualWardrobeTests.swift; sourceTree = "<group>"; };
 		2E7DFBE323694B4F0038CE99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2E7DFBF3236A827D0038CE99 /* WardrobeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 		2E7DFBEF23694BCD0038CE99 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2E7DFBF3236A827D0038CE99 /* WardrobeModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E7DFBCF23694B4D0038CE99 /* ViewController.swift in Sources */,
+				2E7DFBF4236A827D0038CE99 /* WardrobeModel.swift in Sources */,
 				2E7DFBCB23694B4D0038CE99 /* AppDelegate.swift in Sources */,
 				2E7DFBCD23694B4D0038CE99 /* SceneDelegate.swift in Sources */,
 			);
