@@ -25,43 +25,56 @@
         <!--Virtual Wardrobe-->
         <scene sceneID="zfQ-1V-sJk">
             <objects>
-                <tableViewController id="f93-hy-eOr" sceneMemberID="viewController">
+                <tableViewController id="f93-hy-eOr" customClass="ClothingTableViewController" customModule="VirtualWardrobe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Cyp-Xa-Ske">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <imageView key="tableHeaderView" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Lkd-VZ-8df">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </imageView>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ClothingCell" rowHeight="157" id="Wcz-nY-cZQ">
-                                <rect key="frame" x="0.0" y="72" width="375" height="157"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ClothingCell" rowHeight="149" id="Wcz-nY-cZQ" customClass="ClothingTableViewCell" customModule="VirtualWardrobe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="149"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wcz-nY-cZQ" id="VLL-s5-bjD">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="157"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="149"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fWU-IK-i93">
-                                            <rect key="frame" x="20" y="14" width="128" height="128"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fWU-IK-i93">
+                                            <rect key="frame" x="16" y="5" width="143" height="139"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="143" id="YK6-J8-Sox"/>
+                                            </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Item Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vHo-tD-n6V">
-                                            <rect key="frame" x="156" y="14" width="103" height="27"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                            <nil key="textColor"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vHo-tD-n6V">
+                                            <rect key="frame" x="171" y="14" width="188" height="24"/>
+                                            <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="22"/>
+                                            <color key="textColor" red="0.017159868343702971" green="0.029842565083402571" blue="0.39121986040609136" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Store bought from" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ezu-5E-P4F">
-                                            <rect key="frame" x="156" y="49" width="141" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store bought from" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ezu-5E-P4F">
+                                            <rect key="frame" x="171" y="46" width="188" height="16.5"/>
+                                            <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="15"/>
+                                            <color key="textColor" red="0.020524286131793176" green="0.2508239033000666" blue="0.49313927664974622" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="fWU-IK-i93" firstAttribute="top" secondItem="VLL-s5-bjD" secondAttribute="top" constant="5" id="01A-5C-emH"/>
+                                        <constraint firstItem="vHo-tD-n6V" firstAttribute="leading" secondItem="fWU-IK-i93" secondAttribute="trailing" constant="12" id="7eV-ec-OX2"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Ezu-5E-P4F" secondAttribute="trailing" id="BZ0-7P-4MB"/>
+                                        <constraint firstItem="fWU-IK-i93" firstAttribute="leading" secondItem="VLL-s5-bjD" secondAttribute="leading" constant="16" id="Cfu-a9-7tw"/>
+                                        <constraint firstItem="vHo-tD-n6V" firstAttribute="top" secondItem="VLL-s5-bjD" secondAttribute="topMargin" constant="3" id="Ktn-nh-bQN"/>
+                                        <constraint firstItem="vHo-tD-n6V" firstAttribute="trailing" secondItem="VLL-s5-bjD" secondAttribute="trailingMargin" id="Y6Z-wM-Pco"/>
+                                        <constraint firstItem="Ezu-5E-P4F" firstAttribute="top" secondItem="vHo-tD-n6V" secondAttribute="bottom" constant="8" id="dsb-iR-C7H"/>
+                                        <constraint firstItem="Ezu-5E-P4F" firstAttribute="leading" secondItem="fWU-IK-i93" secondAttribute="trailing" constant="12" id="h9J-Pq-qSo"/>
+                                        <constraint firstAttribute="bottom" secondItem="fWU-IK-i93" secondAttribute="bottom" constant="5" id="mF0-Yc-VwG"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="1" green="0.99457127696131786" blue="0.8287608641868901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="clothingImageView" destination="fWU-IK-i93" id="kVQ-YQ-Xx3"/>
+                                    <outlet property="clothingInfoLabel" destination="Ezu-5E-P4F" id="8RJ-cO-rwD"/>
+                                    <outlet property="clothingNameLabel" destination="vHo-tD-n6V" id="Wnz-30-lEa"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -73,7 +86,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J6N-wb-b6C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047.8260869565217" y="-555.13392857142856"/>
+            <point key="canvasLocation" x="1047.2" y="-555.47226386806597"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QJu-5n-f4t">

@@ -17,6 +17,7 @@ struct Clothing {
     var price : Double
     var storeName : String
     var storeLocation : CLLocationCoordinate2D
+    var imageName : String
 }
 
 
@@ -25,7 +26,33 @@ class WardrobeModel {
     // Have all files using model use the same instance
     static let sharedinstance = WardrobeModel()
     
+    // Number of sections.  This should change depending on filter user chooses
+    var numberOfSections = 1
+    
     fileprivate init() {
         
+    }
+    
+    // MARK:- Clothing Table View Methods
+    
+    // Use switch-case statement to give number of rows for the section number depending on the filter chosen by the user
+    func numberOfClothes(forSection section: Int) -> Int {
+        
+        return 1
+    }
+    
+    func clothingNameFor(indexPath: IndexPath) -> String {
+        
+        return "Carson Wentz Eagles Jersey"
+    }
+    
+    func clothingImageNameFor(indexPath: IndexPath) -> String {
+        
+        return "Wentz Jersey"
+    }
+    
+    func clothingStoreNameFor(indexPath: IndexPath) -> String {
+        
+        return "NFLShop.com"
     }
 }

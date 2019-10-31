@@ -15,6 +15,8 @@
 		2E7DFBD723694B4F0038CE99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E7DFBD523694B4F0038CE99 /* LaunchScreen.storyboard */; };
 		2E7DFBE223694B4F0038CE99 /* VirtualWardrobeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DFBE123694B4F0038CE99 /* VirtualWardrobeTests.swift */; };
 		2E7DFBF4236A827D0038CE99 /* WardrobeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DFBF3236A827D0038CE99 /* WardrobeModel.swift */; };
+		2E7DFBF6236A88580038CE99 /* ClothingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DFBF5236A88580038CE99 /* ClothingTableViewController.swift */; };
+		2E7DFBF8236A893D0038CE99 /* ClothingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DFBF7236A893D0038CE99 /* ClothingTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 		2E7DFBE123694B4F0038CE99 /* VirtualWardrobeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualWardrobeTests.swift; sourceTree = "<group>"; };
 		2E7DFBE323694B4F0038CE99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E7DFBF3236A827D0038CE99 /* WardrobeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeModel.swift; sourceTree = "<group>"; };
+		2E7DFBF5236A88580038CE99 /* ClothingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingTableViewController.swift; sourceTree = "<group>"; };
+		2E7DFBF7236A893D0038CE99 /* ClothingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				2E7DFBCE23694B4D0038CE99 /* ViewController.swift */,
+				2E7DFBF5236A88580038CE99 /* ClothingTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -111,6 +116,7 @@
 		2E7DFBEE23694BC10038CE99 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2E7DFBF7236A893D0038CE99 /* ClothingTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -252,9 +258,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E7DFBCF23694B4D0038CE99 /* ViewController.swift in Sources */,
+				2E7DFBF8236A893D0038CE99 /* ClothingTableViewCell.swift in Sources */,
 				2E7DFBF4236A827D0038CE99 /* WardrobeModel.swift in Sources */,
 				2E7DFBCB23694B4D0038CE99 /* AppDelegate.swift in Sources */,
 				2E7DFBCD23694B4D0038CE99 /* SceneDelegate.swift in Sources */,
+				2E7DFBF6236A88580038CE99 /* ClothingTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
