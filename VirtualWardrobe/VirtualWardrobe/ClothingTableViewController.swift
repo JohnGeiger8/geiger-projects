@@ -55,6 +55,8 @@ class ClothingTableViewController: UITableViewController, UISearchResultsUpdatin
         cell.clothingImageView.contentMode = .scaleAspectFit
         cell.clothingInfoLabel.text = wardrobeModel.clothingStoreNameFor(indexPath: indexPath)
         
+        cell.backgroundColor = .lightYellow
+        
         return cell
     }
     

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2E7DFBCB23694B4D0038CE99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DFBCA23694B4D0038CE99 /* AppDelegate.swift */; };
-		2E7DFBCD23694B4D0038CE99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DFBCC23694B4D0038CE99 /* SceneDelegate.swift */; };
 		2E7DFBCF23694B4D0038CE99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DFBCE23694B4D0038CE99 /* ViewController.swift */; };
 		2E7DFBD223694B4D0038CE99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E7DFBD023694B4D0038CE99 /* Main.storyboard */; };
 		2E7DFBD423694B4F0038CE99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E7DFBD323694B4F0038CE99 /* Assets.xcassets */; };
@@ -17,6 +16,9 @@
 		2E7DFBF4236A827D0038CE99 /* WardrobeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DFBF3236A827D0038CE99 /* WardrobeModel.swift */; };
 		2E7DFBF6236A88580038CE99 /* ClothingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DFBF5236A88580038CE99 /* ClothingTableViewController.swift */; };
 		2E7DFBF8236A893D0038CE99 /* ClothingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DFBF7236A893D0038CE99 /* ClothingTableViewCell.swift */; };
+		2ECB90A62377444300AE4E83 /* UIColor+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB90A52377444300AE4E83 /* UIColor+CustomColors.swift */; };
+		2ECB90A8237748F100AE4E83 /* ItemTableViewFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB90A7237748F100AE4E83 /* ItemTableViewFooterCell.swift */; };
+		2ECB90AB237C839F00AE4E83 /* WardrobeDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB90A9237C839F00AE4E83 /* WardrobeDataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,7 +34,6 @@
 /* Begin PBXFileReference section */
 		2E7DFBC723694B4D0038CE99 /* VirtualWardrobe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualWardrobe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E7DFBCA23694B4D0038CE99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2E7DFBCC23694B4D0038CE99 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2E7DFBCE23694B4D0038CE99 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2E7DFBD123694B4D0038CE99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2E7DFBD323694B4F0038CE99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -44,6 +45,9 @@
 		2E7DFBF3236A827D0038CE99 /* WardrobeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeModel.swift; sourceTree = "<group>"; };
 		2E7DFBF5236A88580038CE99 /* ClothingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingTableViewController.swift; sourceTree = "<group>"; };
 		2E7DFBF7236A893D0038CE99 /* ClothingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingTableViewCell.swift; sourceTree = "<group>"; };
+		2ECB90A52377444300AE4E83 /* UIColor+CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColors.swift"; sourceTree = "<group>"; };
+		2ECB90A7237748F100AE4E83 /* ItemTableViewFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewFooterCell.swift; sourceTree = "<group>"; };
+		2ECB90AA237C839F00AE4E83 /* WardrobeDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WardrobeDataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +121,8 @@
 			isa = PBXGroup;
 			children = (
 				2E7DFBF7236A893D0038CE99 /* ClothingTableViewCell.swift */,
+				2ECB90A52377444300AE4E83 /* UIColor+CustomColors.swift */,
+				2ECB90A7237748F100AE4E83 /* ItemTableViewFooterCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -134,6 +140,7 @@
 			children = (
 				2E7DFBD323694B4F0038CE99 /* Assets.xcassets */,
 				2E7DFBD823694B4F0038CE99 /* Info.plist */,
+				2ECB90A9237C839F00AE4E83 /* WardrobeDataModel.xcdatamodeld */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -151,7 +158,6 @@
 			isa = PBXGroup;
 			children = (
 				2E7DFBCA23694B4D0038CE99 /* AppDelegate.swift */,
-				2E7DFBCC23694B4D0038CE99 /* SceneDelegate.swift */,
 			);
 			name = Delegate;
 			sourceTree = "<group>";
@@ -261,8 +267,10 @@
 				2E7DFBF8236A893D0038CE99 /* ClothingTableViewCell.swift in Sources */,
 				2E7DFBF4236A827D0038CE99 /* WardrobeModel.swift in Sources */,
 				2E7DFBCB23694B4D0038CE99 /* AppDelegate.swift in Sources */,
-				2E7DFBCD23694B4D0038CE99 /* SceneDelegate.swift in Sources */,
+				2ECB90A8237748F100AE4E83 /* ItemTableViewFooterCell.swift in Sources */,
+				2ECB90A62377444300AE4E83 /* UIColor+CustomColors.swift in Sources */,
 				2E7DFBF6236A88580038CE99 /* ClothingTableViewController.swift in Sources */,
+				2ECB90AB237C839F00AE4E83 /* WardrobeDataModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,7 +362,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -408,7 +416,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -424,6 +432,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = VirtualWardrobe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -441,6 +450,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = VirtualWardrobe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -459,7 +469,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = VirtualWardrobeTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -480,7 +490,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = VirtualWardrobeTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -525,6 +535,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2ECB90A9237C839F00AE4E83 /* WardrobeDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2ECB90AA237C839F00AE4E83 /* WardrobeDataModel.xcdatamodel */,
+			);
+			currentVersion = 2ECB90AA237C839F00AE4E83 /* WardrobeDataModel.xcdatamodel */;
+			path = WardrobeDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2E7DFBBF23694B4D0038CE99 /* Project object */;
 }
