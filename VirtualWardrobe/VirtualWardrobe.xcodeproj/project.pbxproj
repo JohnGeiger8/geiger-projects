@@ -16,8 +16,10 @@
 		2E7DFBF4236A827D0038CE99 /* WardrobeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DFBF3236A827D0038CE99 /* WardrobeModel.swift */; };
 		2E7DFBF6236A88580038CE99 /* ClothingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DFBF5236A88580038CE99 /* ClothingTableViewController.swift */; };
 		2E7DFBF8236A893D0038CE99 /* ClothingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DFBF7236A893D0038CE99 /* ClothingTableViewCell.swift */; };
+		2EB0DE14237C953C002D235E /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB0DE13237C953C002D235E /* RootViewController.swift */; };
+		2EB0DE16237CB960002D235E /* WardrobeTableFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB0DE15237CB960002D235E /* WardrobeTableFooterView.swift */; };
+		2EB0DE18237D272E002D235E /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB0DE17237D272E002D235E /* AddItemViewController.swift */; };
 		2ECB90A62377444300AE4E83 /* UIColor+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB90A52377444300AE4E83 /* UIColor+CustomColors.swift */; };
-		2ECB90A8237748F100AE4E83 /* ItemTableViewFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB90A7237748F100AE4E83 /* ItemTableViewFooterCell.swift */; };
 		2ECB90AB237C839F00AE4E83 /* WardrobeDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB90A9237C839F00AE4E83 /* WardrobeDataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -45,8 +47,10 @@
 		2E7DFBF3236A827D0038CE99 /* WardrobeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeModel.swift; sourceTree = "<group>"; };
 		2E7DFBF5236A88580038CE99 /* ClothingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingTableViewController.swift; sourceTree = "<group>"; };
 		2E7DFBF7236A893D0038CE99 /* ClothingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingTableViewCell.swift; sourceTree = "<group>"; };
+		2EB0DE13237C953C002D235E /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		2EB0DE15237CB960002D235E /* WardrobeTableFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeTableFooterView.swift; sourceTree = "<group>"; };
+		2EB0DE17237D272E002D235E /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		2ECB90A52377444300AE4E83 /* UIColor+CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColors.swift"; sourceTree = "<group>"; };
-		2ECB90A7237748F100AE4E83 /* ItemTableViewFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewFooterCell.swift; sourceTree = "<group>"; };
 		2ECB90AA237C839F00AE4E83 /* WardrobeDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WardrobeDataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,6 +117,8 @@
 			children = (
 				2E7DFBCE23694B4D0038CE99 /* ViewController.swift */,
 				2E7DFBF5236A88580038CE99 /* ClothingTableViewController.swift */,
+				2EB0DE13237C953C002D235E /* RootViewController.swift */,
+				2EB0DE17237D272E002D235E /* AddItemViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -122,7 +128,7 @@
 			children = (
 				2E7DFBF7236A893D0038CE99 /* ClothingTableViewCell.swift */,
 				2ECB90A52377444300AE4E83 /* UIColor+CustomColors.swift */,
-				2ECB90A7237748F100AE4E83 /* ItemTableViewFooterCell.swift */,
+				2EB0DE15237CB960002D235E /* WardrobeTableFooterView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -265,9 +271,11 @@
 			files = (
 				2E7DFBCF23694B4D0038CE99 /* ViewController.swift in Sources */,
 				2E7DFBF8236A893D0038CE99 /* ClothingTableViewCell.swift in Sources */,
+				2EB0DE14237C953C002D235E /* RootViewController.swift in Sources */,
 				2E7DFBF4236A827D0038CE99 /* WardrobeModel.swift in Sources */,
+				2EB0DE16237CB960002D235E /* WardrobeTableFooterView.swift in Sources */,
+				2EB0DE18237D272E002D235E /* AddItemViewController.swift in Sources */,
 				2E7DFBCB23694B4D0038CE99 /* AppDelegate.swift in Sources */,
-				2ECB90A8237748F100AE4E83 /* ItemTableViewFooterCell.swift in Sources */,
 				2ECB90A62377444300AE4E83 /* UIColor+CustomColors.swift in Sources */,
 				2E7DFBF6236A88580038CE99 /* ClothingTableViewController.swift in Sources */,
 				2ECB90AB237C839F00AE4E83 /* WardrobeDataModel.xcdatamodeld in Sources */,

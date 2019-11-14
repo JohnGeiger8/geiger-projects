@@ -10,7 +10,6 @@ import UIKit
 
 class ClothingTableViewController: UITableViewController, UISearchResultsUpdating, UISearchControllerDelegate {
     
-    
     let wardrobeModel = WardrobeModel.sharedinstance
     let searchController = UISearchController(searchResultsController: nil)
 
@@ -65,7 +64,6 @@ class ClothingTableViewController: UITableViewController, UISearchResultsUpdatin
 
         return 300  // FIXME: Need to make this more dynamic
     }
-
     
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -89,5 +87,20 @@ class ClothingTableViewController: UITableViewController, UISearchResultsUpdatin
     
     func updateSearchResults(for searchController: UISearchController) {
         // IMPLEMENT
+    }
+    
+    // MARK:- Segues
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "AddItem":
+            print("Adding Item")
+        default:
+            assert(false, "Unhandled segue")
+        }
+    }
+    
+    @IBAction func unwindSegue(segue: UIStoryboardSegue) {
+        
     }
 }

@@ -10,18 +10,19 @@ import Foundation
 import MapKit
 import CoreData
 
-struct Clothing {
-    var name : String
-    var type : String
-    var subType : String // E.g. type = "shirt" subtype = "long-sleeve"
-    var colors : [String]
-    var seasons : [String]
-    var price : Double
-    var storeName : String
-    var storeLocation : CLLocationCoordinate2D
-    var imageName : String
-    var dateOfPurchase : Date
-}
+// REPLACED with Core Data model
+//struct Clothing {
+//    var name : String
+//    var type : String
+//    var subType : String // E.g. type = "shirt" subtype = "long-sleeve"
+//    var colors : [String]
+//    var seasons : [String]
+//    var price : Double
+//    var storeName : String
+//    var storeLocation : CLLocationCoordinate2D
+//    var imageName : String
+//    var dateOfPurchase : Date
+//}
 
 
 class WardrobeModel {
@@ -33,11 +34,13 @@ class WardrobeModel {
     let clothingImageNames = ["Wentz Jersey", "Sperry Shoes", "Red and Blue Flannel"]
     let clothingStoreNames = ["NFLShop.com", "Goodwill", "REI"]
     
+    var wardrobe : [WardrobeItem] = []
+    
     // Number of sections.  This should change depending on filter user chooses
     var numberOfSections = 1
     
     fileprivate init() {
-        
+        // Initialize wardrobe here using Core Data
     }
     
     // MARK:- Clothing Table View Methods
@@ -71,7 +74,7 @@ class WardrobeModel {
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
          */
-        let container = NSPersistentContainer(name: "DoItNow")
+        let container = NSPersistentContainer(name: "VirtualWardrobe")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.

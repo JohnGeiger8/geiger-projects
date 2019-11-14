@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2UV-mV-RgO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="w9g-1W-Jc8">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,20 +10,55 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Virtual Wardrobe-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="VirtualWardrobe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="RootViewController" customModule="VirtualWardrobe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2w-RT-TkQ">
+                                <rect key="frame" x="16" y="96" width="94" height="36"/>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="20"/>
+                                <state key="normal" title="Wardrobe">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="f93-hy-eOr" kind="show" identifier="ToWardrobe" id="8kR-hI-c6i"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Urz-Qy-6Un">
+                                <rect key="frame" x="16" y="158" width="90" height="36"/>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="20"/>
+                                <state key="normal" title="Wish List">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZK3-l5-0a1">
+                                <rect key="frame" x="16" y="220" width="199" height="36"/>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="20"/>
+                                <state key="normal" title="My Shopping Trends">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.99607843139999996" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ZK3-l5-0a1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="KOg-H1-xkm"/>
+                            <constraint firstItem="ZK3-l5-0a1" firstAttribute="top" secondItem="Urz-Qy-6Un" secondAttribute="bottom" constant="26" id="SCW-Ie-DxY"/>
+                            <constraint firstItem="X2w-RT-TkQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Wce-hS-nSm"/>
+                            <constraint firstItem="Urz-Qy-6Un" firstAttribute="top" secondItem="X2w-RT-TkQ" secondAttribute="bottom" constant="26" id="Xsq-gh-JFo"/>
+                            <constraint firstItem="X2w-RT-TkQ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="32" id="mkL-e0-QRi"/>
+                            <constraint firstItem="Urz-Qy-6Un" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="sac-i2-Vs7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Virtual Wardrobe" id="aeY-W5-1zI"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="98"/>
+            <point key="canvasLocation" x="1077.5999999999999" y="97.601199400299862"/>
         </scene>
         <!--Virtual Wardrobe-->
         <scene sceneID="zfQ-1V-sJk">
@@ -33,6 +68,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="JhJ-bf-v7F">
+                            <rect key="frame" x="0.0" y="177" width="375" height="59"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twJ-aJ-LSz">
+                                    <rect key="frame" x="170" y="13.5" width="34" height="33"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="34" id="cac-Bp-OL2"/>
+                                        <constraint firstAttribute="height" constant="33" id="zZH-M6-aew"/>
+                                    </constraints>
+                                    <state key="normal" image="AddSymbol"/>
+                                    <connections>
+                                        <segue destination="pFi-9M-CjT" kind="presentation" identifier="AddItem" id="ruY-3F-eUh"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="1" green="0.96939242830000005" blue="0.057432687990000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="twJ-aJ-LSz" firstAttribute="centerX" secondItem="JhJ-bf-v7F" secondAttribute="centerX" constant="-0.5" id="3rR-aP-8CY"/>
+                                <constraint firstItem="twJ-aJ-LSz" firstAttribute="centerY" secondItem="JhJ-bf-v7F" secondAttribute="centerY" constant="0.5" id="b2U-EK-n7e"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ClothingCell" rowHeight="149" id="Wcz-nY-cZQ" customClass="ClothingTableViewCell" customModule="VirtualWardrobe" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="149"/>
@@ -79,29 +136,6 @@
                                     <outlet property="clothingNameLabel" destination="vHo-tD-n6V" id="Wnz-30-lEa"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemFooterCell" rowHeight="46" id="CTQ-nn-eKG" customClass="ItemTableViewFooterCell" customModule="VirtualWardrobe" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="177" width="375" height="46"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CTQ-nn-eKG" id="kNL-IR-qx7">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="45.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="twJ-aJ-LSz">
-                                            <rect key="frame" x="170.5" y="6.5" width="34" height="33"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="34" id="cac-Bp-OL2"/>
-                                                <constraint firstAttribute="height" constant="33" id="zZH-M6-aew"/>
-                                            </constraints>
-                                            <state key="normal" image="AddSymbol"/>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="twJ-aJ-LSz" firstAttribute="centerY" secondItem="kNL-IR-qx7" secondAttribute="centerY" id="b2I-8N-Npm"/>
-                                        <constraint firstItem="twJ-aJ-LSz" firstAttribute="centerX" secondItem="kNL-IR-qx7" secondAttribute="centerX" id="zli-Gz-1pB"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" red="1" green="0.99457127700000003" blue="0.82876086419999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="f93-hy-eOr" id="Wsc-gv-dBd"/>
@@ -112,26 +146,65 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J6N-wb-b6C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047.2" y="-555.47226386806597"/>
+            <point key="canvasLocation" x="1924" y="97.601199400299862"/>
+        </scene>
+        <!--Add Item View Controller-->
+        <scene sceneID="KrS-OW-Vgn">
+            <objects>
+                <viewController id="pFi-9M-CjT" customClass="AddItemViewController" customModule="VirtualWardrobe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iJ7-vl-YMx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zdb-rH-fGl">
+                                <rect key="frame" x="16" y="48" width="56" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <segue destination="deT-eb-dCs" kind="unwind" unwindAction="unwindSegueWithSegue:" id="mAq-ze-vTW"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Item" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZI-aJ-yNw">
+                                <rect key="frame" x="140.5" y="70" width="94" height="27"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="24"/>
+                                <color key="textColor" red="0.017159868339999999" green="0.029842565080000001" blue="0.39121986040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.99607843139999996" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="zdb-rH-fGl" firstAttribute="leading" secondItem="leq-xu-8ml" secondAttribute="leading" constant="16" id="6Gh-1W-SIL"/>
+                            <constraint firstItem="WZI-aJ-yNw" firstAttribute="top" secondItem="leq-xu-8ml" secondAttribute="top" constant="50" id="TQw-4t-hfM"/>
+                            <constraint firstItem="WZI-aJ-yNw" firstAttribute="centerX" secondItem="iJ7-vl-YMx" secondAttribute="centerX" id="nEi-ry-Csb"/>
+                            <constraint firstItem="zdb-rH-fGl" firstAttribute="top" secondItem="leq-xu-8ml" secondAttribute="top" constant="28" id="rhR-4I-RHd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="leq-xu-8ml"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WgP-M4-7AF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="deT-eb-dCs" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2780" y="94"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="QJu-5n-f4t">
+        <scene sceneID="tce-AX-jGl">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2UV-mV-RgO" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="w9g-1W-Jc8" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="73A-d0-FeA">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rnw-IU-fO7">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.98517945451968247" green="0.99787833121827407" blue="0.58674862472732114" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="0.96939242830000005" blue="0.057432687990000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="1" green="0.96939242830000005" blue="0.057432687990000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="f93-hy-eOr" kind="relationship" relationship="rootViewController" id="ady-By-bwp"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="KiM-I5-OVO"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Lf5-9T-VvI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WW7-zH-9zh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="-555.13392857142856"/>
+            <point key="canvasLocation" x="138.40000000000001" y="97.601199400299862"/>
         </scene>
     </scenes>
     <resources>
