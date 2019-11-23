@@ -10,37 +10,46 @@ import Foundation
 import MapKit
 import CoreData
 
-// REPLACED with Core Data model
-//struct Clothing {
-//    var name : String
-//    var type : String
-//    var subType : String // E.g. type = "shirt" subtype = "long-sleeve"
-//    var colors : [String]
-//    var seasons : [String]
-//    var price : Double
-//    var storeName : String
-//    var storeLocation : CLLocationCoordinate2D
-//    var imageName : String
-//    var dateOfPurchase : Date
-//}
+// Replace with Core Data model
+struct WardrobeItem {
+    var name : String
+    var type : String
+    var subType : String? // E.g. type = "shirt" subtype = "long-sleeve"
+    var colors : [String]
+    var seasons : [String]
+    var brandName : String?
+    var price : Double?
+    var storeName : String?
+    var storeLocation : CLLocationCoordinate2D?
+    var imageName : String
+    var dateOfPurchase : Date?
+}
 
 
 class WardrobeModel {
     
     // Have all files using model use the same instance
     static let sharedinstance = WardrobeModel()
-    
-    let clothingNames = ["Carson Wentz Eagles Jersey", "Sperry Docksider Shoes", "Red and Blue Flannel"]
-    let clothingImageNames = ["Wentz Jersey", "Sperry Shoes", "Red and Blue Flannel"]
-    let clothingStoreNames = ["NFLShop.com", "Goodwill", "REI"]
+
+    let types = ["Shirt", "Pants", "Shorts", "Shoes", "Dress", "Hat", "Underwear", "Socks"]
     
     //var wardrobe : [WardrobeItem] = []
+    var allItems : [WardrobeItem] = []
     
     // Number of sections.  This should change depending on filter user chooses
     var numberOfSections = 1
     
     fileprivate init() {
         // Initialize wardrobe here using Core Data
+        
+        // Sample clothing to start
+        let jersey = WardrobeItem(name: "Carson Wentz Eagles Jersey", type: "Shirt", subType: "Short-Sleeve", colors: ["Green"], seasons: ["Fall", "Spring", "Summer"], brandName: "Nike", price: 59.99, storeName: "NFLShop.com", storeLocation: nil, imageName: "Wentz Jersey", dateOfPurchase: nil)
+        let sperryShoes = WardrobeItem(name: "Sperry Docksider Shoes", type: "Shoes", subType: nil, colors: ["Grey"], seasons: ["All"], brandName: "Sperry", price: 49.99, storeName: "Plato's Closet", storeLocation: CLLocationCoordinate2D(latitude: 40.084400, longitude: -75.404460), imageName: "Sperry Shoes", dateOfPurchase: nil)
+        let flannel = WardrobeItem(name: "Red and Blue Flannel", type: "Shirt", subType: "Flannel", colors: ["Blue", "Red"], seasons: ["Fall, Winter"], brandName: nil, price: 39.99, storeName: "REI", storeLocation: CLLocationCoordinate2D(latitude: 40.083470, longitude: -75.404970), imageName: "Red and Blue Flannel", dateOfPurchase: nil)
+        
+        allItems.append(jersey)
+        allItems.append(sperryShoes)
+        allItems.append(flannel)
     }
     
     // MARK:- Clothing Table View Methods
@@ -48,23 +57,30 @@ class WardrobeModel {
     // Use switch-case statement to give number of rows for the section number depending on the filter chosen by the user
     func numberOfClothes(forSection section: Int) -> Int {
         
-        return clothingStoreNames.count
+        return allItems.count
     }
     
     func clothingNameFor(indexPath: IndexPath) -> String {
         
-        return clothingNames[indexPath.row]
+        return allItems[indexPath.row].name
     }
     
     func clothingImageNameFor(indexPath: IndexPath) -> String {
         
-        return clothingImageNames[indexPath.row]
+        return allItems[indexPath.row].imageName
     }
     
     func clothingStoreNameFor(indexPath: IndexPath) -> String {
         
-        return clothingStoreNames[indexPath.row]
+        if let store = allItems[indexPath.row].storeName {
+            return store
+        } else {
+            return "Unknown"
+        }
     }
+    
+    // MARK: - Type Table View Controller
+    var numberOfTypes : Int { return self.types.count }
     
     // MARK: - Core Data stack
     lazy var persistentContainer: NSPersistentContainer = {
