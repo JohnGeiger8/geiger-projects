@@ -12,11 +12,23 @@ import UIKit
 //    
 //}
 
-class AddItemViewController: UIViewController {
+class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextFieldDelegate {
 
+    @IBOutlet weak var mainScrollView: UIScrollView!
+    @IBOutlet weak var itemImageView: UIImageView!
+    @IBOutlet weak var itemNameTextField: UITextField!
+    @IBOutlet weak var submitButton: CurvedEdgeButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        mainScrollView.delegate = self
+        itemNameTextField.delegate = self
     }
+    
+    override func viewDidLayoutSubviews() {
+        mainScrollView.contentSize = self.view.frame.size
+    }
+    
+    
 }

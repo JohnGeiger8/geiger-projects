@@ -34,7 +34,7 @@ class WardrobeModel {
     let clothingImageNames = ["Wentz Jersey", "Sperry Shoes", "Red and Blue Flannel"]
     let clothingStoreNames = ["NFLShop.com", "Goodwill", "REI"]
     
-    var wardrobe : [WardrobeItem] = []
+    //var wardrobe : [WardrobeItem] = []
     
     // Number of sections.  This should change depending on filter user chooses
     var numberOfSections = 1
