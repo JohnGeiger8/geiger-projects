@@ -203,13 +203,6 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nd9-HC-M9K" customClass="CurvedEdgeButton" customModule="VirtualWardrobe" customModuleProvider="target">
-                                        <rect key="frame" x="318" y="8" width="49" height="30"/>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Submit">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="It2-OC-zUc">
                                         <rect key="frame" x="112" y="347" width="73" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -223,6 +216,9 @@
                                             <constraint firstAttribute="height" constant="27" id="r1V-ef-Qnf"/>
                                         </constraints>
                                         <state key="normal" image="DropDownArrow"/>
+                                        <connections>
+                                            <action selector="chooseItemType:" destination="pFi-9M-CjT" eventType="touchUpInside" id="Qya-qn-IKe"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6OE-Kx-Rih">
                                         <rect key="frame" x="112" y="392" width="73" height="21"/>
@@ -237,6 +233,9 @@
                                             <constraint firstAttribute="width" constant="31" id="ZzJ-zu-L46"/>
                                         </constraints>
                                         <state key="normal" image="DropDownArrow"/>
+                                        <connections>
+                                            <action selector="chooseItemSubType:" destination="pFi-9M-CjT" eventType="touchUpInside" id="XsN-Ag-TKg"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Brand" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ql0-yJ-f1m">
                                         <rect key="frame" x="15" y="437" width="89" height="21"/>
@@ -250,6 +249,16 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nd9-HC-M9K" customClass="CurvedEdgeButton" customModule="VirtualWardrobe" customModuleProvider="target">
+                                        <rect key="frame" x="163" y="557" width="49" height="30"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Submit">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="submitItem:" destination="pFi-9M-CjT" eventType="touchUpInside" id="zF5-vc-J6B"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="6OE-Kx-Rih" firstAttribute="leading" secondItem="VMc-Qe-3ts" secondAttribute="trailing" constant="30" id="0bs-YO-gil"/>
@@ -268,7 +277,6 @@
                                     <constraint firstItem="xIV-tj-LWz" firstAttribute="top" secondItem="UWs-jQ-6Hd" secondAttribute="bottom" constant="24" id="S2B-2m-2Gt"/>
                                     <constraint firstItem="ql0-yJ-f1m" firstAttribute="leading" secondItem="mS7-FI-rTS" secondAttribute="leading" constant="15" id="WxB-RG-1iO"/>
                                     <constraint firstItem="yDA-qO-UW1" firstAttribute="leading" secondItem="ql0-yJ-f1m" secondAttribute="trailing" constant="8" id="ban-t5-g7e"/>
-                                    <constraint firstItem="Nd9-HC-M9K" firstAttribute="top" secondItem="mS7-FI-rTS" secondAttribute="top" constant="8" id="bb9-Op-3tW"/>
                                     <constraint firstItem="zdb-rH-fGl" firstAttribute="leading" secondItem="mS7-FI-rTS" secondAttribute="leading" constant="8" id="c7h-wU-DoM"/>
                                     <constraint firstItem="6OE-Kx-Rih" firstAttribute="top" secondItem="VMc-Qe-3ts" secondAttribute="top" id="fVF-Cs-V2e"/>
                                     <constraint firstItem="z8c-sl-TQd" firstAttribute="leading" secondItem="UWs-jQ-6Hd" secondAttribute="trailing" constant="8" id="gvM-Rb-3t3"/>
@@ -276,8 +284,8 @@
                                     <constraint firstItem="PQK-wD-hX6" firstAttribute="centerX" secondItem="mS7-FI-rTS" secondAttribute="centerX" id="jWI-dJ-nVw"/>
                                     <constraint firstItem="xIV-tj-LWz" firstAttribute="leading" secondItem="mS7-FI-rTS" secondAttribute="leading" constant="15" id="ku4-rj-urw"/>
                                     <constraint firstItem="WZI-aJ-yNw" firstAttribute="top" secondItem="zdb-rH-fGl" secondAttribute="bottom" constant="3" id="onq-uM-lk0"/>
-                                    <constraint firstAttribute="trailing" secondItem="Nd9-HC-M9K" secondAttribute="trailing" constant="8" id="pse-CB-LD1"/>
                                     <constraint firstItem="RSq-zI-4b8" firstAttribute="trailing" secondItem="cUU-mg-Vbm" secondAttribute="trailing" id="qGg-cg-Tia"/>
+                                    <constraint firstItem="Nd9-HC-M9K" firstAttribute="centerX" secondItem="mS7-FI-rTS" secondAttribute="centerX" id="r8j-Ly-zaq"/>
                                     <constraint firstItem="cUU-mg-Vbm" firstAttribute="trailing" secondItem="PQK-wD-hX6" secondAttribute="trailing" id="sEp-rT-pf3"/>
                                     <constraint firstItem="WZI-aJ-yNw" firstAttribute="centerX" secondItem="mS7-FI-rTS" secondAttribute="centerX" id="sZ8-lz-6ps"/>
                                     <constraint firstItem="It2-OC-zUc" firstAttribute="top" secondItem="xIV-tj-LWz" secondAttribute="top" id="vna-fp-0T2"/>
@@ -295,8 +303,11 @@
                         <viewLayoutGuide key="safeArea" id="leq-xu-8ml"/>
                     </view>
                     <connections>
+                        <outlet property="itemBrandTextField" destination="yDA-qO-UW1" id="XaX-1E-rSw"/>
                         <outlet property="itemImageView" destination="PQK-wD-hX6" id="SXc-Y4-JjL"/>
                         <outlet property="itemNameTextField" destination="z8c-sl-TQd" id="sr6-Vm-yaA"/>
+                        <outlet property="itemSubTypeLabel" destination="6OE-Kx-Rih" id="ZDb-bn-Gyy"/>
+                        <outlet property="itemTypeLabel" destination="It2-OC-zUc" id="Mne-s8-WuQ"/>
                         <outlet property="mainScrollView" destination="mS7-FI-rTS" id="4Ae-IU-YxI"/>
                         <outlet property="submitButton" destination="Nd9-HC-M9K" id="6qY-XZ-cN5"/>
                     </connections>

@@ -22,6 +22,7 @@ struct WardrobeItem {
     var storeName : String?
     var storeLocation : CLLocationCoordinate2D?
     var imageName : String
+    var imageData : Data?
     var dateOfPurchase : Date?
 }
 
@@ -43,9 +44,9 @@ class WardrobeModel {
         // Initialize wardrobe here using Core Data
         
         // Sample clothing to start
-        let jersey = WardrobeItem(name: "Carson Wentz Eagles Jersey", type: "Shirt", subType: "Short-Sleeve", colors: ["Green"], seasons: ["Fall", "Spring", "Summer"], brandName: "Nike", price: 59.99, storeName: "NFLShop.com", storeLocation: nil, imageName: "Wentz Jersey", dateOfPurchase: nil)
-        let sperryShoes = WardrobeItem(name: "Sperry Docksider Shoes", type: "Shoes", subType: nil, colors: ["Grey"], seasons: ["All"], brandName: "Sperry", price: 49.99, storeName: "Plato's Closet", storeLocation: CLLocationCoordinate2D(latitude: 40.084400, longitude: -75.404460), imageName: "Sperry Shoes", dateOfPurchase: nil)
-        let flannel = WardrobeItem(name: "Red and Blue Flannel", type: "Shirt", subType: "Flannel", colors: ["Blue", "Red"], seasons: ["Fall, Winter"], brandName: nil, price: 39.99, storeName: "REI", storeLocation: CLLocationCoordinate2D(latitude: 40.083470, longitude: -75.404970), imageName: "Red and Blue Flannel", dateOfPurchase: nil)
+        let jersey = WardrobeItem(name: "Carson Wentz Eagles Jersey", type: "Shirt", subType: "Short-Sleeve", colors: ["Green"], seasons: ["Fall", "Spring", "Summer"], brandName: "Nike", price: 59.99, storeName: "NFLShop.com", storeLocation: nil, imageName: "Wentz Jersey", imageData: nil, dateOfPurchase: nil)
+        let sperryShoes = WardrobeItem(name: "Sperry Docksider Shoes", type: "Shoes", subType: nil, colors: ["Grey"], seasons: ["All"], brandName: "Sperry", price: 49.99, storeName: "Plato's Closet", storeLocation: CLLocationCoordinate2D(latitude: 40.084400, longitude: -75.404460), imageName: "Sperry Shoes", imageData: nil, dateOfPurchase: nil)
+        let flannel = WardrobeItem(name: "Red and Blue Flannel", type: "Shirt", subType: "Flannel", colors: ["Blue", "Red"], seasons: ["Fall, Winter"], brandName: nil, price: 39.99, storeName: "REI", storeLocation: CLLocationCoordinate2D(latitude: 40.083470, longitude: -75.404970), imageName: "Red and Blue Flannel", imageData: nil, dateOfPurchase: nil)
         
         allItems.append(jersey)
         allItems.append(sperryShoes)
@@ -70,6 +71,12 @@ class WardrobeModel {
         return allItems[indexPath.row].imageName
     }
     
+    func clothingImageDataFor(indexPath: IndexPath) -> Data? {
+        guard allItems[indexPath.row].imageData != nil else { return nil }
+        
+        return allItems[indexPath.row].imageData!
+    }
+    
     func clothingStoreNameFor(indexPath: IndexPath) -> String {
         
         if let store = allItems[indexPath.row].storeName {
@@ -77,6 +84,10 @@ class WardrobeModel {
         } else {
             return "Unknown"
         }
+    }
+    
+    func addWardrobeItem(_ item: WardrobeItem) {
+        allItems.append(item)
     }
     
     // MARK: - Type Table View Controller

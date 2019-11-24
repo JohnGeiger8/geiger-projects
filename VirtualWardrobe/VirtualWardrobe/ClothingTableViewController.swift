@@ -23,9 +23,6 @@ class ClothingTableViewController: UITableViewController, UISearchResultsUpdatin
         searchController.searchBar.scopeButtonTitles = ["By name", "By type", "By color", "By store"]
         
         tableView.tableHeaderView = searchController.searchBar
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.rightBarButtonItem = self.editButtonItem
@@ -49,8 +46,14 @@ class ClothingTableViewController: UITableViewController, UISearchResultsUpdatin
 
         // Configure the cell
         cell.clothingNameLabel.text = wardrobeModel.clothingNameFor(indexPath: indexPath)
-        let clothingImage = UIImage(named: wardrobeModel.clothingImageNameFor(indexPath: indexPath))
-        cell.clothingImageView.image = clothingImage
+        if wardrobeModel.clothingImageNameFor(indexPath: indexPath) != "" {
+            let clothingImage = UIImage(named: wardrobeModel.clothingImageNameFor(indexPath: indexPath))
+            cell.clothingImageView.image = clothingImage
+        }
+        else {
+            let image = UIImage(data: wardrobeModel.clothingImageDataFor(indexPath: indexPath)!)
+            cell.clothingImageView.image = image
+        }
         cell.clothingImageView.contentMode = .scaleAspectFit
         cell.clothingInfoLabel.text = wardrobeModel.clothingStoreNameFor(indexPath: indexPath)
         
@@ -94,7 +97,8 @@ class ClothingTableViewController: UITableViewController, UISearchResultsUpdatin
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "AddItem":
-            print("Adding Item")
+            let destinationViewController = segue.destination as! AddItemViewController
+            destinationViewController.delegate = self
         default:
             assert(false, "Unhandled segue")
         }
@@ -102,5 +106,12 @@ class ClothingTableViewController: UITableViewController, UISearchResultsUpdatin
     
     @IBAction func unwindSegue(segue: UIStoryboardSegue) {
         
+    }
+}
+
+extension ClothingTableViewController : AddItemDelegate {
+    
+    func addNewItem(_ item: WardrobeItem) {
+        wardrobeModel.addWardrobeItem(item)
     }
 }
