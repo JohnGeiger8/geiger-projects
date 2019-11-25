@@ -33,6 +33,7 @@ class WardrobeModel {
     static let sharedinstance = WardrobeModel()
 
     let types = ["Shirt", "Pants", "Shorts", "Shoes", "Dress", "Hat", "Underwear", "Socks"]
+    let subtypes = ["Long-sleeve", "Short-sleeve", "Khakis", "Jeans", "Sneakers", "Dress Shoes", "Heels", "Boots", "Slides", "Sandals", "Slip-ons", "Baseball Hat", "Beanie", "Flat Rim Hat", "Boxers", "Briefs", "Dress Socks"]
     
     //var wardrobe : [WardrobeItem] = []
     var allItems : [WardrobeItem] = []
@@ -90,8 +91,20 @@ class WardrobeModel {
         allItems.append(item)
     }
     
-    // MARK: - Type Table View Controller
+    // MARK: - Type and SubType Table View Controller
     var numberOfTypes : Int { return self.types.count }
+    
+    func typeFor(indexPath: IndexPath) -> String {
+        
+        return types[indexPath.row]
+    }
+    
+    var numberOfSubTypes : Int { return self.subtypes.count }
+    
+    func subTypeFor(indexPath: IndexPath) -> String {
+        
+        return subtypes[indexPath.row]
+    }
     
     // MARK: - Core Data stack
     lazy var persistentContainer: NSPersistentContainer = {

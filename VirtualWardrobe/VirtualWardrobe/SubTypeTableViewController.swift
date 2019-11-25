@@ -1,28 +1,20 @@
 //
-//  TypeTableViewController.swift
+//  SubTypeTableViewController.swift
 //  VirtualWardrobe
 //
-//  Created by John Geiger on 11/23/19.
+//  Created by John Geiger on 11/24/19.
 //  Copyright © 2019 John Geiger. All rights reserved.
 //
 
 import UIKit
 
-protocol TypeSelectionDelegate : NSObject {
-    func selectType(_ type: String)
-    func selectSubType(_ type: String)
-}
-
-class TypeTableViewController: UITableViewController {
+class SubTypeTableViewController: UITableViewController {
     
     let wardrobeModel = WardrobeModel.sharedinstance
     weak var delegate : TypeSelectionDelegate?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
@@ -34,13 +26,13 @@ class TypeTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return wardrobeModel.numberOfTypes
+        return wardrobeModel.numberOfSubTypes
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TypeTableViewCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SubTypeTableViewCell", for: indexPath)
 
-        cell.textLabel?.text = wardrobeModel.typeFor(indexPath: indexPath)
+        cell.textLabel!.text = wardrobeModel.subTypeFor(indexPath: indexPath)
 
         return cell
     }
@@ -48,7 +40,7 @@ class TypeTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         dismiss(animated: true, completion: nil)
-        delegate?.selectType(wardrobeModel.typeFor(indexPath: indexPath))
+        delegate?.selectSubType(wardrobeModel.subTypeFor(indexPath: indexPath))
     }
 
     /*
@@ -86,5 +78,14 @@ class TypeTableViewController: UITableViewController {
     }
     */
 
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
 
 }

@@ -22,6 +22,8 @@
 		2EBBD1A0237F2E0E00E72BD1 /* CurvedEdgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBBD19F237F2E0E00E72BD1 /* CurvedEdgeButton.swift */; };
 		2ECB90A62377444300AE4E83 /* UIColor+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB90A52377444300AE4E83 /* UIColor+CustomColors.swift */; };
 		2EE1A6912389AF840066A620 /* TypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE1A6902389AF840066A620 /* TypeTableViewController.swift */; };
+		2EF2A03F238B64E7009D5EE4 /* SubTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF2A03E238B64E7009D5EE4 /* SubTypeTableViewController.swift */; };
+		2EF2A041238B6B1D009D5EE4 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF2A040238B6B1D009D5EE4 /* ItemDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		2EBBD19F237F2E0E00E72BD1 /* CurvedEdgeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurvedEdgeButton.swift; sourceTree = "<group>"; };
 		2ECB90A52377444300AE4E83 /* UIColor+CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColors.swift"; sourceTree = "<group>"; };
 		2EE1A6902389AF840066A620 /* TypeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeTableViewController.swift; sourceTree = "<group>"; };
+		2EF2A03E238B64E7009D5EE4 /* SubTypeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTypeTableViewController.swift; sourceTree = "<group>"; };
+		2EF2A040238B6B1D009D5EE4 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +126,8 @@
 				2EB0DE13237C953C002D235E /* RootViewController.swift */,
 				2EB0DE17237D272E002D235E /* AddItemViewController.swift */,
 				2EE1A6902389AF840066A620 /* TypeTableViewController.swift */,
+				2EF2A03E238B64E7009D5EE4 /* SubTypeTableViewController.swift */,
+				2EF2A040238B6B1D009D5EE4 /* ItemDetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -276,11 +282,13 @@
 				2E7DFBF8236A893D0038CE99 /* ClothingTableViewCell.swift in Sources */,
 				2EE1A6912389AF840066A620 /* TypeTableViewController.swift in Sources */,
 				2EB0DE14237C953C002D235E /* RootViewController.swift in Sources */,
+				2EF2A03F238B64E7009D5EE4 /* SubTypeTableViewController.swift in Sources */,
 				2E7DFBF4236A827D0038CE99 /* WardrobeModel.swift in Sources */,
 				2EB0DE16237CB960002D235E /* WardrobeTableFooterView.swift in Sources */,
 				2EB0DE18237D272E002D235E /* AddItemViewController.swift in Sources */,
 				2E7DFBCB23694B4D0038CE99 /* AppDelegate.swift in Sources */,
 				2EBBD1A0237F2E0E00E72BD1 /* CurvedEdgeButton.swift in Sources */,
+				2EF2A041238B6B1D009D5EE4 /* ItemDetailViewController.swift in Sources */,
 				2ECB90A62377444300AE4E83 /* UIColor+CustomColors.swift in Sources */,
 				2E7DFBF6236A88580038CE99 /* ClothingTableViewController.swift in Sources */,
 			);

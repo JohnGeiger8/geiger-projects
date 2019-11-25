@@ -13,7 +13,7 @@ protocol AddItemDelegate : NSObject {
     func addNewItem(_ item: WardrobeItem)
 }
 
-class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate, ImageSelectorDelegate {
+class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate, ImageSelectorDelegate, TypeSelectionDelegate {
 
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var itemImageView: UIImageView!
@@ -63,6 +63,17 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
         imageData = image.jpegData(compressionQuality: 1.0)
     }
     
+    //MARK:- Type Selection Delegate
+    func selectType(_ type: String) {
+        
+        itemTypeLabel.text = type
+    }
+    
+    func selectSubType(_ type: String) {
+        
+        itemSubTypeLabel.text = type
+    }
+    
     // MARK:- Keyboard Handlers
     @objc func keyboardWillShow(notification: Notification) {
         
@@ -86,10 +97,33 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
         imageSelector?.present(withViewController: self)
     }
     
-    // MARK:- Action Methods
-    @IBAction func chooseItemType(_ sender: Any) {
+    // MARK:- Segues
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "ChooseTypeSegue":
+            let navigationViewController = segue.destination as! UINavigationController
+            let typeTableViewController = navigationViewController.topViewController as! TypeTableViewController
+            typeTableViewController.delegate = self
+            
+        case "ChooseSubTypeSegue":
+            let navigationViewController = segue.destination as! UINavigationController
+            let subtypeTableViewController = navigationViewController.topViewController as! SubTypeTableViewController
+            subtypeTableViewController.delegate = self
+            
+        case "UnwindFromAddItem":
+            print("Back to Wardrobe")
+            
+        default:
+            assert(false, "Unhandled segue from AddItemViewController")
+        }
     }
     
+    @IBAction func unwindToAddItemSegue(segue: UIStoryboardSegue) {
+        
+    }
+    
+    // MARK:- Action Methods
     @IBAction func chooseItemSubType(_ sender: Any) {
     }
     
