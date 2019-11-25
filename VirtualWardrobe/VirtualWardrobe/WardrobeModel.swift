@@ -32,8 +32,8 @@ class WardrobeModel {
     // Have all files using model use the same instance
     static let sharedinstance = WardrobeModel()
 
-    let types = ["Shirt", "Pants", "Shorts", "Shoes", "Dress", "Hat", "Underwear", "Socks"]
-    let subtypes = ["Long-sleeve", "Short-sleeve", "Khakis", "Jeans", "Sneakers", "Dress Shoes", "Heels", "Boots", "Slides", "Sandals", "Slip-ons", "Baseball Hat", "Beanie", "Flat Rim Hat", "Boxers", "Briefs", "Dress Socks"]
+    let types = ["Shirt", "Pants", "Shorts", "Shoes", "Dress", "Hat", "Underwear", "Socks", "Other"]
+    let subtypes = ["Long-sleeve", "Short-sleeve", "Khakis", "Jeans", "Sneakers", "Dress Shoes", "Heels", "Boots", "Slides", "Sandals", "Slip-ons", "Baseball Hat", "Beanie", "Flat Rim Hat", "Boxers", "Briefs", "Dress Socks", "Other"]
     
     //var wardrobe : [WardrobeItem] = []
     var allItems : [WardrobeItem] = []
@@ -65,6 +65,31 @@ class WardrobeModel {
     func clothingNameFor(indexPath: IndexPath) -> String {
         
         return allItems[indexPath.row].name
+    }
+    
+    func clothingTypeFor(indexPath: IndexPath) -> String {
+        
+        return allItems[indexPath.row].type
+    }
+    
+    func clothingSubTypeFor(indexPath: IndexPath) -> String {
+        
+        if let subtype = allItems[indexPath.row].subType {
+            return subtype
+        }
+        else {
+            return "None"
+        }
+    }
+    
+    func clothingBrandNameFor(indexPath: IndexPath) -> String {
+        
+        if let brand = allItems[indexPath.row].brandName {
+            return brand
+        } else {
+            return "Unknown"
+        }
+        
     }
     
     func clothingImageNameFor(indexPath: IndexPath) -> String {

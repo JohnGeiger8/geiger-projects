@@ -128,7 +128,7 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
     }
     
     @IBAction func submitItem(_ sender: Any) {
-        guard itemNameTextField.text != "" else {return}//, itemTypeLabel.text != "Choose..." else { return }
+        guard itemNameTextField.text != "", itemTypeLabel.text != "Choose...", itemSubTypeLabel.text != "Choose..." else { return }
         
         let newItem = WardrobeItem(name: itemNameTextField.text!, type: itemTypeLabel.text!, subType: itemSubTypeLabel.text!, colors: [], seasons: [], brandName: itemBrandTextField.text!, price: nil, storeName: "", storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: nil)
         delegate?.addNewItem(newItem)

@@ -9,6 +9,14 @@
 import UIKit
 
 class ItemDetailViewController: UIViewController {
+    
+    @IBOutlet weak var itemNameLabel: UILabel!
+    @IBOutlet weak var itemImageView: UIImageView!
+    @IBOutlet weak var itemTypeLabel: UILabel!
+    @IBOutlet weak var itemSubTypeLabel: UILabel!
+    @IBOutlet weak var itemBrandLabel: UILabel!
+    @IBOutlet weak var itemStoreLabel: UILabel!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
