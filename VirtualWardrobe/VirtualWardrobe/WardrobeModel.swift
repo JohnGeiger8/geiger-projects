@@ -55,11 +55,15 @@ class WardrobeModel {
     }
     
     // MARK:- Clothing Table View Methods
-    
-    // Use switch-case statement to give number of rows for the section number depending on the filter chosen by the user
+
     func numberOfClothes(forSection section: Int) -> Int {
         
         return allItems.count
+    }
+    
+    func clothingItemFor(indexPath: IndexPath) -> WardrobeItem {
+        
+        return allItems[indexPath.row]
     }
     
     func clothingNameFor(indexPath: IndexPath) -> String {
