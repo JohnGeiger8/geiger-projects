@@ -27,16 +27,18 @@ struct WardrobeItem {
 }
 
 
-class WardrobeModel {
+class WardrobeModel {//: DataManagerDelegate {
     
     // Have all files using model use the same instance
     static let sharedinstance = WardrobeModel()
+    
+    //let dataManager = DataManager.sharedInstance
 
     let types = ["Shirt", "Pants", "Shorts", "Shoes", "Dress", "Hat", "Underwear", "Socks", "Other"]
     let subtypes = ["Long-sleeve", "Short-sleeve", "Khakis", "Jeans", "Sneakers", "Dress Shoes", "Heels", "Boots", "Slides", "Sandals", "Slip-ons", "Baseball Hat", "Beanie", "Flat Rim Hat", "Boxers", "Briefs", "Dress Socks", "Other"]
     
     //var wardrobe : [WardrobeItem] = []
-    var allItems : [WardrobeItem] = []
+    var allItems : [WardrobeItemMO] = []
     
     // Number of sections.  This should change depending on filter user chooses
     var numberOfSections = 1
@@ -45,13 +47,13 @@ class WardrobeModel {
         // Initialize wardrobe here using Core Data
         
         // Sample clothing to start
-        let jersey = WardrobeItem(name: "Carson Wentz Eagles Jersey", type: "Shirt", subType: "Short-Sleeve", colors: ["Green"], seasons: ["Fall", "Spring", "Summer"], brandName: "Nike", price: 59.99, storeName: "NFLShop.com", storeLocation: nil, imageName: "Wentz Jersey", imageData: nil, dateOfPurchase: nil)
-        let sperryShoes = WardrobeItem(name: "Sperry Docksider Shoes", type: "Shoes", subType: nil, colors: ["Grey"], seasons: ["All"], brandName: "Sperry", price: 49.99, storeName: "Plato's Closet", storeLocation: CLLocationCoordinate2D(latitude: 40.084400, longitude: -75.404460), imageName: "Sperry Shoes", imageData: nil, dateOfPurchase: nil)
-        let flannel = WardrobeItem(name: "Red and Blue Flannel", type: "Shirt", subType: "Flannel", colors: ["Blue", "Red"], seasons: ["Fall, Winter"], brandName: nil, price: 39.99, storeName: "REI", storeLocation: CLLocationCoordinate2D(latitude: 40.083470, longitude: -75.404970), imageName: "Red and Blue Flannel", imageData: nil, dateOfPurchase: nil)
+//        let jersey = WardrobeItem(name: "Carson Wentz Eagles Jersey", type: "Shirt", subType: "Short-Sleeve", colors: ["Green"], seasons: ["Fall", "Spring", "Summer"], brandName: "Nike", price: 59.99, storeName: "NFLShop.com", storeLocation: nil, imageName: "Wentz Jersey", imageData: nil, dateOfPurchase: nil)
+//        let sperryShoes = WardrobeItem(name: "Sperry Docksider Shoes", type: "Shoes", subType: nil, colors: ["Grey"], seasons: ["All"], brandName: "Sperry", price: 49.99, storeName: "Plato's Closet", storeLocation: CLLocationCoordinate2D(latitude: 40.084400, longitude: -75.404460), imageName: "Sperry Shoes", imageData: nil, dateOfPurchase: nil)
+//        let flannel = WardrobeItem(name: "Red and Blue Flannel", type: "Shirt", subType: "Flannel", colors: ["Blue", "Red"], seasons: ["Fall, Winter"], brandName: nil, price: 39.99, storeName: "REI", storeLocation: CLLocationCoordinate2D(latitude: 40.083470, longitude: -75.404970), imageName: "Red and Blue Flannel", imageData: nil, dateOfPurchase: nil)
         
-        allItems.append(jersey)
-        allItems.append(sperryShoes)
-        allItems.append(flannel)
+//        allItems.append(jersey)
+//        allItems.append(sperryShoes)
+//        allItems.append(flannel)
     }
     
     // MARK:- Clothing Table View Methods
@@ -61,24 +63,24 @@ class WardrobeModel {
         return allItems.count
     }
     
-    func clothingItemFor(indexPath: IndexPath) -> WardrobeItem {
+    func clothingItemFor(indexPath: IndexPath) -> WardrobeItemMO {
         
         return allItems[indexPath.row]
     }
     
     func clothingNameFor(indexPath: IndexPath) -> String {
         
-        return allItems[indexPath.row].name
+        return allItems[indexPath.row].name!
     }
     
     func clothingTypeFor(indexPath: IndexPath) -> String {
         
-        return allItems[indexPath.row].type
+        return allItems[indexPath.row].type!
     }
     
     func clothingSubTypeFor(indexPath: IndexPath) -> String {
         
-        if let subtype = allItems[indexPath.row].subType {
+        if let subtype = allItems[indexPath.row].subtype {
             return subtype
         }
         else {
@@ -96,10 +98,10 @@ class WardrobeModel {
         
     }
     
-    func clothingImageNameFor(indexPath: IndexPath) -> String {
-        
-        return allItems[indexPath.row].imageName
-    }
+//    func clothingImageNameFor(indexPath: IndexPath) -> String {
+//
+//        return allItems[indexPath.row].imageName
+//    }
     
     func clothingImageDataFor(indexPath: IndexPath) -> Data? {
         guard allItems[indexPath.row].imageData != nil else { return nil }
@@ -116,7 +118,7 @@ class WardrobeModel {
         }
     }
     
-    func addWardrobeItem(_ item: WardrobeItem) {
+    func addWardrobeItem(_ item: WardrobeItemMO) {
         allItems.append(item)
     }
     

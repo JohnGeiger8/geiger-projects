@@ -380,7 +380,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nd9-HC-M9K" customClass="CurvedEdgeButton" customModule="VirtualWardrobe" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nd9-HC-M9K" customClass="CurvedEdgeButton" customModule="VirtualWardrobe" customModuleProvider="target">
                                         <rect key="frame" x="163" y="535" width="49" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Submit">
@@ -409,6 +409,7 @@
                                     <constraint firstItem="ql0-yJ-f1m" firstAttribute="leading" secondItem="mS7-FI-rTS" secondAttribute="leading" constant="15" id="WxB-RG-1iO"/>
                                     <constraint firstItem="yDA-qO-UW1" firstAttribute="leading" secondItem="ql0-yJ-f1m" secondAttribute="trailing" constant="8" id="ban-t5-g7e"/>
                                     <constraint firstItem="zdb-rH-fGl" firstAttribute="leading" secondItem="mS7-FI-rTS" secondAttribute="leading" constant="8" id="c7h-wU-DoM"/>
+                                    <constraint firstItem="Nd9-HC-M9K" firstAttribute="top" secondItem="yDA-qO-UW1" secondAttribute="bottom" constant="68" id="et6-vg-BhL"/>
                                     <constraint firstItem="6OE-Kx-Rih" firstAttribute="top" secondItem="VMc-Qe-3ts" secondAttribute="top" id="fVF-Cs-V2e"/>
                                     <constraint firstItem="z8c-sl-TQd" firstAttribute="leading" secondItem="UWs-jQ-6Hd" secondAttribute="trailing" constant="8" id="gvM-Rb-3t3"/>
                                     <constraint firstItem="yDA-qO-UW1" firstAttribute="top" secondItem="ql0-yJ-f1m" secondAttribute="top" id="haN-tt-tCy"/>

@@ -46,11 +46,7 @@ class ClothingTableViewController: UITableViewController, UISearchResultsUpdatin
 
         // Configure the cell
         cell.clothingNameLabel.text = wardrobeModel.clothingNameFor(indexPath: indexPath)
-        if wardrobeModel.clothingImageNameFor(indexPath: indexPath) != "" {
-            let clothingImage = UIImage(named: wardrobeModel.clothingImageNameFor(indexPath: indexPath))
-            cell.clothingImageView.image = clothingImage
-        }
-        else if let imageData = wardrobeModel.clothingImageDataFor(indexPath: indexPath) {
+        if let imageData = wardrobeModel.clothingImageDataFor(indexPath: indexPath) {
             let image = UIImage(data: imageData)
             cell.clothingImageView.image = image
         }
@@ -82,10 +78,6 @@ class ClothingTableViewController: UITableViewController, UISearchResultsUpdatin
             // FIXME: Replace with Core Data ?
             if let itemImageData = self.wardrobeModel.clothingImageDataFor(indexPath: indexPath) {
                 let itemImage = UIImage(data: itemImageData)
-                itemDetailViewController?.itemImageView.image = itemImage!
-            }
-            else if self.wardrobeModel.clothingImageNameFor(indexPath: indexPath) != "" {
-                let itemImage = UIImage(named: self.wardrobeModel.clothingImageNameFor(indexPath: indexPath))
                 itemDetailViewController?.itemImageView.image = itemImage!
             }
             else {
@@ -144,7 +136,7 @@ class ClothingTableViewController: UITableViewController, UISearchResultsUpdatin
 
 extension ClothingTableViewController : AddItemDelegate {
     
-    func addNewItem(_ item: WardrobeItem) {
+    func addNewItem(_ item: WardrobeItemMO) {
         wardrobeModel.addWardrobeItem(item)
         self.tableView.reloadData()
     }
