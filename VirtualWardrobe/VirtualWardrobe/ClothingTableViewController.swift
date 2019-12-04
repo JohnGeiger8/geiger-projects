@@ -136,7 +136,7 @@ class ClothingTableViewController: UITableViewController, UISearchResultsUpdatin
 
 extension ClothingTableViewController : AddItemDelegate {
     
-    func addNewItem(_ item: WardrobeItemMO) {
+    func addNewItem(_ item: WardrobeItem) {
         wardrobeModel.addWardrobeItem(item)
         self.tableView.reloadData()
     }

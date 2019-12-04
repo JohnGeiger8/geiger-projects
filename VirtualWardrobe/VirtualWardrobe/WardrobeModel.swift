@@ -10,7 +10,6 @@ import Foundation
 import MapKit
 import CoreData
 
-// Replace with Core Data model
 struct WardrobeItem {
     var name : String
     var type : String
@@ -24,36 +23,53 @@ struct WardrobeItem {
     var imageName : String
     var imageData : Data?
     var dateOfPurchase : Date?
+    
+    func addItem(with dataManager: DataManager) -> WardrobeItemMO {
+        
+        let itemMO = WardrobeItemMO(context: dataManager.context)
+        
+        itemMO.brandName = brandName
+        itemMO.dateOfPurchase = dateOfPurchase
+        itemMO.imageData = imageData
+        itemMO.name = name
+        itemMO.type = type
+        itemMO.subtype = subType
+        itemMO.storeName = storeName
+        
+        return itemMO
+    }
 }
 
 
-class WardrobeModel {//: DataManagerDelegate {
+class WardrobeModel: DataManagerDelegate {
     
     // Have all files using model use the same instance
     static let sharedinstance = WardrobeModel()
     
-    //let dataManager = DataManager.sharedInstance
-
     let types = ["Shirt", "Pants", "Shorts", "Shoes", "Dress", "Hat", "Underwear", "Socks", "Other"]
     let subtypes = ["Long-sleeve", "Short-sleeve", "Khakis", "Jeans", "Sneakers", "Dress Shoes", "Heels", "Boots", "Slides", "Sandals", "Slip-ons", "Baseball Hat", "Beanie", "Flat Rim Hat", "Boxers", "Briefs", "Dress Socks", "Other"]
     
-    //var wardrobe : [WardrobeItem] = []
-    var allItems : [WardrobeItemMO] = []
+    var allItems : [WardrobeItemMO]
     
     // Number of sections.  This should change depending on filter user chooses
     var numberOfSections = 1
     
     fileprivate init() {
+        
         // Initialize wardrobe here using Core Data
-        
-        // Sample clothing to start
-//        let jersey = WardrobeItem(name: "Carson Wentz Eagles Jersey", type: "Shirt", subType: "Short-Sleeve", colors: ["Green"], seasons: ["Fall", "Spring", "Summer"], brandName: "Nike", price: 59.99, storeName: "NFLShop.com", storeLocation: nil, imageName: "Wentz Jersey", imageData: nil, dateOfPurchase: nil)
-//        let sperryShoes = WardrobeItem(name: "Sperry Docksider Shoes", type: "Shoes", subType: nil, colors: ["Grey"], seasons: ["All"], brandName: "Sperry", price: 49.99, storeName: "Plato's Closet", storeLocation: CLLocationCoordinate2D(latitude: 40.084400, longitude: -75.404460), imageName: "Sperry Shoes", imageData: nil, dateOfPurchase: nil)
-//        let flannel = WardrobeItem(name: "Red and Blue Flannel", type: "Shirt", subType: "Flannel", colors: ["Blue", "Red"], seasons: ["Fall, Winter"], brandName: nil, price: 39.99, storeName: "REI", storeLocation: CLLocationCoordinate2D(latitude: 40.083470, longitude: -75.404970), imageName: "Red and Blue Flannel", imageData: nil, dateOfPurchase: nil)
-        
-//        allItems.append(jersey)
-//        allItems.append(sperryShoes)
-//        allItems.append(flannel)
+        allItems = (dataManager.fetchManagedObjects(for: "WardrobeItemMO", sortKeys: ["name"], predicate: nil) as? [WardrobeItemMO])!
+        dataManager.delegate = self
+    }
+    
+    // MARK:- Core Data and Data Manager
+    
+    let dataManager = DataManager.sharedInstance
+    let dataModelName = "WardrobeModel"
+    let entityName = "WardrobeItemMO"
+    
+    func createDatabase() {
+        // FIXME: do i need this
+        dataManager.saveContext()
     }
     
     // MARK:- Clothing Table View Methods
@@ -98,11 +114,6 @@ class WardrobeModel {//: DataManagerDelegate {
         
     }
     
-//    func clothingImageNameFor(indexPath: IndexPath) -> String {
-//
-//        return allItems[indexPath.row].imageName
-//    }
-    
     func clothingImageDataFor(indexPath: IndexPath) -> Data? {
         guard allItems[indexPath.row].imageData != nil else { return nil }
         
@@ -118,8 +129,12 @@ class WardrobeModel {//: DataManagerDelegate {
         }
     }
     
-    func addWardrobeItem(_ item: WardrobeItemMO) {
-        allItems.append(item)
+    func addWardrobeItem(_ item: WardrobeItem) {
+        
+        let itemMO = item.addItem(with: dataManager)
+        dataManager.saveContext()
+        
+        allItems.append(itemMO)
     }
     
     // MARK: - Type and SubType Table View Controller
@@ -135,48 +150,5 @@ class WardrobeModel {//: DataManagerDelegate {
     func subTypeFor(indexPath: IndexPath) -> String {
         
         return subtypes[indexPath.row]
-    }
-    
-    // MARK: - Core Data stack
-    lazy var persistentContainer: NSPersistentContainer = {
-        /*
-         The persistent container for the application. This implementation
-         creates and returns a container, having loaded the store for the
-         application to it. This property is optional since there are legitimate
-         error conditions that could cause the creation of the store to fail.
-         */
-        let container = NSPersistentContainer(name: "VirtualWardrobe")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                
-                /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
-                 Check the error message to determine what the actual problem was.
-                 */
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        return container
-    }()
-    
-    // MARK: - Core Data Saving support
-    func saveContext () {
-        let context = persistentContainer.viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
     }
 }

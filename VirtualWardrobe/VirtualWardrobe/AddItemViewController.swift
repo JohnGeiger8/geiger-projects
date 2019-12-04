@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 protocol AddItemDelegate : NSObject {
-    func addNewItem(_ item: WardrobeItemMO)
+    func addNewItem(_ item: WardrobeItem)
 }
 
 class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate, ImageSelectorDelegate, TypeSelectionDelegate {
@@ -130,8 +130,8 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
     @IBAction func submitItem(_ sender: Any) {
         guard itemNameTextField.text != "", itemTypeLabel.text != "Choose...", itemSubTypeLabel.text != "Choose..." else { return }
         
-//        let newItem = WardrobeItem(name: itemNameTextField.text!, type: itemTypeLabel.text!, subType: itemSubTypeLabel.text!, colors: [], seasons: [], brandName: itemBrandTextField.text!, price: nil, storeName: "", storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: nil)
-//        delegate?.addNewItem(newItem)
+        let newItem = WardrobeItem(name: itemNameTextField.text!, type: itemTypeLabel.text!, subType: itemSubTypeLabel.text!, colors: [], seasons: [], brandName: itemBrandTextField.text!, price: nil, storeName: "", storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: nil)
+        delegate?.addNewItem(newItem)
         dismiss(animated: true, completion: nil)
     }
     
