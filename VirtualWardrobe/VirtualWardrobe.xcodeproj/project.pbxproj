@@ -18,6 +18,7 @@
 		2E7DFBF8236A893D0038CE99 /* ClothingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DFBF7236A893D0038CE99 /* ClothingTableViewCell.swift */; };
 		2E9D657F2394AC9800269C40 /* VirtualWardrobe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2E9D657D2394AC9800269C40 /* VirtualWardrobe.xcdatamodeld */; };
 		2E9D65812395964900269C40 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9D65802395964900269C40 /* DataManager.swift */; };
+		2EAEDA892398B91C00293AA8 /* UILabel+name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAEDA882398B91C00293AA8 /* UILabel+name.swift */; };
 		2EB0DE14237C953C002D235E /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB0DE13237C953C002D235E /* RootViewController.swift */; };
 		2EB0DE16237CB960002D235E /* WardrobeTableFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB0DE15237CB960002D235E /* WardrobeTableFooterView.swift */; };
 		2EB0DE18237D272E002D235E /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB0DE17237D272E002D235E /* AddItemViewController.swift */; };
@@ -55,6 +56,7 @@
 		2E7DFBF7236A893D0038CE99 /* ClothingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingTableViewCell.swift; sourceTree = "<group>"; };
 		2E9D657E2394AC9800269C40 /* VirtualWardrobe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VirtualWardrobe.xcdatamodel; sourceTree = "<group>"; };
 		2E9D65802395964900269C40 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		2EAEDA882398B91C00293AA8 /* UILabel+name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+name.swift"; sourceTree = "<group>"; };
 		2EB0DE13237C953C002D235E /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		2EB0DE15237CB960002D235E /* WardrobeTableFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeTableFooterView.swift; sourceTree = "<group>"; };
 		2EB0DE17237D272E002D235E /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				2ECB90A52377444300AE4E83 /* UIColor+CustomColors.swift */,
 				2EB0DE15237CB960002D235E /* WardrobeTableFooterView.swift */,
 				2EBBD19F237F2E0E00E72BD1 /* CurvedEdgeButton.swift */,
+				2EAEDA882398B91C00293AA8 /* UILabel+name.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				2EB0DE14237C953C002D235E /* RootViewController.swift in Sources */,
 				2EF2A03F238B64E7009D5EE4 /* SubTypeTableViewController.swift in Sources */,
 				2E7DFBF4236A827D0038CE99 /* WardrobeModel.swift in Sources */,
+				2EAEDA892398B91C00293AA8 /* UILabel+name.swift in Sources */,
 				2EB0DE16237CB960002D235E /* WardrobeTableFooterView.swift in Sources */,
 				2EB0DE18237D272E002D235E /* AddItemViewController.swift in Sources */,
 				2E7DFBCB23694B4D0038CE99 /* AppDelegate.swift in Sources */,

@@ -14,6 +14,10 @@ protocol AddItemDelegate : NSObject {
 }
 
 class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate, ImageSelectorDelegate, TypeSelectionDelegate {
+    
+    var fieldLabels : [UILabel] = []
+    var typeButton : CurvedEdgeButton!
+    var subtypeButton : CurvedEdgeButton!
 
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var itemImageView: UIImageView!
@@ -37,11 +41,34 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
         
         imageSelector = ImageSelector(withDelegate: self)
         
+        // Create all objects for user input
+        createLabels()
+        createUserInputDevices()
+        
         // Need to set up handling for the keyboard appearing to keep everything visible when it appears
         let center = NotificationCenter.default
         center.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         center.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
 
+    }
+    
+    func createLabels() {
+        
+        let labelNames = ["Name:", "Type:", "Subtype:", "Purchased:", "Brand:", "Date:"]
+        
+        for name in labelNames {
+            let label = UILabel(named: name)
+            fieldLabels.append(label)
+        }
+    }
+    
+    func createUserInputDevices() {
+        
+        itemNameTextField = UITextField()
+        
+        typeButton = CurvedEdgeButton(frame: CGRect.zero)
+        subtypeButton = CurvedEdgeButton(frame: CGRect.zero)
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -54,6 +81,8 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
         itemImageView.isUserInteractionEnabled = true
         
         mainScrollView.contentSize = self.view.frame.size
+        
+        // Layout all objects for user input
     }
     
     // MARK:- Image Selector Delegate
@@ -128,7 +157,7 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
     }
     
     @IBAction func submitItem(_ sender: Any) {
-        guard itemNameTextField.text != "", itemTypeLabel.text != "Choose...", itemSubTypeLabel.text != "Choose..." else { return }
+        guard itemNameTextField.text != "", itemTypeLabel.text != "Choose..." else { return }
         
         let newItem = WardrobeItem(name: itemNameTextField.text!, type: itemTypeLabel.text!, subType: itemSubTypeLabel.text!, colors: [], seasons: [], brandName: itemBrandTextField.text!, price: nil, storeName: "", storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: nil)
         delegate?.addNewItem(newItem)
