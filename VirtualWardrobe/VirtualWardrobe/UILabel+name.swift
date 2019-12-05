@@ -12,7 +12,7 @@ import UIKit
 extension UILabel {
     
     convenience init(named name: String) {
-        self.init()
+        self.init(frame: CGRect.zero)
         self.text = name
     }
 }

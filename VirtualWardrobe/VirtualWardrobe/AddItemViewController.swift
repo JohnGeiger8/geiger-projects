@@ -16,8 +16,17 @@ protocol AddItemDelegate : NSObject {
 class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate, ImageSelectorDelegate, TypeSelectionDelegate {
     
     var fieldLabels : [UILabel] = []
+    var userInputObjectDictionary = [String: [UIView]]() // holds uiview objects user will use to fill information based on label name
+    var nameTextField : UITextField!
     var typeButton : CurvedEdgeButton!
     var subtypeButton : CurvedEdgeButton!
+    var purchasedOnlineButton : CurvedEdgeButton!
+    var purchasedInStoreButton : CurvedEdgeButton!
+    var brandNameTextField : UITextField!
+    
+    // Item spacing
+    let ySpacing = 12.0
+    let xSpacing = 8.0
 
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var itemImageView: UIImageView!
@@ -53,9 +62,9 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
     }
     
     func createLabels() {
-        
-        let labelNames = ["Name:", "Type:", "Subtype:", "Purchased:", "Brand:", "Date:"]
-        
+
+        let labelNames = ["Name", "Type", "Subtype", "Purchased", "Brand"]//, "Date"]
+
         for name in labelNames {
             let label = UILabel(named: name)
             fieldLabels.append(label)
@@ -64,10 +73,25 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
     
     func createUserInputDevices() {
         
-        itemNameTextField = UITextField()
+        nameTextField = UITextField()
+        userInputObjectDictionary["Name"] = [nameTextField]
         
         typeButton = CurvedEdgeButton(frame: CGRect.zero)
         subtypeButton = CurvedEdgeButton(frame: CGRect.zero)
+        typeButton.imageView?.image = UIImage(named: "DropDownArrow")
+        subtypeButton.imageView?.image = UIImage(named: "DropDownArrow")
+        subtypeButton.isEnabled = false
+        userInputObjectDictionary["Type"] = [typeButton]
+        userInputObjectDictionary["Subtype"] = [subtypeButton]
+        
+        purchasedOnlineButton = CurvedEdgeButton(named: "Online")
+        purchasedInStoreButton = CurvedEdgeButton(named: "In Store")
+        userInputObjectDictionary["Purchased"] = [purchasedOnlineButton, purchasedInStoreButton]
+        
+        brandNameTextField = UITextField()
+        userInputObjectDictionary["Brand"] = [brandNameTextField]
+        
+        //purchaseDatePicker = UIDatePicker()
         
     }
     
@@ -83,6 +107,24 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
         mainScrollView.contentSize = self.view.frame.size
         
         // Layout all objects for user input
+        var currentY = Double(itemImageView.frame.origin.y + itemImageView.frame.height) + ySpacing
+        
+        for label in fieldLabels {
+            let origin = CGPoint(x: xSpacing, y: currentY)
+            label.frame.origin = origin
+            label.frame.size = label.intrinsicContentSize
+            currentY = currentY + Double(label.frame.size.height) + ySpacing
+            
+            // Now do layout of actual user input objects
+            if let views = userInputObjectDictionary[label.text!] {
+                let currentX = xSpacing
+                for view in views {
+                    
+                }
+            }
+            
+            mainScrollView.addSubview(label)
+        }
     }
     
     // MARK:- Image Selector Delegate
