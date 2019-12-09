@@ -164,3 +164,8 @@ class WardrobeModel: DataManagerDelegate {
         return subtypes[indexPath.row]
     }
 }
+
+// MARK:- Trends
+extension WardrobeModel {
+    
+}

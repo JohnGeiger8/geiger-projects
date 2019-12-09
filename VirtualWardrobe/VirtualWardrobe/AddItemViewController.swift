@@ -24,6 +24,7 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
     var purchasedOnlineButton : CurvedEdgeButton!
     var purchasedInStoreButton : CurvedEdgeButton!
     var brandNameTextField : UserInputTextField!
+    var purchaseDateButton : CurvedEdgeButton!
     
     var isTypeSelected : Bool = false
     
@@ -65,7 +66,7 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
     
     func createLabels() {
 
-        let labelNames = ["Name", "Type", "Subtype", "Purchased", "Brand"]//, "Date"]
+        let labelNames = ["Name", "Type", "Subtype", "Purchased", "Brand", "Date Purchased"]
 
         for name in labelNames {
             let label = UILabel(named: name)
@@ -95,12 +96,13 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
         brandNameTextField.placeholder = "Brand name"
         userInputObjectDictionary["Brand"] = [brandNameTextField]
         
+        purchaseDateButton = CurvedEdgeButton(named: "Choose Date")
+        purchaseDateButton.addTarget(self, action: #selector(chooseItemPurchaseDate(_:)), for: .touchUpInside)
+        userInputObjectDictionary["Date Purchased"] = [purchaseDateButton]
+        
         mainScrollView.delegate = self
         nameTextField.delegate = self
         brandNameTextField.delegate = self
-        
-        //purchaseDatePicker = UIDatePicker()
-        
     }
     
     override func viewDidLayoutSubviews() {
@@ -163,6 +165,12 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
         subtypeButton.setTitle(type, for: .normal)
     }
     
+    // MARK:- Purchase Date Delegate
+    func selectPurchaseDate(_ date: Date) {
+        
+        purchaseDateButton.setTitle(" Date here ", for: .normal)
+    }
+    
     // MARK:- Keyboard Handlers
     @objc func keyboardWillShow(notification: Notification) {
         
@@ -198,8 +206,12 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
             let subtypeTableViewController = segue.destination as! SubTypeTableViewController
             subtypeTableViewController.delegate = self
             
+        case "ChooseDateSegue":
+            let dateViewController = segue.destination as! DatePickerViewController
+            dateViewController.delegate = self
+            
         case "UnwindFromItemDetail":
-            print("Back to Wardrobe")
+            break
             
         default:
             assert(false, "Unhandled segue from AddItemViewController")
@@ -219,10 +231,14 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
         performSegue(withIdentifier: "ChooseSubTypeSegue", sender: sender)
     }
     
+    @objc func chooseItemPurchaseDate(_ sender: UIButton) {
+        performSegue(withIdentifier: "ChooseDateSegue", sender: sender)
+    }
+    
     @IBAction func submitItem(_ sender: Any) {
         guard nameTextField.text != "", isTypeSelected else { return }
         
-        let newItem = WardrobeItem(name: nameTextField.text!, type: typeButton.titleLabel!.text!, subType: subtypeButton.titleLabel!.text, colors: [], seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: "", storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: nil)
+        let newItem = WardrobeItem(name: nameTextField.text!, type: typeButton.titleLabel!.text!, subType: subtypeButton.titleLabel!.text, colors: [], seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: "", storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: nil)//purchaseDateButton.title(for: .normal)) FIXME: date of purchase
         delegate?.addNewItem(newItem)
         navigationController?.popViewController(animated: true)
     }
@@ -240,6 +256,7 @@ extension AddItemViewController {
         subtypeButton.setTitle(item.subtype, for: .normal)
         brandNameTextField.text = item.brandName
         purchasedInStoreButton.setTitle(item.storeName, for: .normal)
+        purchaseDateButton.setTitle("item.dateOfPurchase", for: .normal)
         
         if let itemImageData = item.imageData {
             let itemImage = UIImage(data: itemImageData)
@@ -290,6 +307,14 @@ extension AddItemViewController {
         
         let item = WardrobeItem(name: nameTextField.text!, type: typeButton.title(for: .normal)!, subType: subtypeButton.title(for: .normal), colors: [], seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: "", storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: nil)
         delegate?.updateItem(item,  atIndexPath: selectedItemIndexPath!)
+    }
+}
+
+// MARK:- Date Purchased Delegate
+extension AddItemViewController: PurchaseDateDelegate {
+    
+    func choosePurchaseDate(_ date: Date) {
+        selectPurchaseDate(date)
     }
 }
 

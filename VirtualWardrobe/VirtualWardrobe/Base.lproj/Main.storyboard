@@ -158,7 +158,7 @@
         <!--Shopping Trends-->
         <scene sceneID="W1a-Qt-cTg">
             <objects>
-                <viewController title="Shopping Trends" id="Zot-aC-ctF" sceneMemberID="viewController">
+                <viewController title="Shopping Trends" id="Zot-aC-ctF" customClass="TrendsViewController" customModule="VirtualWardrobe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eik-r0-Ac7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -448,6 +448,7 @@
                         <outlet property="titleLabel" destination="WZI-aJ-yNw" id="X2G-si-WPv"/>
                         <segue destination="92G-AC-bEE" kind="show" identifier="ChooseTypeSegue" id="ixc-im-NJK"/>
                         <segue destination="dFY-XN-irg" kind="show" identifier="ChooseSubTypeSegue" id="YYj-1t-ytR"/>
+                        <segue destination="f6o-pR-mie" kind="presentation" identifier="ChooseDateSegue" id="9pm-3q-gda"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WgP-M4-7AF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -550,7 +551,60 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kMw-cs-APL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="AJJ-4s-bqf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3545" y="756"/>
+            <point key="canvasLocation" x="3545" y="745"/>
+        </scene>
+        <!--Date Picker View Controller-->
+        <scene sceneID="vSX-mu-boF">
+            <objects>
+                <viewController id="f6o-pR-mie" customClass="DatePickerViewController" customModule="VirtualWardrobe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ef6-JB-188">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="8Xf-5S-BMs">
+                                <rect key="frame" x="0.0" y="99" width="375" height="216"/>
+                                <date key="date" timeIntervalSinceReferenceDate="597625708.55993795">
+                                    <!--2019-12-09 23:08:28 +0000-->
+                                </date>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eBH-Ho-gPF">
+                                <rect key="frame" x="15" y="36" width="48" height="30"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <segue destination="6ow-Wc-OjV" kind="unwind" unwindAction="unwindToAddItemSegueWithSegue:" id="B2S-7d-fOk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ES3-iQ-eJh" customClass="CurvedEdgeButton" customModule="VirtualWardrobe" customModuleProvider="target">
+                                <rect key="frame" x="312" y="36" width="49" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="chooseDate:" destination="f6o-pR-mie" eventType="touchUpInside" id="22p-wt-TWO"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.76788619680000003" green="0.88932966319999995" blue="0.70371678719999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="8Xf-5S-BMs" firstAttribute="top" secondItem="eBH-Ho-gPF" secondAttribute="bottom" constant="33" id="3Ge-nX-wk4"/>
+                            <constraint firstItem="8Xf-5S-BMs" firstAttribute="trailing" secondItem="lCS-8H-0as" secondAttribute="trailing" id="C0R-99-cdf"/>
+                            <constraint firstItem="eBH-Ho-gPF" firstAttribute="top" secondItem="lCS-8H-0as" secondAttribute="top" constant="16" id="CY0-n9-jYO"/>
+                            <constraint firstItem="ES3-iQ-eJh" firstAttribute="top" secondItem="lCS-8H-0as" secondAttribute="top" constant="16" id="Jcf-tJ-N1e"/>
+                            <constraint firstItem="eBH-Ho-gPF" firstAttribute="leading" secondItem="lCS-8H-0as" secondAttribute="leading" constant="15" id="YCa-Xl-bUR"/>
+                            <constraint firstItem="8Xf-5S-BMs" firstAttribute="leading" secondItem="lCS-8H-0as" secondAttribute="leading" id="ZRE-2Y-8JI"/>
+                            <constraint firstItem="lCS-8H-0as" firstAttribute="trailing" secondItem="ES3-iQ-eJh" secondAttribute="trailing" constant="14" id="cec-f0-F9V"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lCS-8H-0as"/>
+                    </view>
+                    <connections>
+                        <outlet property="datePicker" destination="8Xf-5S-BMs" id="voT-wk-Ffd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1yX-yg-wca" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="6ow-Wc-OjV" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3544.8000000000002" y="1420.8395802098951"/>
         </scene>
     </scenes>
     <resources>
