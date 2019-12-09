@@ -11,42 +11,44 @@ import MapKit
 
 protocol AddItemDelegate : NSObject {
     func addNewItem(_ item: WardrobeItem)
+    func updateItem(_ item: WardrobeItem, atIndexPath indexPath: IndexPath)
 }
 
 class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate, ImageSelectorDelegate, TypeSelectionDelegate {
     
     var fieldLabels : [UILabel] = []
     var userInputObjectDictionary = [String: [UIView]]() // holds uiview objects user will use to fill information based on label name
-    var nameTextField : UITextField!
+    var nameTextField : UserInputTextField!
     var typeButton : CurvedEdgeButton!
     var subtypeButton : CurvedEdgeButton!
     var purchasedOnlineButton : CurvedEdgeButton!
     var purchasedInStoreButton : CurvedEdgeButton!
-    var brandNameTextField : UITextField!
+    var brandNameTextField : UserInputTextField!
+    
+    var isTypeSelected : Bool = false
     
     // Item spacing
-    let ySpacing = 12.0
+    let ySpacing = 15.0
     let xSpacing = 8.0
 
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var itemImageView: UIImageView!
-    @IBOutlet weak var itemNameTextField: UITextField!
-    @IBOutlet weak var itemTypeLabel: UILabel!
-    @IBOutlet weak var itemSubTypeLabel: UILabel!
     @IBOutlet weak var submitButton: CurvedEdgeButton!
-    @IBOutlet weak var itemBrandTextField: UITextField!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var editButton: UIButton!
     
     var imageSelector : ImageSelector?
     weak var delegate : AddItemDelegate?
     
+    // Item selection fields
+    var selectedItemIndexPath : IndexPath?
+
     // WardrobeItem fields
     var imageData : Data?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        mainScrollView.delegate = self
-        itemNameTextField.delegate = self
         
         imageSelector = ImageSelector(withDelegate: self)
         
@@ -73,14 +75,15 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
     
     func createUserInputDevices() {
         
-        nameTextField = UITextField()
+        nameTextField = UserInputTextField()
+        nameTextField.placeholder = "Name"
         userInputObjectDictionary["Name"] = [nameTextField]
         
-        typeButton = CurvedEdgeButton(frame: CGRect.zero)
-        subtypeButton = CurvedEdgeButton(frame: CGRect.zero)
-        typeButton.imageView?.image = UIImage(named: "DropDownArrow")
-        subtypeButton.imageView?.image = UIImage(named: "DropDownArrow")
+        typeButton = CurvedEdgeButton(named: "Choose Item Type")
+        subtypeButton = CurvedEdgeButton(named: "Choose Item Subtype")
         subtypeButton.isEnabled = false
+        typeButton.addTarget(self, action: #selector(chooseItemType(_:)), for: .touchUpInside)
+        subtypeButton.addTarget(self, action: #selector(chooseItemSubtype(_:)), for: .touchUpInside)
         userInputObjectDictionary["Type"] = [typeButton]
         userInputObjectDictionary["Subtype"] = [subtypeButton]
         
@@ -88,8 +91,13 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
         purchasedInStoreButton = CurvedEdgeButton(named: "In Store")
         userInputObjectDictionary["Purchased"] = [purchasedOnlineButton, purchasedInStoreButton]
         
-        brandNameTextField = UITextField()
+        brandNameTextField = UserInputTextField()
+        brandNameTextField.placeholder = "Brand name"
         userInputObjectDictionary["Brand"] = [brandNameTextField]
+        
+        mainScrollView.delegate = self
+        nameTextField.delegate = self
+        brandNameTextField.delegate = self
         
         //purchaseDatePicker = UIDatePicker()
         
@@ -113,15 +121,23 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
             let origin = CGPoint(x: xSpacing, y: currentY)
             label.frame.origin = origin
             label.frame.size = label.intrinsicContentSize
-            currentY = currentY + Double(label.frame.size.height) + ySpacing
             
-            // Now do layout of actual user input objects
+            let labelFrame = label.frame
+            // Now do layout of actual user input objects corresponding to this label
             if let views = userInputObjectDictionary[label.text!] {
-                let currentX = xSpacing
-                for view in views {
+                var currentX = xSpacing + Double(labelFrame.origin.x + labelFrame.width)
+                for aView in views {
+                    let viewOrigin = CGPoint(x: currentX, y: currentY)
+                    let width = (Double(self.view.frame.width) - currentX -  xSpacing) / Double(views.count)
+                    let viewSize = CGSize(width: width, height: 28.0)
+                    aView.frame = CGRect(origin: viewOrigin, size: viewSize)
+                    mainScrollView.addSubview(aView)
                     
+                    currentX = currentX + xSpacing + width
                 }
             }
+            
+            currentY = currentY + Double(label.frame.size.height) + ySpacing
             
             mainScrollView.addSubview(label)
         }
@@ -137,12 +153,14 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
     //MARK:- Type Selection Delegate
     func selectType(_ type: String) {
         
-        itemTypeLabel.text = type
+        typeButton.setTitle(type, for: .normal)
+        isTypeSelected = true
+        subtypeButton.isEnabled = true
     }
     
     func selectSubType(_ type: String) {
         
-        itemSubTypeLabel.text = type
+        subtypeButton.setTitle(type, for: .normal)
     }
     
     // MARK:- Keyboard Handlers
@@ -173,16 +191,14 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "ChooseTypeSegue":
-            let navigationViewController = segue.destination as! UINavigationController
-            let typeTableViewController = navigationViewController.topViewController as! TypeTableViewController
+            let typeTableViewController = segue.destination as! TypeTableViewController
             typeTableViewController.delegate = self
             
         case "ChooseSubTypeSegue":
-            let navigationViewController = segue.destination as! UINavigationController
-            let subtypeTableViewController = navigationViewController.topViewController as! SubTypeTableViewController
+            let subtypeTableViewController = segue.destination as! SubTypeTableViewController
             subtypeTableViewController.delegate = self
             
-        case "UnwindFromAddItem":
+        case "UnwindFromItemDetail":
             print("Back to Wardrobe")
             
         default:
@@ -195,18 +211,86 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
     }
     
     // MARK:- Action Methods
-    @IBAction func chooseItemSubType(_ sender: Any) {
+    @objc func chooseItemType(_ sender: UIButton) {
+        performSegue(withIdentifier: "ChooseTypeSegue", sender: sender)
+    }
+    
+    @objc func chooseItemSubtype(_ sender: UIButton) {
+        performSegue(withIdentifier: "ChooseSubTypeSegue", sender: sender)
     }
     
     @IBAction func submitItem(_ sender: Any) {
-        guard itemNameTextField.text != "", itemTypeLabel.text != "Choose..." else { return }
+        guard nameTextField.text != "", isTypeSelected else { return }
         
-        let newItem = WardrobeItem(name: itemNameTextField.text!, type: itemTypeLabel.text!, subType: itemSubTypeLabel.text!, colors: [], seasons: [], brandName: itemBrandTextField.text!, price: nil, storeName: "", storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: nil)
+        let newItem = WardrobeItem(name: nameTextField.text!, type: typeButton.titleLabel!.text!, subType: subtypeButton.titleLabel!.text, colors: [], seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: "", storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: nil)
         delegate?.addNewItem(newItem)
-        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
+    }
+}
+
+// MARK:- Configure controller for a Detail view
+extension AddItemViewController {
+    
+    func configureForDetailView(item: WardrobeItemMO, atIndexPath indexPath: IndexPath) {
+        
+        selectedItemIndexPath = indexPath
+        titleLabel.text = item.name
+        nameTextField.text = item.name
+        typeButton.setTitle(item.type, for: .normal)
+        subtypeButton.setTitle(item.subtype, for: .normal)
+        brandNameTextField.text = item.brandName
+        purchasedInStoreButton.setTitle(item.storeName, for: .normal)
+        
+        if let itemImageData = item.imageData {
+            let itemImage = UIImage(data: itemImageData)
+            itemImageView.image = itemImage!
+            
+            imageData = itemImageData
+        }
+        else {
+            let itemImage = UIImage(named: "noImageFound")
+            itemImageView.image = itemImage!
+        }
+        
+        // Fields shouldn't be editable by default
+        itemImageView.isUserInteractionEnabled = false
+        nameTextField.isUserInteractionEnabled = false
+        typeButton.isEnabled = false
+        subtypeButton.isEnabled = false
+        purchasedInStoreButton.isEnabled = false
+        purchasedOnlineButton.isEnabled = false
+        brandNameTextField.isUserInteractionEnabled = false
+        
+        submitButton.isHidden = true
+        editButton.isHidden = false
+        cancelButton.isHidden = false
     }
     
+    @IBAction func toggleEditingFields(_ sender: Any) {
+        
+        if editButton.title(for: .normal) == "Edit" {
+            editButton.setTitle("Done", for: .normal)
+        }
+        else {
+            editButton.setTitle("Edit", for: .normal)
+            submitItemChanges()
+        }
+        
+        // Toggle fields' editable properties
+        itemImageView.isUserInteractionEnabled.toggle()
+        nameTextField.isUserInteractionEnabled.toggle()
+        typeButton.isEnabled.toggle()
+        subtypeButton.isEnabled.toggle()
+        purchasedInStoreButton.isEnabled.toggle()
+        purchasedOnlineButton.isEnabled.toggle()
+        brandNameTextField.isUserInteractionEnabled.toggle()
+    }
     
+    func submitItemChanges() {
+        
+        let item = WardrobeItem(name: nameTextField.text!, type: typeButton.title(for: .normal)!, subType: subtypeButton.title(for: .normal), colors: [], seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: "", storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: nil)
+        delegate?.updateItem(item,  atIndexPath: selectedItemIndexPath!)
+    }
 }
 
 // MARK:- Image Picker

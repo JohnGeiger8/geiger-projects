@@ -137,6 +137,18 @@ class WardrobeModel: DataManagerDelegate {
         allItems.append(itemMO)
     }
     
+    func updateWardrobeItem(_ item: WardrobeItem, atIndexPath indexPath: IndexPath) {
+        
+        allItems[indexPath.row].name = item.name
+        allItems[indexPath.row].type = item.type
+        allItems[indexPath.row].subtype = item.subType
+        allItems[indexPath.row].brandName = item.brandName
+        allItems[indexPath.row].storeName = item.storeName
+        allItems[indexPath.row].dateOfPurchase = item.dateOfPurchase
+        allItems[indexPath.row].imageData = item.imageData
+        dataManager.saveContext()
+    }
+    
     // MARK: - Type and SubType Table View Controller
     var numberOfTypes : Int { return self.types.count }
     

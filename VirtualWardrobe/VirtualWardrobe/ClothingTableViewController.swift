@@ -65,25 +65,13 @@ class ClothingTableViewController: UITableViewController, UISearchResultsUpdatin
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // Create an item detail view controller
-        let itemDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "ItemDetailController") as? ItemDetailViewController
+        let itemDetailViewController = (self.storyboard?.instantiateViewController(withIdentifier: "ItemViewController") as? AddItemViewController)
         
         self.present(itemDetailViewController!, animated: true, completion: {
-            
-            itemDetailViewController?.itemNameLabel.text = self.wardrobeModel.clothingNameFor(indexPath: indexPath)
-            itemDetailViewController?.itemTypeLabel.text = self.wardrobeModel.clothingTypeFor(indexPath: indexPath)
-            itemDetailViewController?.itemSubTypeLabel.text = self.wardrobeModel.clothingSubTypeFor(indexPath: indexPath)
-            itemDetailViewController?.itemBrandLabel.text = self.wardrobeModel.clothingBrandNameFor(indexPath: indexPath)
-            itemDetailViewController?.itemStoreLabel.text = self.wardrobeModel.clothingStoreNameFor(indexPath: indexPath)
-            
-            // FIXME: Replace with Core Data ?
-            if let itemImageData = self.wardrobeModel.clothingImageDataFor(indexPath: indexPath) {
-                let itemImage = UIImage(data: itemImageData)
-                itemDetailViewController?.itemImageView.image = itemImage!
-            }
-            else {
-                let itemImage = UIImage(named: "noImageFound")
-                itemDetailViewController?.itemImageView.image = itemImage!
-            }
+
+            let wardrobeItem = self.wardrobeModel.clothingItemFor(indexPath: indexPath)
+            itemDetailViewController?.configureForDetailView(item: wardrobeItem, atIndexPath: indexPath)
+            itemDetailViewController?.delegate = self
         })
     }
     
@@ -134,10 +122,17 @@ class ClothingTableViewController: UITableViewController, UISearchResultsUpdatin
     }
 }
 
+// MARK:- AddItemDelegate
 extension ClothingTableViewController : AddItemDelegate {
     
     func addNewItem(_ item: WardrobeItem) {
         wardrobeModel.addWardrobeItem(item)
         self.tableView.reloadData()
     }
+    
+    func updateItem(_ item: WardrobeItem, atIndexPath indexPath: IndexPath) {
+        wardrobeModel.updateWardrobeItem(item, atIndexPath: indexPath)
+        self.tableView.reloadData()
+    }
+
 }

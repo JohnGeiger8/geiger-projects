@@ -13,7 +13,7 @@ class CurvedEdgeButton: UIButton {
     convenience init(named name: String) {
         
         self.init(frame: CGRect.zero)
-        self.titleLabel?.text = name
+        setTitle(name, for: .normal)
     }
     
     override init(frame: CGRect) {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E6CCC342399B1D3009DB6A6 /* UserInputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6CCC332399B1D3009DB6A6 /* UserInputTextField.swift */; };
 		2E7DFBCB23694B4D0038CE99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DFBCA23694B4D0038CE99 /* AppDelegate.swift */; };
 		2E7DFBCF23694B4D0038CE99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DFBCE23694B4D0038CE99 /* ViewController.swift */; };
 		2E7DFBD223694B4D0038CE99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E7DFBD023694B4D0038CE99 /* Main.storyboard */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E6CCC332399B1D3009DB6A6 /* UserInputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputTextField.swift; sourceTree = "<group>"; };
 		2E7DFBC723694B4D0038CE99 /* VirtualWardrobe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualWardrobe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E7DFBCA23694B4D0038CE99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E7DFBCE23694B4D0038CE99 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				2EB0DE15237CB960002D235E /* WardrobeTableFooterView.swift */,
 				2EBBD19F237F2E0E00E72BD1 /* CurvedEdgeButton.swift */,
 				2EAEDA882398B91C00293AA8 /* UILabel+name.swift */,
+				2E6CCC332399B1D3009DB6A6 /* UserInputTextField.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				2EBBD1A0237F2E0E00E72BD1 /* CurvedEdgeButton.swift in Sources */,
 				2EF2A041238B6B1D009D5EE4 /* ItemDetailViewController.swift in Sources */,
 				2E9D657F2394AC9800269C40 /* VirtualWardrobe.xcdatamodeld in Sources */,
+				2E6CCC342399B1D3009DB6A6 /* UserInputTextField.swift in Sources */,
 				2ECB90A62377444300AE4E83 /* UIColor+CustomColors.swift in Sources */,
 				2E7DFBF6236A88580038CE99 /* ClothingTableViewController.swift in Sources */,
 			);

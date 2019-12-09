@@ -46,8 +46,13 @@ class TypeTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        dismiss(animated: true, completion: nil)
+
+        if let navController = self.navigationController {
+            navController.popViewController(animated: true)
+        }
+        else {
+            self.dismiss(animated: true, completion: nil)
+        }
         delegate?.selectType(wardrobeModel.typeFor(indexPath: indexPath))
     }
 
