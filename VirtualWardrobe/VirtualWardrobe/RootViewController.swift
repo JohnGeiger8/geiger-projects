@@ -12,8 +12,6 @@ class RootViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     // MARK:- Segues
@@ -21,7 +19,9 @@ class RootViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "ToWardrobe":
-            print("wardrobe")
+            break
+        case "ToTrends":
+            break
         default:
             assert(false, "Unhandled segue")
         }

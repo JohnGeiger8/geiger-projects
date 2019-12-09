@@ -34,6 +34,9 @@
                                 <state key="normal" title="Wish List">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <segue destination="3zg-A1-so1" kind="show" id="q91-tZ-WWQ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZK3-l5-0a1">
                                 <rect key="frame" x="16" y="220" width="199" height="36"/>
@@ -41,9 +44,12 @@
                                 <state key="normal" title="My Shopping Trends">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <segue destination="Zot-aC-ctF" kind="show" identifier="ToTrends" id="W58-GL-h7G"/>
+                                </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.99607843139999996" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.76788619680000003" green="0.88932966319999995" blue="0.70371678719999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ZK3-l5-0a1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="KOg-H1-xkm"/>
                             <constraint firstItem="ZK3-l5-0a1" firstAttribute="top" secondItem="Urz-Qy-6Un" secondAttribute="bottom" constant="26" id="SCW-Ie-DxY"/>
@@ -85,7 +91,7 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" red="1" green="0.96939242830000005" blue="0.057432687990000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.066409930359999994" green="0.2270684909" blue="0.01632625913" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="twJ-aJ-LSz" firstAttribute="centerX" secondItem="JhJ-bf-v7F" secondAttribute="centerX" constant="-0.5" id="3rR-aP-8CY"/>
                                 <constraint firstItem="twJ-aJ-LSz" firstAttribute="centerY" secondItem="JhJ-bf-v7F" secondAttribute="centerY" constant="0.5" id="b2U-EK-n7e"/>
@@ -108,13 +114,13 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vHo-tD-n6V">
                                             <rect key="frame" x="171" y="14" width="188" height="24"/>
                                             <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="22"/>
-                                            <color key="textColor" red="0.017159868343702971" green="0.029842565083402571" blue="0.39121986040609136" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="textColor" red="0.066409930359999994" green="0.2270684909" blue="0.01632625913" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store bought from" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ezu-5E-P4F">
                                             <rect key="frame" x="171" y="46" width="188" height="16.5"/>
                                             <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="15"/>
-                                            <color key="textColor" red="0.020524286131793176" green="0.2508239033000666" blue="0.49313927664974622" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="textColor" red="0.19686797830520547" green="0.38749464897260272" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -130,7 +136,7 @@
                                         <constraint firstAttribute="bottom" secondItem="fWU-IK-i93" secondAttribute="bottom" constant="5" id="mF0-Yc-VwG"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="1" green="0.99607843137254903" blue="0.82745098039215681" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.76788619680000003" green="0.88932966319999995" blue="0.70371678719999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="clothingImageView" destination="fWU-IK-i93" id="kVQ-YQ-Xx3"/>
                                     <outlet property="clothingInfoLabel" destination="Ezu-5E-P4F" id="8RJ-cO-rwD"/>
@@ -148,6 +154,86 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J6N-wb-b6C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1924" y="97.601199400299862"/>
+        </scene>
+        <!--Shopping Trends-->
+        <scene sceneID="W1a-Qt-cTg">
+            <objects>
+                <viewController title="Shopping Trends" id="Zot-aC-ctF" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eik-r0-Ac7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.76788619680000003" green="0.88932966319999995" blue="0.70371678719999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="Gsp-aE-UGw"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tHL-MD-cSM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1943" y="821"/>
+        </scene>
+        <!--Wish List-->
+        <scene sceneID="QIx-fY-l0m">
+            <objects>
+                <tableViewController title="Wish List" id="3zg-A1-so1" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="2hw-pQ-VpP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ClothingCell" rowHeight="149" id="ofH-lx-KFi" customClass="ClothingTableViewCell" customModule="VirtualWardrobe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="149"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ofH-lx-KFi" id="wHJ-kp-SAj">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="148.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hb3-Di-wmU">
+                                            <rect key="frame" x="16" y="5" width="143" height="138.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="143" id="roe-tj-djz"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHP-KK-nDZ">
+                                            <rect key="frame" x="171" y="14" width="188" height="24"/>
+                                            <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="22"/>
+                                            <color key="textColor" red="0.066409930359999994" green="0.2270684909" blue="0.01632625913" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store bought from" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oe3-Rx-REF">
+                                            <rect key="frame" x="171" y="46" width="188" height="16.5"/>
+                                            <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="15"/>
+                                            <color key="textColor" red="0.1968679783" green="0.38749464900000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="oe3-Rx-REF" firstAttribute="top" secondItem="LHP-KK-nDZ" secondAttribute="bottom" constant="8" id="BcS-Je-Ud4"/>
+                                        <constraint firstAttribute="bottom" secondItem="hb3-Di-wmU" secondAttribute="bottom" constant="5" id="CX6-qS-UOC"/>
+                                        <constraint firstItem="LHP-KK-nDZ" firstAttribute="top" secondItem="wHJ-kp-SAj" secondAttribute="topMargin" constant="3" id="FNN-vn-2Xk"/>
+                                        <constraint firstItem="hb3-Di-wmU" firstAttribute="top" secondItem="wHJ-kp-SAj" secondAttribute="top" constant="5" id="JJO-yi-c59"/>
+                                        <constraint firstItem="LHP-KK-nDZ" firstAttribute="leading" secondItem="hb3-Di-wmU" secondAttribute="trailing" constant="12" id="YGb-jr-eBR"/>
+                                        <constraint firstItem="oe3-Rx-REF" firstAttribute="leading" secondItem="hb3-Di-wmU" secondAttribute="trailing" constant="12" id="hQh-HQ-lqh"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="oe3-Rx-REF" secondAttribute="trailing" id="mOy-DW-dRA"/>
+                                        <constraint firstItem="LHP-KK-nDZ" firstAttribute="trailing" secondItem="wHJ-kp-SAj" secondAttribute="trailingMargin" id="w4N-zO-WFC"/>
+                                        <constraint firstItem="hb3-Di-wmU" firstAttribute="leading" secondItem="wHJ-kp-SAj" secondAttribute="leading" constant="16" id="zuw-p5-TTs"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.76788619680000003" green="0.88932966319999995" blue="0.70371678719999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="clothingImageView" destination="hb3-Di-wmU" id="uas-my-LgN"/>
+                                    <outlet property="clothingInfoLabel" destination="oe3-Rx-REF" id="SCM-4i-533"/>
+                                    <outlet property="clothingNameLabel" destination="LHP-KK-nDZ" id="EMs-Rw-1sz"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="3zg-A1-so1" id="hag-ex-hNO"/>
+                            <outlet property="delegate" destination="3zg-A1-so1" id="Fhl-3u-Wyu"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Axc-TK-Hft" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1914" y="-639"/>
         </scene>
         <!--Item Detail View Controller-->
         <scene sceneID="XUs-L0-wmW">
@@ -277,7 +363,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BSK-0s-qJ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="2f7-br-sAh" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2778.4000000000001" y="-622.03898050974522"/>
+            <point key="canvasLocation" x="3545" y="-597"/>
         </scene>
         <!--Add Item View Controller-->
         <scene sceneID="KrS-OW-Vgn">
@@ -293,7 +379,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Item" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZI-aJ-yNw">
                                         <rect key="frame" x="8" y="45" width="359" height="26.5"/>
                                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="24"/>
-                                        <color key="textColor" red="0.017159868339999999" green="0.029842565080000001" blue="0.39121986040000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.066409930359999994" green="0.2270684909" blue="0.01632625913" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AddImage" translatesAutoresizingMaskIntoConstraints="NO" id="PQK-wD-hX6">
@@ -303,7 +389,7 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.96939242830000005" blue="0.057432687990000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.76788619680000003" green="0.88932966319999995" blue="0.70371678719999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="WZI-aJ-yNw" firstAttribute="leading" secondItem="mS7-FI-rTS" secondAttribute="leading" constant="8" id="58F-cQ-Xp6"/>
                                     <constraint firstItem="PQK-wD-hX6" firstAttribute="top" secondItem="WZI-aJ-yNw" secondAttribute="bottom" constant="8" id="7Ne-wP-J6e"/>
@@ -338,7 +424,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.99607843139999996" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.76788619680000003" green="0.88932966319999995" blue="0.70371678719999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="mS7-FI-rTS" firstAttribute="trailing" secondItem="leq-xu-8ml" secondAttribute="trailing" id="0gj-b1-cBf"/>
                             <constraint firstItem="leq-xu-8ml" firstAttribute="trailing" secondItem="6Kg-S5-69C" secondAttribute="trailing" constant="15" id="2uS-jH-es3"/>
@@ -385,7 +471,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="1" green="0.99607843139999996" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.76788619680000003" green="0.88932966319999995" blue="0.70371678719999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -415,7 +501,7 @@
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="1" green="0.96939242830000005" blue="0.057432687990000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="barTintColor" red="1" green="0.96939242830000005" blue="0.057432687990000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.76788619680000003" green="0.88932966319999995" blue="0.70371678719999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="H5C-Ql-5dQ">
@@ -445,7 +531,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="1" green="0.99607843139999996" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.76788619680000003" green="0.88932966319999995" blue="0.70371678719999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
