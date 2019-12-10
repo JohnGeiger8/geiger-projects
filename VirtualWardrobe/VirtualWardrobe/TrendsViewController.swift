@@ -12,7 +12,7 @@ import SwiftCharts
 class TrendsViewController: UIViewController {
     
     var barChart : BarsChart?
-    var chartView : ChartView?
+    @IBOutlet weak var chartView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +20,10 @@ class TrendsViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         
-        barChart = BarsChart(frame: CGRect(x: 10.0, y: 100.0, width: self.view.frame.width, height: self.view.frame.height / 2.0), chartConfig: BarsChartConfig(valsAxisConfig: ChartAxisConfig(from: 0.0, to: 100.0, by: 50.0)), xTitle: "X axis", yTitle: "y axis", bars: [("A",10.0), ("B",20.0), ("C", 30.0)], color: .blue, barWidth: 30.0)
+        // Configure our bar graph
+        let chartConfiguration = BarsChartConfig(chartSettings: ChartSettings(), valsAxisConfig: ChartAxisConfig(from: 0.0, to: 50.0, by: 10.0), xAxisLabelSettings: ChartLabelSettings(), yAxisLabelSettings: ChartLabelSettings(), guidelinesConfig: GuidelinesConfig())
+        
+        barChart = BarsChart(frame: chartView.frame, chartConfig: chartConfiguration, xTitle: "Year", yTitle: "Items Purchased", bars: [("2017",10.0), ("2018",20.0), ("2019", 30.0)], color: .blue, barWidth: 30.0)
         
         view.addSubview(barChart!.view)
     }

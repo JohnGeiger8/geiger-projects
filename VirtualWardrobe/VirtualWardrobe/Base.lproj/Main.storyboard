@@ -162,13 +162,36 @@
                     <view key="view" contentMode="scaleToFill" id="eik-r0-Ac7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="geL-N8-gpc">
+                                <rect key="frame" x="28" y="87" width="319" height="240"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter By Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d07-8f-ayY">
+                                <rect key="frame" x="137" y="353" width="101" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="0.76788619680000003" green="0.88932966319999995" blue="0.70371678719999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="geL-N8-gpc" firstAttribute="centerX" secondItem="eik-r0-Ac7" secondAttribute="centerX" id="N1a-9C-hpW"/>
+                            <constraint firstItem="d07-8f-ayY" firstAttribute="top" secondItem="geL-N8-gpc" secondAttribute="bottom" constant="26" id="aAC-vU-MyM"/>
+                            <constraint firstItem="d07-8f-ayY" firstAttribute="centerX" secondItem="eik-r0-Ac7" secondAttribute="centerX" id="awC-NU-JfN"/>
+                            <constraint firstItem="geL-N8-gpc" firstAttribute="top" secondItem="Gsp-aE-UGw" secondAttribute="top" constant="23" id="l1x-dO-lEv"/>
+                            <constraint firstItem="geL-N8-gpc" firstAttribute="leading" secondItem="Gsp-aE-UGw" secondAttribute="leading" constant="28" id="rEJ-rE-b5j"/>
+                            <constraint firstItem="Gsp-aE-UGw" firstAttribute="bottom" secondItem="d07-8f-ayY" secondAttribute="bottom" constant="293" id="w1c-Rs-mnR"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Gsp-aE-UGw"/>
                     </view>
+                    <connections>
+                        <outlet property="chartView" destination="geL-N8-gpc" id="q9y-ke-fsf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tHL-MD-cSM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1943" y="821"/>
+            <point key="canvasLocation" x="1941.5999999999999" y="820.83958020989508"/>
         </scene>
         <!--Wish List-->
         <scene sceneID="QIx-fY-l0m">
