@@ -14,7 +14,7 @@ protocol AddItemDelegate : NSObject {
     func updateItem(_ item: WardrobeItem, atIndexPath indexPath: IndexPath)
 }
 
-class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate, ImageSelectorDelegate, TypeSelectionDelegate {
+class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate, TypeSelectionDelegate {
     
     var fieldLabels : [UILabel] = []
     var userInputObjectDictionary = [String: [UIView]]() // holds uiview objects user will use to fill information based on label name
@@ -114,8 +114,6 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
         itemImageView.addGestureRecognizer(addImageTap)
         itemImageView.isUserInteractionEnabled = true
         
-        mainScrollView.contentSize = self.view.frame.size
-        
         // Layout all objects for user input
         var currentY = Double(itemImageView.frame.origin.y + itemImageView.frame.height) + ySpacing
         
@@ -127,29 +125,23 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
             let labelFrame = label.frame
             // Now do layout of actual user input objects corresponding to this label
             if let views = userInputObjectDictionary[label.text!] {
-                var currentX = xSpacing + Double(labelFrame.origin.x + labelFrame.width)
+                let currentX = xSpacing + Double(labelFrame.origin.x + labelFrame.width)
                 for aView in views {
                     let viewOrigin = CGPoint(x: currentX, y: currentY)
-                    let width = (Double(self.view.frame.width) - currentX -  xSpacing) / Double(views.count)
+                    let width = (Double(self.view.frame.width) - currentX -  xSpacing)
                     let viewSize = CGSize(width: width, height: 28.0)
                     aView.frame = CGRect(origin: viewOrigin, size: viewSize)
                     mainScrollView.addSubview(aView)
                     
-                    currentX = currentX + xSpacing + width
+                    currentY = currentY + Double(label.frame.size.height) + ySpacing
                 }
             }
             
-            currentY = currentY + Double(label.frame.size.height) + ySpacing
-            
             mainScrollView.addSubview(label)
         }
-    }
-    
-    // MARK:- Image Selector Delegate
-    func selectedImage(image: UIImage) {
-        
-        itemImageView.image = image
-        imageData = image.jpegData(compressionQuality: 1.0)
+        let bottomLabel = fieldLabels.last!
+        let scrollViewHeight = bottomLabel.frame.origin.y + bottomLabel.frame.size.height + CGFloat(ySpacing)
+        mainScrollView.contentSize = CGSize(width: view.frame.width, height: scrollViewHeight)
     }
     
     //MARK:- Type Selection Delegate
@@ -165,7 +157,6 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
         subtypeButton.setTitle(type, for: .normal)
     }
     
-    // MARK:- Purchase Date Delegate
     func selectPurchaseDate(_ date: Date) {
         
         purchaseDateButton.setTitle(" Date here ", for: .normal)
@@ -237,8 +228,8 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
     
     @IBAction func submitItem(_ sender: Any) {
         guard nameTextField.text != "", isTypeSelected else { return }
-        
-        let newItem = WardrobeItem(name: nameTextField.text!, type: typeButton.titleLabel!.text!, subType: subtypeButton.titleLabel!.text, colors: [], seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: "", storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: nil)//purchaseDateButton.title(for: .normal)) FIXME: date of purchase
+        // FIXME: Add size
+        let newItem = WardrobeItem(name: nameTextField.text!, type: typeButton.titleLabel!.text!, size: "Medium", subType: subtypeButton.titleLabel!.text, colors: [], seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: "", storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: nil)//purchaseDateButton.title(for: .normal)) FIXME: date of purchase
         delegate?.addNewItem(newItem)
         navigationController?.popViewController(animated: true)
     }
@@ -304,13 +295,14 @@ extension AddItemViewController {
     }
     
     func submitItemChanges() {
-        
-        let item = WardrobeItem(name: nameTextField.text!, type: typeButton.title(for: .normal)!, subType: subtypeButton.title(for: .normal), colors: [], seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: "", storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: nil)
+        // FIXME: Add size and colors and seasons
+        let item = WardrobeItem(name: nameTextField.text!, type: typeButton.title(for: .normal)!, size: "Medium", subType: subtypeButton.title(for: .normal), colors: [], seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: "", storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: nil)
         delegate?.updateItem(item,  atIndexPath: selectedItemIndexPath!)
     }
 }
 
 // MARK:- Date Purchased Delegate
+
 extension AddItemViewController: PurchaseDateDelegate {
     
     func choosePurchaseDate(_ date: Date) {
@@ -318,7 +310,18 @@ extension AddItemViewController: PurchaseDateDelegate {
     }
 }
 
-// MARK:- Image Picker
+// MARK:- Image Selector Delegate
+
+extension AddItemViewController: ImageSelectorDelegate {
+    
+    func selectedImage(image: UIImage) {
+        
+        itemImageView.image = image
+        imageData = image.jpegData(compressionQuality: 1.0)
+    }
+}
+
+// MARK:- Image Selector
 
 protocol ImageSelectorDelegate: NSObject {
     func selectedImage(image: UIImage)

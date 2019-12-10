@@ -8,19 +8,28 @@
 
 import UIKit
 
-class ClothingTableViewController: UITableViewController, UISearchResultsUpdating, UISearchControllerDelegate {
+enum SearchWardrobeFilters {
+    case ByName
+    case ByType
+    case ByColor
+    case ByStore
+}
+
+class ClothingTableViewController: UITableViewController {
     
     let wardrobeModel = WardrobeModel.sharedinstance
     let searchController = UISearchController(searchResultsController: nil)
+    var filterIndex = SearchWardrobeFilters.ByName
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Set up Search Bar
         searchController.searchResultsUpdater = self
         searchController.delegate = self
-        
-        searchController.searchBar.showsScopeBar = true
+        searchController.searchBar.showsScopeBar = false
         searchController.searchBar.scopeButtonTitles = ["By name", "By type", "By color", "By store"]
+        searchController.searchBar.delegate = self // Causes weird issues with Search bar display
         
         tableView.tableHeaderView = searchController.searchBar
 
@@ -99,12 +108,6 @@ class ClothingTableViewController: UITableViewController, UISearchResultsUpdatin
 //        }
 //    }
     
-    // MARK:- Search Results Updater
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        // IMPLEMENT
-    }
-    
     // MARK:- Segues
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -120,6 +123,88 @@ class ClothingTableViewController: UITableViewController, UISearchResultsUpdatin
     @IBAction func unwindSegue(segue: UIStoryboardSegue) {
         
     }
+}
+
+// MARK:- Search Bar and Results Delegates
+
+extension ClothingTableViewController : UISearchBarDelegate, UISearchResultsUpdating, UISearchControllerDelegate {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        let searchText = searchController.searchBar.text!
+        guard !searchText.isEmpty else { return }
+        var filter = {(item: WardrobeItemMO) in item.name!.contains(searchText)}
+        
+        // Choose how to filter depending on selected scope button
+        switch filterIndex {
+            case .ByName:
+                filter = {(item: WardrobeItemMO) in item.name!.contains(searchText)}
+            
+            case .ByType:
+                filter = {(item: WardrobeItemMO) in item.type!.contains(searchText)}
+            
+            case .ByColor:
+                filter = {(item: WardrobeItemMO) in item.colors!.contains(searchText)}
+            
+            case .ByStore:
+                filter = {(item: WardrobeItemMO) in
+                    if let storeName = item.storeName {
+                        return storeName.contains(searchText)
+                    } else {
+                        return false
+                    }
+                }
+            default:
+                assert(false, "Unhandled filter chosen")
+            }
+        
+        self.wardrobeModel.updateFilter(filter: filter)
+        tableView.reloadData()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        
+        switch selectedScope {
+        case 0:
+            filterIndex = .ByName
+        case 1:
+            filterIndex = .ByType
+        case 2:
+            filterIndex = .ByColor
+        case 3:
+            filterIndex = .ByStore
+        default:
+            assert(false, "Unhandled filter case")
+        }
+        searchController.searchBar.reloadInputViews()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchText == "" {
+            wardrobeModel.resetFilter()
+            tableView.reloadData()
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchController.isActive = false
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+
+        wardrobeModel.resetFilter()
+        tableView.reloadData()
+        //let topRow = IndexPath(row: 0, section: 0)
+        //tableView.scrollToRow(at: topRow, at: .top, animated: true)
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        
+        searchBar.showsScopeBar = true
+        searchBar.sizeToFit()
+    }
+    
 }
 
 // MARK:- AddItemDelegate
