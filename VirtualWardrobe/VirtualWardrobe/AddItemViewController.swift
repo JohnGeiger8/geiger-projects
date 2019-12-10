@@ -14,17 +14,17 @@ protocol AddItemDelegate : NSObject {
     func updateItem(_ item: WardrobeItem, atIndexPath indexPath: IndexPath)
 }
 
-class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate, TypeSelectionDelegate {
+class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate, TypeSelectionDelegate, PurchaseDateDelegate, ImageSelectorDelegate {
     
     var fieldLabels : [UILabel] = []
     var userInputObjectDictionary = [String: [UIView]]() // holds uiview objects user will use to fill information based on label name
     var nameTextField : UserInputTextField!
     var typeButton : CurvedEdgeButton!
     var subtypeButton : CurvedEdgeButton!
-    var purchasedOnlineButton : CurvedEdgeButton!
-    var purchasedInStoreButton : CurvedEdgeButton!
+    var purchaseSourceTextField : UserInputTextField!
     var brandNameTextField : UserInputTextField!
     var purchaseDateButton : CurvedEdgeButton!
+    var colorTextFields : [UserInputTextField] = []
     
     var isTypeSelected : Bool = false
     
@@ -62,11 +62,14 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
         center.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         center.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
 
+        // Need Gesture Recognizer for getting rid of keyboard
+        let dismissTap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        self.view.addGestureRecognizer(dismissTap)
     }
     
     func createLabels() {
 
-        let labelNames = ["Name", "Type", "Subtype", "Purchased", "Brand", "Date Purchased"]
+        let labelNames = ["Name", "Type", "Subtype", "Purchased", "Brand", "Date Purchased", "Colors"]
 
         for name in labelNames {
             let label = UILabel(named: name)
@@ -88,9 +91,9 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
         userInputObjectDictionary["Type"] = [typeButton]
         userInputObjectDictionary["Subtype"] = [subtypeButton]
         
-        purchasedOnlineButton = CurvedEdgeButton(named: "Online")
-        purchasedInStoreButton = CurvedEdgeButton(named: "In Store")
-        userInputObjectDictionary["Purchased"] = [purchasedOnlineButton, purchasedInStoreButton]
+        purchaseSourceTextField = UserInputTextField()
+        purchaseSourceTextField.placeholder = "Store/Website Name"
+        userInputObjectDictionary["Purchased"] = [purchaseSourceTextField]
         
         brandNameTextField = UserInputTextField()
         brandNameTextField.placeholder = "Brand name"
@@ -100,9 +103,17 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
         purchaseDateButton.addTarget(self, action: #selector(chooseItemPurchaseDate(_:)), for: .touchUpInside)
         userInputObjectDictionary["Date Purchased"] = [purchaseDateButton]
         
+        let colorTextField = UserInputTextField()
+        colorTextField.placeholder = "E.g. Blue"
+        colorTextFields.append(colorTextField)
+        userInputObjectDictionary["Colors"] = colorTextFields
+        
         mainScrollView.delegate = self
         nameTextField.delegate = self
+        purchaseSourceTextField.delegate = self
         brandNameTextField.delegate = self
+        colorTextField.delegate = self
+
     }
     
     override func viewDidLayoutSubviews() {
@@ -192,14 +203,19 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
         case "ChooseTypeSegue":
             let typeTableViewController = segue.destination as! TypeTableViewController
             typeTableViewController.delegate = self
+            typeTableViewController.tableView.backgroundColor = .backgroundColor
+            typeTableViewController.view.backgroundColor = .backgroundColor
             
         case "ChooseSubTypeSegue":
             let subtypeTableViewController = segue.destination as! SubTypeTableViewController
             subtypeTableViewController.delegate = self
+            subtypeTableViewController.tableView.backgroundColor = .backgroundColor
+            subtypeTableViewController.view.backgroundColor = .backgroundColor
             
         case "ChooseDateSegue":
             let dateViewController = segue.destination as! DatePickerViewController
             dateViewController.delegate = self
+            dateViewController.view.backgroundColor = .backgroundColor
             
         case "UnwindFromItemDetail":
             break
@@ -213,7 +229,8 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
         
     }
     
-    // MARK:- Action Methods
+    // MARK:- Action and Obj-C Methods
+    
     @objc func chooseItemType(_ sender: UIButton) {
         performSegue(withIdentifier: "ChooseTypeSegue", sender: sender)
     }
@@ -229,7 +246,7 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UITextField
     @IBAction func submitItem(_ sender: Any) {
         guard nameTextField.text != "", isTypeSelected else { return }
         // FIXME: Add size
-        let newItem = WardrobeItem(name: nameTextField.text!, type: typeButton.titleLabel!.text!, size: "Medium", subType: subtypeButton.titleLabel!.text, colors: [], seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: "", storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: nil)//purchaseDateButton.title(for: .normal)) FIXME: date of purchase
+        let newItem = WardrobeItem(name: nameTextField.text!, type: typeButton.titleLabel!.text!, size: "Medium", subType: subtypeButton.titleLabel!.text, colors: [], seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: purchaseSourceTextField.text!, storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: nil)//purchaseDateButton.title(for: .normal)) FIXME: date of purchase
         delegate?.addNewItem(newItem)
         navigationController?.popViewController(animated: true)
     }
@@ -245,8 +262,8 @@ extension AddItemViewController {
         nameTextField.text = item.name
         typeButton.setTitle(item.type, for: .normal)
         subtypeButton.setTitle(item.subtype, for: .normal)
+        purchaseSourceTextField.text = item.storeName
         brandNameTextField.text = item.brandName
-        purchasedInStoreButton.setTitle(item.storeName, for: .normal)
         purchaseDateButton.setTitle("item.dateOfPurchase", for: .normal)
         
         if let itemImageData = item.imageData {
@@ -261,13 +278,11 @@ extension AddItemViewController {
         }
         
         // Fields shouldn't be editable by default
-        itemImageView.isUserInteractionEnabled = false
-        nameTextField.isUserInteractionEnabled = false
-        typeButton.isEnabled = false
-        subtypeButton.isEnabled = false
-        purchasedInStoreButton.isEnabled = false
-        purchasedOnlineButton.isEnabled = false
-        brandNameTextField.isUserInteractionEnabled = false
+        for inputObjects in userInputObjectDictionary.values {
+            for viewObject in inputObjects {
+                viewObject.isUserInteractionEnabled = false
+            }
+        }
         
         submitButton.isHidden = true
         editButton.isHidden = false
@@ -285,13 +300,11 @@ extension AddItemViewController {
         }
         
         // Toggle fields' editable properties
-        itemImageView.isUserInteractionEnabled.toggle()
-        nameTextField.isUserInteractionEnabled.toggle()
-        typeButton.isEnabled.toggle()
-        subtypeButton.isEnabled.toggle()
-        purchasedInStoreButton.isEnabled.toggle()
-        purchasedOnlineButton.isEnabled.toggle()
-        brandNameTextField.isUserInteractionEnabled.toggle()
+        for inputObjects in userInputObjectDictionary.values {
+            for viewObject in inputObjects {
+                viewObject.isUserInteractionEnabled.toggle()
+            }
+        }
     }
     
     func submitItemChanges() {
@@ -299,26 +312,31 @@ extension AddItemViewController {
         let item = WardrobeItem(name: nameTextField.text!, type: typeButton.title(for: .normal)!, size: "Medium", subType: subtypeButton.title(for: .normal), colors: [], seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: "", storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: nil)
         delegate?.updateItem(item,  atIndexPath: selectedItemIndexPath!)
     }
-}
 
-// MARK:- Date Purchased Delegate
-
-extension AddItemViewController: PurchaseDateDelegate {
+    // MARK:- Date Purchased Delegate
     
     func choosePurchaseDate(_ date: Date) {
         selectPurchaseDate(date)
     }
-}
 
-// MARK:- Image Selector Delegate
-
-extension AddItemViewController: ImageSelectorDelegate {
-    
+    // MARK:- Image Selector Delegate
+  
     func selectedImage(image: UIImage) {
         
         itemImageView.image = image
         imageData = image.jpegData(compressionQuality: 1.0)
     }
+}
+
+extension AddItemViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    
 }
 
 // MARK:- Image Selector

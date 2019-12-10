@@ -32,7 +32,7 @@ class ClothingTableViewController: UITableViewController {
         searchController.searchBar.delegate = self // Causes weird issues with Search bar display
         
         tableView.tableHeaderView = searchController.searchBar
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         //self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
@@ -66,7 +66,7 @@ class ClothingTableViewController: UITableViewController {
         cell.clothingImageView.contentMode = .scaleAspectFit
         cell.clothingInfoLabel.text = wardrobeModel.clothingStoreNameFor(indexPath: indexPath)
         
-        cell.backgroundColor = .lightYellow
+        cell.backgroundColor = .backgroundColor
         
         return cell
     }
@@ -115,6 +115,8 @@ class ClothingTableViewController: UITableViewController {
         case "AddItem":
             let destinationViewController = segue.destination as! AddItemViewController
             destinationViewController.delegate = self
+            destinationViewController.view.backgroundColor = .backgroundColor
+            
         default:
             assert(false, "Unhandled segue")
         }
@@ -154,6 +156,7 @@ extension ClothingTableViewController : UISearchBarDelegate, UISearchResultsUpda
                         return false
                     }
                 }
+            
             default:
                 assert(false, "Unhandled filter chosen")
             }

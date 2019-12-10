@@ -12,6 +12,9 @@ class RootViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = UIColor.backgroundColor
+        navigationController?.navigationBar.barTintColor = .navigationColor
     }
 
     // MARK:- Segues
@@ -19,9 +22,17 @@ class RootViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "ToWardrobe":
-            break
+            let wardrobeController = segue.destination as? ClothingTableViewController
+            wardrobeController?.tableView.backgroundColor = .backgroundColor
+            wardrobeController?.view.backgroundColor = .backgroundColor
+            
         case "ToTrends":
+            let trendsController = segue.destination as? TrendsViewController
+            trendsController?.view.backgroundColor = .backgroundColor
+            
+        case "ToWishList":
             break
+            
         default:
             assert(false, "Unhandled segue")
         }
