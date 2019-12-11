@@ -25,6 +25,9 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
     var brandNameTextField : UserInputTextField!
     var purchaseDateButton : CurvedEdgeButton!
     var colorTextFields : [UserInputTextField] = []
+    var addColorButton : UIButton!
+    
+    let dateFormatter = DateFormatter()
     
     var isTypeSelected : Bool = false
     
@@ -47,6 +50,7 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
 
     // WardrobeItem fields
     var imageData : Data?
+    var itemDate : Date?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,6 +83,13 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
     
     func createUserInputDevices() {
         
+        // Add gesture recognizer for adding an image for the item
+        let tapSelector = #selector(addImage(_:))
+        let addImageTap = UITapGestureRecognizer(target: self, action: tapSelector)
+        addImageTap.delegate = self
+        itemImageView.addGestureRecognizer(addImageTap)
+        itemImageView.isUserInteractionEnabled = true
+        
         nameTextField = UserInputTextField()
         nameTextField.placeholder = "Name"
         userInputObjectDictionary["Name"] = [nameTextField]
@@ -102,11 +113,18 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
         purchaseDateButton = CurvedEdgeButton(named: "Choose Date")
         purchaseDateButton.addTarget(self, action: #selector(chooseItemPurchaseDate(_:)), for: .touchUpInside)
         userInputObjectDictionary["Date Purchased"] = [purchaseDateButton]
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
         
         let colorTextField = UserInputTextField()
         colorTextField.placeholder = "E.g. Blue"
         colorTextFields.append(colorTextField)
         userInputObjectDictionary["Colors"] = colorTextFields
+        
+        addColorButton = UIButton(type: .contactAdd)
+        addColorButton.contentHorizontalAlignment = .left
+        addColorButton.addTarget(self, action: #selector(addExtraColor(_:)), for: .touchUpInside)
+        userInputObjectDictionary["Colors"]!.append(addColorButton)
         
         mainScrollView.delegate = self
         nameTextField.delegate = self
@@ -117,13 +135,6 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
     }
     
     override func viewDidLayoutSubviews() {
-        
-        // Add gesture recognizer for adding an image for the item
-        let tapSelector = #selector(addImage(_:))
-        let addImageTap = UITapGestureRecognizer(target: self, action: tapSelector)
-        addImageTap.delegate = self
-        itemImageView.addGestureRecognizer(addImageTap)
-        itemImageView.isUserInteractionEnabled = true
         
         // Layout all objects for user input
         var currentY = Double(itemImageView.frame.origin.y + itemImageView.frame.height) + ySpacing
@@ -155,7 +166,7 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
         mainScrollView.contentSize = CGSize(width: view.frame.width, height: scrollViewHeight)
     }
     
-    //MARK:- Type Selection Delegate
+    //MARK:- Type Selection, Date Selection Delegates
     func selectType(_ type: String) {
         
         typeButton.setTitle(type, for: .normal)
@@ -170,7 +181,9 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
     
     func selectPurchaseDate(_ date: Date) {
         
-        purchaseDateButton.setTitle(" Date here ", for: .normal)
+        itemDate = date
+        let dateString = dateFormatter.string(from: date)
+        purchaseDateButton.setTitle(dateString, for: .normal)
     }
     
     // MARK:- Keyboard Handlers
@@ -243,10 +256,28 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
         performSegue(withIdentifier: "ChooseDateSegue", sender: sender)
     }
     
+    @objc func addExtraColor(_ sender: UIButton) {
+        
+        // Create a new textfield for another color to then be placed in view
+        let newColorTextField = UserInputTextField()
+        newColorTextField.placeholder = "E.g. Green"
+        colorTextFields.append(newColorTextField)
+        userInputObjectDictionary["Colors"] = colorTextFields
+        userInputObjectDictionary["Colors"]!.append(addColorButton)
+        self.view.setNeedsLayout()
+        
+        newColorTextField.delegate = self
+    }
+    
     @IBAction func submitItem(_ sender: Any) {
         guard nameTextField.text != "", isTypeSelected else { return }
-        // FIXME: Add size
-        let newItem = WardrobeItem(name: nameTextField.text!, type: typeButton.titleLabel!.text!, size: "Medium", subType: subtypeButton.titleLabel!.text, colors: [], seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: purchaseSourceTextField.text!, storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: nil)//purchaseDateButton.title(for: .normal)) FIXME: date of purchase
+        
+        var colors : [String] = []
+        for colorTextField in colorTextFields {
+            if colorTextField.text != "" { colors.append(colorTextField.text!) }
+        }
+        
+        let newItem = WardrobeItem(name: nameTextField.text!, type: typeButton.titleLabel!.text!, size: "Medium", subType: subtypeButton.titleLabel!.text, colors: colors, seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: purchaseSourceTextField.text!, storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: itemDate)
         delegate?.addNewItem(newItem)
         navigationController?.popViewController(animated: true)
     }
@@ -264,12 +295,15 @@ extension AddItemViewController {
         subtypeButton.setTitle(item.subtype, for: .normal)
         purchaseSourceTextField.text = item.storeName
         brandNameTextField.text = item.brandName
-        purchaseDateButton.setTitle("item.dateOfPurchase", for: .normal)
+        if let date = item.dateOfPurchase {
+            purchaseDateButton.setTitle(dateFormatter.string(from: date), for: .normal)
+        } else {
+            purchaseDateButton.setTitle("Unknown", for: .normal)
+        }
         
         if let itemImageData = item.imageData {
             let itemImage = UIImage(data: itemImageData)
             itemImageView.image = itemImage!
-            
             imageData = itemImageData
         }
         else {
@@ -308,8 +342,15 @@ extension AddItemViewController {
     }
     
     func submitItemChanges() {
-        // FIXME: Add size and colors and seasons
-        let item = WardrobeItem(name: nameTextField.text!, type: typeButton.title(for: .normal)!, size: "Medium", subType: subtypeButton.title(for: .normal), colors: [], seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: "", storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: nil)
+        guard nameTextField.text != "", isTypeSelected else { return }
+
+        // FIXME: Add size and seasons
+        var colors : [String] = []
+        for colorTextField in colorTextFields {
+            if colorTextField.text != "" { colors.append(colorTextField.text!) }
+        }
+        
+        let item = WardrobeItem(name: nameTextField.text!, type: typeButton.title(for: .normal)!, size: "Medium", subType: subtypeButton.title(for: .normal), colors: colors, seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: "", storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: itemDate)
         delegate?.updateItem(item,  atIndexPath: selectedItemIndexPath!)
     }
 
