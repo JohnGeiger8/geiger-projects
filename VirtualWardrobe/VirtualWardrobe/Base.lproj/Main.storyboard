@@ -163,30 +163,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="geL-N8-gpc">
-                                <rect key="frame" x="28" y="87" width="319" height="240"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter By Year" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d07-8f-ayY">
-                                <rect key="frame" x="137" y="353" width="101" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ewr-8f-b2k">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="geL-N8-gpc">
+                                        <rect key="frame" x="28" y="8" width="319" height="240"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="240" id="nfS-qS-D0r"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a0W-Kz-Y6f">
+                                        <rect key="frame" x="16" y="305.5" width="343" height="4"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="4" id="x6C-NU-CMa"/>
+                                        </constraints>
+                                    </view>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="puZ-45-hr5">
+                                        <rect key="frame" x="107" y="262" width="161" height="29"/>
+                                        <segments>
+                                            <segment title="Year"/>
+                                            <segment title="Month"/>
+                                            <segment title="Week"/>
+                                        </segments>
+                                        <color key="tintColor" red="0.27250555199999998" green="0.01034594546" blue="0.02310753221" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="changeGraphFilter:" destination="Zot-aC-ctF" eventType="valueChanged" id="5Up-jF-Ycy"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="geL-N8-gpc" firstAttribute="leading" secondItem="Ewr-8f-b2k" secondAttribute="leading" constant="28" id="0wk-4H-BIc"/>
+                                    <constraint firstItem="a0W-Kz-Y6f" firstAttribute="leading" secondItem="Ewr-8f-b2k" secondAttribute="leading" constant="16" id="Mx8-zh-IQb"/>
+                                    <constraint firstItem="puZ-45-hr5" firstAttribute="centerX" secondItem="Ewr-8f-b2k" secondAttribute="centerX" id="R2i-kz-74r"/>
+                                    <constraint firstItem="geL-N8-gpc" firstAttribute="centerX" secondItem="Ewr-8f-b2k" secondAttribute="centerX" id="W3T-yc-5QL"/>
+                                    <constraint firstItem="a0W-Kz-Y6f" firstAttribute="top" secondItem="puZ-45-hr5" secondAttribute="bottom" constant="15.5" id="cXO-eY-fTi"/>
+                                    <constraint firstItem="geL-N8-gpc" firstAttribute="top" secondItem="Ewr-8f-b2k" secondAttribute="top" constant="8" id="haY-gP-7s4"/>
+                                    <constraint firstItem="puZ-45-hr5" firstAttribute="top" secondItem="geL-N8-gpc" secondAttribute="bottom" constant="14" id="s2L-xL-oII"/>
+                                    <constraint firstItem="a0W-Kz-Y6f" firstAttribute="centerX" secondItem="Ewr-8f-b2k" secondAttribute="centerX" id="w7d-mT-jY8"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.77300731209999995" blue="0.72468197550000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="geL-N8-gpc" firstAttribute="centerX" secondItem="eik-r0-Ac7" secondAttribute="centerX" id="N1a-9C-hpW"/>
-                            <constraint firstItem="d07-8f-ayY" firstAttribute="top" secondItem="geL-N8-gpc" secondAttribute="bottom" constant="26" id="aAC-vU-MyM"/>
-                            <constraint firstItem="d07-8f-ayY" firstAttribute="centerX" secondItem="eik-r0-Ac7" secondAttribute="centerX" id="awC-NU-JfN"/>
-                            <constraint firstItem="geL-N8-gpc" firstAttribute="top" secondItem="Gsp-aE-UGw" secondAttribute="top" constant="23" id="l1x-dO-lEv"/>
-                            <constraint firstItem="geL-N8-gpc" firstAttribute="leading" secondItem="Gsp-aE-UGw" secondAttribute="leading" constant="28" id="rEJ-rE-b5j"/>
-                            <constraint firstItem="Gsp-aE-UGw" firstAttribute="bottom" secondItem="d07-8f-ayY" secondAttribute="bottom" constant="293" id="w1c-Rs-mnR"/>
+                            <constraint firstItem="Ewr-8f-b2k" firstAttribute="bottom" secondItem="Gsp-aE-UGw" secondAttribute="bottom" id="EYJ-Hw-HVG"/>
+                            <constraint firstItem="Ewr-8f-b2k" firstAttribute="trailing" secondItem="Gsp-aE-UGw" secondAttribute="trailing" id="Vwn-4V-Ew3"/>
+                            <constraint firstItem="Ewr-8f-b2k" firstAttribute="leading" secondItem="Gsp-aE-UGw" secondAttribute="leading" id="bVw-50-PdR"/>
+                            <constraint firstItem="Ewr-8f-b2k" firstAttribute="top" secondItem="Gsp-aE-UGw" secondAttribute="top" id="rsA-vm-np1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Gsp-aE-UGw"/>
                     </view>
                     <connections>
                         <outlet property="chartView" destination="geL-N8-gpc" id="q9y-ke-fsf"/>
+                        <outlet property="mainScrollView" destination="Ewr-8f-b2k" id="mWk-xw-ZAY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tHL-MD-cSM" userLabel="First Responder" sceneMemberID="firstResponder"/>

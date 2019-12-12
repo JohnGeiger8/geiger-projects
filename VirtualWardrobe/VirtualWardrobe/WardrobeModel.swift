@@ -104,7 +104,6 @@ class WardrobeModel: DataManagerDelegate {
     
     func updateFilter(filter: (WardrobeItemMO) -> Bool) {
         filteredItems = allItems.filter(filter)
-//        setSortedBuildings()
     }
     
     func resetFilter() {
@@ -117,13 +116,15 @@ class WardrobeModel: DataManagerDelegate {
         let itemMO = item.addItem(with: dataManager)
         dataManager.saveContext()
         
-        filteredItems.append(itemMO)
+        allItems.append(itemMO)
     }
     
     func updateWardrobeItem(_ item: WardrobeItem, atIndexPath indexPath: IndexPath) {
         
         filteredItems[indexPath.row].name = item.name
         filteredItems[indexPath.row].type = item.type
+        filteredItems[indexPath.row].colors = item.colors
+        filteredItems[indexPath.row].size = item.size
         filteredItems[indexPath.row].subtype = item.subType
         filteredItems[indexPath.row].brandName = item.brandName
         filteredItems[indexPath.row].storeName = item.storeName
@@ -151,4 +152,65 @@ class WardrobeModel: DataManagerDelegate {
 // MARK:- Trends
 extension WardrobeModel {
     
+    func clothesBy(_ timePeriod: String, sizeOfTimePeriod: Int) -> [String:Int] {
+        
+        var clothesByInterval : [String:Int] = [:]
+        let calendar = Calendar.current
+        
+        var timePeriodComponent : Calendar.Component = .year // Year by default
+        var currentTimePeriod : Int = 0
+        switch timePeriod {
+        case "Year":
+            currentTimePeriod = calendar.component(.year, from: Date()) // Current year
+            timePeriodComponent = .year
+        case "Month":
+            currentTimePeriod = calendar.component(.month, from: Date()) // Current month
+            timePeriodComponent = .month
+        case "Week":
+//            currentTimePeriod = calendar.component(.wee, from: <#T##Date#>)
+            break
+        default:
+            assert(false, "Unhandled time period")
+        }
+        
+        for _ in 0..<sizeOfTimePeriod {
+            let filter = createItemDateFilter(by: timePeriodComponent, forTime: currentTimePeriod)
+            let clothesCount = allItems.filter(filter).count
+            clothesByInterval[String(currentTimePeriod)] = clothesCount
+            currentTimePeriod -= 1
+        }
+        
+        return clothesByInterval
+    }
+    
+    func createItemDateFilter(by component: Calendar.Component, forTime targetTime: Int) -> ((WardrobeItemMO) -> Bool) {
+        
+        let calendar = Calendar.current
+        
+        // Creates filter for either week, month, or year, and checks that component's value (targetTime) against the item's date of purchase
+        let filter = { (item: WardrobeItemMO) -> Bool in
+            if calendar.component(component, from: item.dateOfPurchase!) != targetTime {
+                return false
+            } else {
+                return true
+            }
+        }
+        return filter
+    }
+    
+    var favoriteStore : String {
+        
+        // Look at all items' purchased store/website and figure out most frequented one
+        var stores : [String] = []
+        for item in allItems {
+            if let _ = item.storeName {
+                let store = item.storeName!.trimmingCharacters(in: CharacterSet(arrayLiteral: " "))
+                stores.append(store)
+            }
+        }
+        let storeFrequencies = NSCountedSet(array: stores)
+        let favoriteStore = storeFrequencies.max { storeFrequencies.count(for: $0) < storeFrequencies.count(for: $1) }
+        
+        return favoriteStore as! String
+    }
 }

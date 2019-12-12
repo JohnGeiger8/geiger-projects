@@ -29,7 +29,17 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
     
     let dateFormatter = DateFormatter()
     
-    var isTypeSelected : Bool = false
+    var isTypeSelected : Bool {
+        if let title = typeButton.title(for: .normal) {
+            return title != "Choose Item Type"
+        } else {
+            return false
+        }
+    }
+    var isDatePicked : Bool {
+        if let _ = itemDate { return true }
+        else { return false }
+    }
     
     // Item spacing
     let ySpacing = 15.0
@@ -170,7 +180,6 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
     func selectType(_ type: String) {
         
         typeButton.setTitle(type, for: .normal)
-        isTypeSelected = true
         subtypeButton.isEnabled = true
     }
     
@@ -270,7 +279,7 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
     }
     
     @IBAction func submitItem(_ sender: Any) {
-        guard nameTextField.text != "", isTypeSelected else { return }
+        guard nameTextField.text != "", isTypeSelected, isDatePicked else { return }
         
         var colors : [String] = []
         for colorTextField in colorTextFields {
@@ -295,11 +304,8 @@ extension AddItemViewController {
         subtypeButton.setTitle(item.subtype, for: .normal)
         purchaseSourceTextField.text = item.storeName
         brandNameTextField.text = item.brandName
-        if let date = item.dateOfPurchase {
-            purchaseDateButton.setTitle(dateFormatter.string(from: date), for: .normal)
-        } else {
-            purchaseDateButton.setTitle("Unknown", for: .normal)
-        }
+        purchaseDateButton.setTitle(dateFormatter.string(from: item.dateOfPurchase!), for: .normal)
+        itemDate = item.dateOfPurchase!
         
         if let itemImageData = item.imageData {
             let itemImage = UIImage(data: itemImageData)
@@ -342,7 +348,7 @@ extension AddItemViewController {
     }
     
     func submitItemChanges() {
-        guard nameTextField.text != "", isTypeSelected else { return }
+        guard nameTextField.text != "", isTypeSelected, isDatePicked else { return }
 
         // FIXME: Add size and seasons
         var colors : [String] = []
