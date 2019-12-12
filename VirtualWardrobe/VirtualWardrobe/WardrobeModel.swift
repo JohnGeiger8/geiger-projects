@@ -15,19 +15,23 @@ class WardrobeModel: DataManagerDelegate {
     // Have all files using model use the same instance
     static let sharedinstance = WardrobeModel()
     
-    let types = ["Shirt", "Pants", "Shorts", "Shoes", "Dress", "Hat", "Underwear", "Socks", "Other"]
-    let subtypes = ["Long-sleeve", "Short-sleeve", "Khakis", "Jeans", "Sneakers", "Dress Shoes", "Heels", "Boots", "Slides", "Sandals", "Slip-ons", "Baseball Hat", "Beanie", "Flat Rim Hat", "Boxers", "Briefs", "Dress Socks", "Other"]
+    let types = ["Shirt", "Suit", "Pants", "Jacket", "Coat", "Vest", "Shorts", "Shoes", "Dress", "Hat", "Underwear", "Socks", "Necklace", "Bracelet", "Earrings", "Purse", "Handbag", "Ring", "Other"]
+    let subtypes = ["Long-sleeve", "Short-sleeve", "Flannel", "Sports Jersey", "Button-Down", "Polo", "Khakis", "Jeans", "Baseball Hat", "Beanie", "Flat Rim Hat", "Boxers", "Briefs", "Sneakers", "Dress Shoes", "Heels", "Boots", "Slides", "Sandals", "Slip-ons", "Dress Socks", "Other"]
     
-    var filteredItems : [WardrobeItemMO]
     var allItems : [WardrobeItemMO]
+    var filteredItems : [WardrobeItemMO]
+    var allOutfits : [OutfitMO]
+    var filteredOutfits : [OutfitMO]
     
     // Number of sections.  This should change depending on filter user chooses
     var numberOfSections = 1
     
     fileprivate init() {
         
-        // Initialize wardrobe here using Core Data
+        // Initialize wardrobe and outfits here using Core Data
         allItems = (dataManager.fetchManagedObjects(for: "WardrobeItemMO", sortKeys: ["name"], predicate: nil) as? [WardrobeItemMO])!
+        allOutfits = (dataManager.fetchManagedObjects(for: "OutfitMO", sortKeys: ["name"], predicate: nil) as? [OutfitMO])!
+        filteredOutfits = allOutfits
         filteredItems = allItems
         dataManager.delegate = self
     }
@@ -35,7 +39,7 @@ class WardrobeModel: DataManagerDelegate {
     // MARK:- Core Data and Data Manager
     
     let dataManager = DataManager.sharedInstance
-    let dataModelName = "WardrobeModel"
+    let dataModelName = "VirtualWardrobe"
     let entityName = "WardrobeItemMO"
     
     func createDatabase() {
@@ -117,6 +121,7 @@ class WardrobeModel: DataManagerDelegate {
         dataManager.saveContext()
         
         allItems.append(itemMO)
+        filteredItems = allItems
     }
     
     func updateWardrobeItem(_ item: WardrobeItem, atIndexPath indexPath: IndexPath) {
@@ -146,6 +151,18 @@ class WardrobeModel: DataManagerDelegate {
     func subTypeFor(indexPath: IndexPath) -> String {
         
         return subtypes[indexPath.row]
+    }
+}
+
+// MARK:- Outfits
+extension WardrobeModel {
+    
+    // Outfits Table View Data Source
+    var numberOfOutfits : Int { return filteredOutfits.count }
+    
+    func outfitNameFor(indexPath: IndexPath) -> String {
+        
+        return filteredOutfits[indexPath.row].name!
     }
 }
 

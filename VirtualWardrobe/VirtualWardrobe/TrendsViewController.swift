@@ -62,9 +62,12 @@ class TrendsViewController: UIViewController {
         chartSettings.leading = 15
         
         //chartLabelSettings.font
+        // FIXME: Crashes if no items in graph
         
         clothesQuantityXAxis = wardrobeModel.clothesBy(period, sizeOfTimePeriod: 5)
-        let maxY = Double(clothesQuantityXAxis!.max(by: { a,b in a.1 < b.1 })!.value)
+        var maxY = Double(clothesQuantityXAxis!.max(by: { a,b in a.1 < b.1 })!.value)
+        maxY = max(maxY, 1.0) // Prevents crash when no items in graph
+        
         chartConfiguration = BarsChartConfig(chartSettings: chartSettings, valsAxisConfig: ChartAxisConfig(from: 0.0, to: maxY, by: maxY / 4.0), xAxisLabelSettings: chartLabelSettings, yAxisLabelSettings: chartLabelSettings, guidelinesConfig: GuidelinesConfig())
     }
 

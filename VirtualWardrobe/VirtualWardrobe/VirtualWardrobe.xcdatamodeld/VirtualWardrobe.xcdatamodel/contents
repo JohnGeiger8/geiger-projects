@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14492.1" systemVersion="18G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="OutfitMO" representedClassName="OutfitMO" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="isMadeUpOf" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WardrobeItemMO" syncable="YES"/>
+    </entity>
     <entity name="WardrobeItemMO" representedClassName="WardrobeItemMO" syncable="YES" codeGenerationType="class">
         <attribute name="brandName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="colors" optional="YES" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
@@ -13,5 +17,6 @@
     </entity>
     <elements>
         <element name="WardrobeItemMO" positionX="-63" positionY="-18" width="128" height="180"/>
+        <element name="OutfitMO" positionX="-63" positionY="54" width="128" height="75"/>
     </elements>
 </model>

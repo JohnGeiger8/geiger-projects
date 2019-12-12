@@ -10,14 +10,10 @@ import UIKit
 
 class AddOutfitTableViewController: UITableViewController {
 
+    let wardrobeModel = WardrobeModel.sharedinstance
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
@@ -29,18 +25,33 @@ class AddOutfitTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 4 // FIXME: Obviously needs to be changed to use model
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
+        var cell : UITableViewCell?
+        
+        let rowNumber = indexPath.row
+        switch rowNumber {
+        case 0:
+            cell = tableView.dequeueReusableCell(withIdentifier: "OutfitName", for: indexPath)
+            cell!.textLabel?.text = "Outfit Name: "
+            
+        case 1:
+            cell = tableView.dequeueReusableCell(withIdentifier: "WardrobeItem", for: indexPath)
+            
+        case 2:
+            cell = tableView.dequeueReusableCell(withIdentifier: "NewItem", for: indexPath)
+            
+        default:
+            assert(false, "Unhandled cell")
+        }
         // Configure the cell...
 
-        return cell
+        return cell!
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

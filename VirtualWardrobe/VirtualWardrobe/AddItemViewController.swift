@@ -171,8 +171,8 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
             
             mainScrollView.addSubview(label)
         }
-        let bottomLabel = fieldLabels.last!
-        let scrollViewHeight = bottomLabel.frame.origin.y + bottomLabel.frame.size.height + CGFloat(ySpacing)
+        let bottomObjectFrame = userInputObjectDictionary[fieldLabels.last!.text!]!.last!.frame
+        let scrollViewHeight = bottomObjectFrame.origin.y + bottomObjectFrame.size.height + CGFloat(ySpacing)
         mainScrollView.contentSize = CGSize(width: view.frame.width, height: scrollViewHeight)
     }
     
@@ -305,6 +305,16 @@ extension AddItemViewController {
         purchaseSourceTextField.text = item.storeName
         brandNameTextField.text = item.brandName
         purchaseDateButton.setTitle(dateFormatter.string(from: item.dateOfPurchase!), for: .normal)
+        colorTextFields[0].text = item.colors!.first
+        for i in 1..<item.colors!.count {
+            let newColorTextField = UserInputTextField()
+            newColorTextField.text = item.colors![i]
+            colorTextFields.append(newColorTextField)
+            
+            newColorTextField.delegate = self
+        }
+        userInputObjectDictionary["Colors"] = colorTextFields
+        userInputObjectDictionary["Colors"]?.append(addColorButton)
         itemDate = item.dateOfPurchase!
         
         if let itemImageData = item.imageData {
@@ -318,6 +328,7 @@ extension AddItemViewController {
         }
         
         // Fields shouldn't be editable by default
+        itemImageView.isUserInteractionEnabled = false
         for inputObjects in userInputObjectDictionary.values {
             for viewObject in inputObjects {
                 viewObject.isUserInteractionEnabled = false
@@ -327,6 +338,8 @@ extension AddItemViewController {
         submitButton.isHidden = true
         editButton.isHidden = false
         cancelButton.isHidden = false
+        
+        self.view.setNeedsLayout()
     }
     
     @IBAction func toggleEditingFields(_ sender: Any) {
@@ -340,6 +353,7 @@ extension AddItemViewController {
         }
         
         // Toggle fields' editable properties
+        itemImageView.isUserInteractionEnabled.toggle()
         for inputObjects in userInputObjectDictionary.values {
             for viewObject in inputObjects {
                 viewObject.isUserInteractionEnabled.toggle()
@@ -356,7 +370,7 @@ extension AddItemViewController {
             if colorTextField.text != "" { colors.append(colorTextField.text!) }
         }
         
-        let item = WardrobeItem(name: nameTextField.text!, type: typeButton.title(for: .normal)!, size: "Medium", subType: subtypeButton.title(for: .normal), colors: colors, seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: "", storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: itemDate)
+        let item = WardrobeItem(name: nameTextField.text!, type: typeButton.title(for: .normal)!, size: "Medium", subType: subtypeButton.title(for: .normal), colors: colors, seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: purchaseSourceTextField.text, storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: itemDate)
         delegate?.updateItem(item,  atIndexPath: selectedItemIndexPath!)
     }
 
@@ -448,5 +462,25 @@ class ImageSelector : NSObject, UIImagePickerControllerDelegate, UINavigationCon
             imageSelectorDelegate?.selectedImage(image: selectedImage)
         }
         picker.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension UIImage {
+    func closestCommonColor() -> UIColor? {
+        guard let image = CIImage(image: self) else { return nil }
+        
+        let extentVector = CIVector(x: image.extent.origin.x, y: image.extent.origin.y, z: image.extent.size.width, w: image.extent.size.height)
+        
+        guard let filter = CIFilter(name: "CIAreaAverage", parameters: [kCIInputImageKey: image, kCIInputExtentKey: extentVector]) else { return nil }
+        guard let outputImage = filter.outputImage else { return nil }
+        
+        var bitmap : [UInt8] = [0,0,0,0]
+        let context = CIContext(options: [.workingColorSpace: kCFNull])
+        context.render(outputImage, toBitmap: &bitmap, rowBytes: 4, bounds: CGRect(x: 0, y: 0, width: 1, height: 1), format: .RGBA8, colorSpace: nil)
+        
+        let averageColor = UIColor(red: CGFloat(bitmap[0]) / 255, green: CGFloat(bitmap[1]) / 255, blue: CGFloat(bitmap[2]) / 255, alpha: CGFloat(bitmap[3]) / 255)
+        
+        // FIXME: Now compare this to common colors to find closest match . Also put this in its own file
+        return averageColor
     }
 }
