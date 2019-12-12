@@ -154,6 +154,8 @@ extension WardrobeModel {
     
     func clothesBy(_ timePeriod: String, sizeOfTimePeriod: Int) -> [String:Int] {
         
+        var allItemsFiltered = allItems // Need to filter items within time period of size sizeOfTimePeriod
+        var timePeriodFilter = { (item: WardrobeItemMO) -> Bool in return true}
         var clothesByInterval : [String:Int] = [:]
         let calendar = Calendar.current
         
@@ -163,19 +165,52 @@ extension WardrobeModel {
         case "Year":
             currentTimePeriod = calendar.component(.year, from: Date()) // Current year
             timePeriodComponent = .year
+//            timePeriodFilter = { (item: WardrobeItemMO) -> Bool in
+//                let purchaseYear = calendar.component(.year, from: item.dateOfPurchase!)
+//                if purchaseYear <= currentTimePeriod, purchaseYear > currentTimePeriod - sizeOfTimePeriod { return true }
+//                else { return false }
+//            }
+            
         case "Month":
             currentTimePeriod = calendar.component(.month, from: Date()) // Current month
             timePeriodComponent = .month
+            // FIXME: Filter needs to make sure we aren't looking at prior years' months.  There's an easier way to do this. Possibly difference of dates
+//            timePeriodFilter = { (item: WardrobeItemMO) -> Bool in
+//                let purchaseYear = calendar.component(.year, from: item.dateOfPurchase!)
+//                let purchaseMonth = calendar.component(.month, from: item.dateOfPurchase!)
+//                let currentYear = calendar.component(.year, from: Date())
+//                let currentMonth = calendar.component(.month, from: Date())
+//                guard purchaseYear <= currentYear, purchaseYear > currentYear - sizeOfTimePeriod else { return false } // Correct years checks
+//                let monthDifference = (currentMonth - purchaseMonth) % 12
+//                guard monthDifference < sizeOfTimePeriod, purchaseMonth < currentMonth else { return false } // Correct months check
+//                return true
+//            }
+            
+        // FIXME: Figure out how to do months with correct years being checked
         case "Week":
-//            currentTimePeriod = calendar.component(.wee, from: <#T##Date#>)
+            currentTimePeriod = calendar.component(.weekOfYear, from: Date()) // Current week out of 52
+//            timePeriodFilter = { (item: WardrobeItemMO) -> Bool in
+//                let purchaseYear = calendar.component(.year, from: item.dateOfPurchase!)
+//                let purchaseMonth = calendar.component(.month, from: item.dateOfPurchase!)
+//                let purchaseWeek = calendar.component(.weekOfYear, from: item.dateOfPurchase!)
+//                let currentYear = calendar.component(.year, from: Date())
+//                let currentMonth = calendar.component(.month, from: Date())
+//                let currentWeek = calendar.component(.weekOfYear, from: Date())
+//                guard purchaseYear <= currentYear, purchaseYear > currentYear - sizeOfTimePeriod else { return false } // Correct years checks
+//                let monthDifference = (currentMonth - purchaseMonth) % 12
+//                guard monthDifference < sizeOfTimePeriod, purchaseMonth < currentMonth else { return false } // Correct months check
+//                let weekDifference = (currentWeek - purchaseWeek) % 52
+//                guard weekDifference < sizeOfTimePeriod, purchaseWeek
+//                return true
+//            }
             break
         default:
             assert(false, "Unhandled time period")
         }
         
         for _ in 0..<sizeOfTimePeriod {
-            let filter = createItemDateFilter(by: timePeriodComponent, forTime: currentTimePeriod)
-            let clothesCount = allItems.filter(filter).count
+            let itemFilter = createItemDateFilter(by: timePeriodComponent, forTime: currentTimePeriod)
+            let clothesCount = allItems.filter(itemFilter).count
             clothesByInterval[String(currentTimePeriod)] = clothesCount
             currentTimePeriod -= 1
         }

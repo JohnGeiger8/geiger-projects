@@ -30,6 +30,9 @@ class RootViewController: UIViewController {
             let trendsController = segue.destination as? TrendsViewController
             trendsController?.view.backgroundColor = .backgroundColor
             
+        case "ToOutfits":
+//            let outfitsController
+            break
         case "ToWishList":
             break
             
