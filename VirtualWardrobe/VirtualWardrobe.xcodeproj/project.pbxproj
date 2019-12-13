@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E29854323A4274E00818FD9 /* SwiftCharts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E29853E23A4273600818FD9 /* SwiftCharts.framework */; };
 		2E6CCC342399B1D3009DB6A6 /* UserInputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6CCC332399B1D3009DB6A6 /* UserInputTextField.swift */; };
 		2E77F4A2239F6680009CE46A /* WardrobeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E77F4A1239F6680009CE46A /* WardrobeItem.swift */; };
 		2E7DFBCB23694B4D0038CE99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DFBCA23694B4D0038CE99 /* AppDelegate.swift */; };
@@ -36,6 +37,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2E29853D23A4273600818FD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2E29853623A4273600818FD9 /* SwiftCharts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06405DA61B8AA74700A689FF;
+			remoteInfo = SwiftCharts;
+		};
+		2E29853F23A4273600818FD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2E29853623A4273600818FD9 /* SwiftCharts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06342AC11B8AAD7F001C9F5D;
+			remoteInfo = Examples;
+		};
+		2E29854123A4273600818FD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2E29853623A4273600818FD9 /* SwiftCharts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 22E7020F1BF5B8EC00C19675;
+			remoteInfo = "SwiftCharts tvOS";
+		};
+		2E29854423A4275600818FD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2E29853623A4273600818FD9 /* SwiftCharts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 06405DA51B8AA74700A689FF;
+			remoteInfo = SwiftCharts;
+		};
 		2E7DFBDE23694B4F0038CE99 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2E7DFBBF23694B4D0038CE99 /* Project object */;
@@ -68,6 +97,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2E29853623A4273600818FD9 /* SwiftCharts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftCharts.xcodeproj; path = "../../../CMPSC475_files/SwiftCharts-master/SwiftCharts.xcodeproj"; sourceTree = "<group>"; };
 		2E6CCC332399B1D3009DB6A6 /* UserInputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputTextField.swift; sourceTree = "<group>"; };
 		2E77F4A1239F6680009CE46A /* WardrobeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeItem.swift; sourceTree = "<group>"; };
 		2E7DFBC723694B4D0038CE99 /* VirtualWardrobe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualWardrobe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E29854323A4274E00818FD9 /* SwiftCharts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,9 +149,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E29853723A4273600818FD9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2E29853E23A4273600818FD9 /* SwiftCharts.framework */,
+				2E29854023A4273600818FD9 /* Examples.app */,
+				2E29854223A4273600818FD9 /* SwiftCharts.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		2E7DFBBE23694B4D0038CE99 = {
 			isa = PBXGroup;
 			children = (
+				2E29853623A4273600818FD9 /* SwiftCharts.xcodeproj */,
 				2E7DFBC923694B4D0038CE99 /* VirtualWardrobe */,
 				2E7DFBE023694B4F0038CE99 /* VirtualWardrobeTests */,
 				2E7DFBC823694B4D0038CE99 /* Products */,
@@ -250,6 +292,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2E29854523A4275600818FD9 /* PBXTargetDependency */,
 			);
 			name = VirtualWardrobe;
 			productName = VirtualWardrobe;
@@ -309,6 +352,12 @@
 			mainGroup = 2E7DFBBE23694B4D0038CE99;
 			productRefGroup = 2E7DFBC823694B4D0038CE99 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 2E29853723A4273600818FD9 /* Products */;
+					ProjectRef = 2E29853623A4273600818FD9 /* SwiftCharts.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				2E7DFBC623694B4D0038CE99 /* VirtualWardrobe */,
@@ -316,6 +365,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		2E29853E23A4273600818FD9 /* SwiftCharts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftCharts.framework;
+			remoteRef = 2E29853D23A4273600818FD9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2E29854023A4273600818FD9 /* Examples.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Examples.app;
+			remoteRef = 2E29853F23A4273600818FD9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2E29854223A4273600818FD9 /* SwiftCharts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SwiftCharts.framework;
+			remoteRef = 2E29854123A4273600818FD9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		2E7DFBC523694B4D0038CE99 /* Resources */ = {
@@ -378,6 +451,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2E29854523A4275600818FD9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftCharts;
+			targetProxy = 2E29854423A4275600818FD9 /* PBXContainerItemProxy */;
+		};
 		2E7DFBDF23694B4F0038CE99 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2E7DFBC623694B4D0038CE99 /* VirtualWardrobe */;
