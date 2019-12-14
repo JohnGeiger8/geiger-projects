@@ -10,9 +10,10 @@ import UIKit
 
 class ClothingTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var clothingImageView: UIImageView!
-    @IBOutlet weak var clothingNameLabel: UILabel!
-    @IBOutlet weak var clothingInfoLabel: UILabel!
+    @IBOutlet weak var itemImageView: UIImageView!
+    @IBOutlet weak var itemNameLabel: UILabel!
+    @IBOutlet weak var itemInfoLabel: UILabel!
+    @IBOutlet var itemLoanedButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

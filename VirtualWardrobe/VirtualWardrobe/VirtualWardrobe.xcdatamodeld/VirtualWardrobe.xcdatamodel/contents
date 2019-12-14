@@ -9,6 +9,7 @@
         <attribute name="colors" optional="YES" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
         <attribute name="dateOfPurchase" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="imageData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="isLoaned" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="size" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="storeName" optional="YES" attributeType="String" syncable="YES"/>
@@ -16,7 +17,7 @@
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="WardrobeItemMO" positionX="-63" positionY="-18" width="128" height="180"/>
         <element name="OutfitMO" positionX="-63" positionY="54" width="128" height="75"/>
+        <element name="WardrobeItemMO" positionX="-63" positionY="-18" width="128" height="195"/>
     </elements>
 </model>

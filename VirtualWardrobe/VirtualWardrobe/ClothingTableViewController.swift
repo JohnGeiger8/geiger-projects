@@ -54,17 +54,18 @@ class ClothingTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ClothingCell", for: indexPath) as! ClothingTableViewCell
 
         // Configure the cell
-        cell.clothingNameLabel.text = wardrobeModel.clothingNameFor(indexPath: indexPath)
+        cell.itemNameLabel.text = wardrobeModel.clothingNameFor(indexPath: indexPath)
         if let imageData = wardrobeModel.clothingImageDataFor(indexPath: indexPath) {
             let image = UIImage(data: imageData)
-            cell.clothingImageView.image = image
+            cell.itemImageView.image = image
         }
         else {
             let image = UIImage(named: "noImageFound")
-            cell.clothingImageView.image = image
+            cell.itemImageView.image = image
         }
-        cell.clothingImageView.contentMode = .scaleAspectFit
-        cell.clothingInfoLabel.text = wardrobeModel.clothingStoreNameFor(indexPath: indexPath)
+        cell.itemImageView.contentMode = .scaleAspectFit
+        cell.itemInfoLabel.text = wardrobeModel.clothingStoreNameFor(indexPath: indexPath)
+        cell.itemLoanedButton.isHidden = !wardrobeModel.isItemLoanedFor(indexPath: indexPath)
         
         cell.backgroundColor = .backgroundColor
         

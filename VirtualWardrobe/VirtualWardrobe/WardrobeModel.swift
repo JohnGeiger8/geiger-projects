@@ -104,6 +104,11 @@ class WardrobeModel: DataManagerDelegate {
         }
     }
     
+    func isItemLoanedFor(indexPath: IndexPath) -> Bool {
+        
+        return filteredItems[indexPath.row].isLoaned
+    }
+    
     // MARK:- Filter Items
     
     func updateFilter(filter: (WardrobeItemMO) -> Bool) {
@@ -135,6 +140,7 @@ class WardrobeModel: DataManagerDelegate {
         filteredItems[indexPath.row].storeName = item.storeName
         filteredItems[indexPath.row].dateOfPurchase = item.dateOfPurchase
         filteredItems[indexPath.row].imageData = item.imageData
+        filteredItems[indexPath.row].isLoaned = item.isLoaned
         dataManager.saveContext()
     }
     

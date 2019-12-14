@@ -26,6 +26,9 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
     var purchaseDateButton : CurvedEdgeButton!
     var colorTextFields : [UserInputTextField] = []
     var addColorButton : UIButton!
+    var personLoanedToLabel : UILabel!
+    
+    let textFont = UIFont(name: "Marker Felt", size: 18.0)
     
     let dateFormatter = DateFormatter()
     
@@ -45,6 +48,7 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
     let ySpacing = 15.0
     let xSpacing = 8.0
 
+    @IBOutlet weak var loanButton: CurvedEdgeButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var itemImageView: UIImageView!
@@ -87,6 +91,8 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
 
         for name in labelNames {
             let label = UILabel(named: name)
+            label.textColor = .primaryTextColor
+            label.font = textFont
             fieldLabels.append(label)
         }
     }
@@ -99,6 +105,10 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
         addImageTap.delegate = self
         itemImageView.addGestureRecognizer(addImageTap)
         itemImageView.isUserInteractionEnabled = true
+        
+        personLoanedToLabel = UILabel(frame: CGRect.zero)
+        personLoanedToLabel.font = textFont
+        personLoanedToLabel.textColor = .primaryTextColor
         
         nameTextField = UserInputTextField()
         nameTextField.placeholder = "Name"
@@ -174,6 +184,9 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
         let bottomObjectFrame = userInputObjectDictionary[fieldLabels.last!.text!]!.last!.frame
         let scrollViewHeight = bottomObjectFrame.origin.y + bottomObjectFrame.size.height + CGFloat(ySpacing)
         mainScrollView.contentSize = CGSize(width: view.frame.width, height: scrollViewHeight)
+        
+        // Place loanedTo label off the screen for future animation
+        personLoanedToLabel.frame.origin = CGPoint(x: self.view.frame.width, y: loanButton.frame.origin.y)
     }
     
     //MARK:- Type Selection, Date Selection Delegates
@@ -278,6 +291,29 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
         newColorTextField.delegate = self
     }
     
+    @IBAction func loanOrUnloanItem(_ sender: UIButton) {
+        
+        if loanButton.title(for: .normal) == "Loan" {
+            
+            let alertController = UIAlertController(title: "Loan to:", message: nil, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Confirm", style: .default, handler: {(alert) in
+                let personLoanedTo = alertController.textFields?.first?.text
+                self.addLoanedText(withPerson: personLoanedTo!)
+            })
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alertController.addAction(okAction)
+            alertController.addAction(cancelAction)
+            alertController.addTextField { (textField) in  }
+            self.present(alertController, animated: true, completion: {
+                self.loanButton.setTitle("Unloan", for: .normal)
+            })
+
+        } else {
+            // UNLOAN
+            loanButton.setTitle("Loan", for: .normal)
+        }
+        
+    }
     @IBAction func submitItem(_ sender: Any) {
         guard nameTextField.text != "", isTypeSelected, isDatePicked else { return }
         
@@ -286,9 +322,25 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
             if colorTextField.text != "" { colors.append(colorTextField.text!) }
         }
         
-        let newItem = WardrobeItem(name: nameTextField.text!, type: typeButton.titleLabel!.text!, size: "Medium", subType: subtypeButton.titleLabel!.text, colors: colors, seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: purchaseSourceTextField.text!, storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: itemDate)
+        let newItem = WardrobeItem(name: nameTextField.text!, type: typeButton.titleLabel!.text!, size: "Medium", subType: subtypeButton.titleLabel!.text, colors: colors, seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: purchaseSourceTextField.text!, storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: itemDate, isLoaned: false)
         delegate?.addNewItem(newItem)
         navigationController?.popViewController(animated: true)
+    }
+    
+    // MARK:- Helper Functions
+    
+    func addLoanedText(withPerson person: String) {
+        
+        let loanedText = "Currently Loaned to \(person)"
+        personLoanedToLabel.text = loanedText
+        personLoanedToLabel.frame.size = personLoanedToLabel.intrinsicContentSize
+        
+        UIView.animate(withDuration: 1.0, animations: {
+            let x = self.view.frame.width / 2 - self.personLoanedToLabel.frame.width / 2
+            let y = self.loanButton.frame.origin.y
+            self.personLoanedToLabel.frame.origin = CGPoint(x: x, y: y)
+            self.mainScrollView.addSubview(self.personLoanedToLabel)
+        })
     }
 }
 
@@ -317,6 +369,10 @@ extension AddItemViewController {
         userInputObjectDictionary["Colors"]?.append(addColorButton)
         itemDate = item.dateOfPurchase!
         
+        if item.isLoaned {
+            loanButton.setTitle("Unloan", for: .normal)
+        }
+        
         if let itemImageData = item.imageData {
             let itemImage = UIImage(data: itemImageData)
             itemImageView.image = itemImage!
@@ -335,6 +391,7 @@ extension AddItemViewController {
             }
         }
         
+        loanButton.isHidden = false
         submitButton.isHidden = true
         editButton.isHidden = false
         cancelButton.isHidden = false
@@ -369,8 +426,9 @@ extension AddItemViewController {
         for colorTextField in colorTextFields {
             if colorTextField.text != "" { colors.append(colorTextField.text!) }
         }
+        let isLoaned = loanButton.title(for: .normal)! == "Loan" ? false : true
         
-        let item = WardrobeItem(name: nameTextField.text!, type: typeButton.title(for: .normal)!, size: "Medium", subType: subtypeButton.title(for: .normal), colors: colors, seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: purchaseSourceTextField.text, storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: itemDate)
+        let item = WardrobeItem(name: nameTextField.text!, type: typeButton.title(for: .normal)!, size: "Medium", subType: subtypeButton.title(for: .normal), colors: colors, seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: purchaseSourceTextField.text, storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: itemDate, isLoaned: isLoaned)
         delegate?.updateItem(item,  atIndexPath: selectedItemIndexPath!)
     }
 
@@ -466,6 +524,7 @@ class ImageSelector : NSObject, UIImagePickerControllerDelegate, UINavigationCon
 }
 
 extension UIImage {
+    // Parts of the following function retrieved from https://www.hackingwithswift.com/example-code/media/how-to-read-the-average-color-of-a-uiimage-using-ciareaaverage
     func closestCommonColor() -> UIColor? {
         guard let image = CIImage(image: self) else { return nil }
         
