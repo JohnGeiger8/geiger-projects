@@ -43,6 +43,7 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
         if let _ = itemDate { return true }
         else { return false }
     }
+    var personLoanedTo : String?
     
     // Item spacing
     let ySpacing = 15.0
@@ -184,9 +185,6 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
         let bottomObjectFrame = userInputObjectDictionary[fieldLabels.last!.text!]!.last!.frame
         let scrollViewHeight = bottomObjectFrame.origin.y + bottomObjectFrame.size.height + CGFloat(ySpacing)
         mainScrollView.contentSize = CGSize(width: view.frame.width, height: scrollViewHeight)
-        
-        // Place loanedTo label off the screen for future animation
-        personLoanedToLabel.frame.origin = CGPoint(x: self.view.frame.width, y: loanButton.frame.origin.y)
     }
     
     //MARK:- Type Selection, Date Selection Delegates
@@ -311,6 +309,16 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
         } else {
             // UNLOAN
             loanButton.setTitle("Loan", for: .normal)
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                let x = self.personLoanedToLabel.frame.origin.x
+                let y = CGFloat(-30.0)
+                self.personLoanedToLabel.frame.origin = CGPoint(x: x, y: y)
+                
+            }, completion: {(complete) in
+                self.personLoanedToLabel.text = nil
+                self.personLoanedTo = nil
+            })
         }
         
     }
@@ -322,7 +330,7 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
             if colorTextField.text != "" { colors.append(colorTextField.text!) }
         }
         
-        let newItem = WardrobeItem(name: nameTextField.text!, type: typeButton.titleLabel!.text!, size: "Medium", subType: subtypeButton.titleLabel!.text, colors: colors, seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: purchaseSourceTextField.text!, storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: itemDate, isLoaned: false)
+        let newItem = WardrobeItem(name: nameTextField.text!, type: typeButton.titleLabel!.text!, size: "Medium", subType: subtypeButton.titleLabel!.text, colors: colors, seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: purchaseSourceTextField.text!, storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: itemDate, loanedTo: personLoanedTo)
         delegate?.addNewItem(newItem)
         navigationController?.popViewController(animated: true)
     }
@@ -333,11 +341,15 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
         
         let loanedText = "Currently Loaned to \(person)"
         personLoanedToLabel.text = loanedText
+        personLoanedTo = person
+        
+        // Place loanedTo label off the screen for animation
+        personLoanedToLabel.frame.origin = CGPoint(x: self.view.frame.width, y: cancelButton.frame.origin.y)
         personLoanedToLabel.frame.size = personLoanedToLabel.intrinsicContentSize
         
         UIView.animate(withDuration: 1.0, animations: {
             let x = self.view.frame.width / 2 - self.personLoanedToLabel.frame.width / 2
-            let y = self.loanButton.frame.origin.y
+            let y = self.cancelButton.frame.origin.y
             self.personLoanedToLabel.frame.origin = CGPoint(x: x, y: y)
             self.mainScrollView.addSubview(self.personLoanedToLabel)
         })
@@ -369,8 +381,9 @@ extension AddItemViewController {
         userInputObjectDictionary["Colors"]?.append(addColorButton)
         itemDate = item.dateOfPurchase!
         
-        if item.isLoaned {
+        if let personLoanedTo = item.loanedTo {
             loanButton.setTitle("Unloan", for: .normal)
+            addLoanedText(withPerson: personLoanedTo)
         }
         
         if let itemImageData = item.imageData {
@@ -405,6 +418,8 @@ extension AddItemViewController {
             editButton.setTitle("Done", for: .normal)
         }
         else {
+            guard nameTextField.text != "", isTypeSelected, isDatePicked else { return }
+            
             editButton.setTitle("Edit", for: .normal)
             submitItemChanges()
         }
@@ -419,16 +434,14 @@ extension AddItemViewController {
     }
     
     func submitItemChanges() {
-        guard nameTextField.text != "", isTypeSelected, isDatePicked else { return }
 
         // FIXME: Add size and seasons
         var colors : [String] = []
         for colorTextField in colorTextFields {
             if colorTextField.text != "" { colors.append(colorTextField.text!) }
         }
-        let isLoaned = loanButton.title(for: .normal)! == "Loan" ? false : true
         
-        let item = WardrobeItem(name: nameTextField.text!, type: typeButton.title(for: .normal)!, size: "Medium", subType: subtypeButton.title(for: .normal), colors: colors, seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: purchaseSourceTextField.text, storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: itemDate, isLoaned: isLoaned)
+        let item = WardrobeItem(name: nameTextField.text!, type: typeButton.title(for: .normal)!, size: "Medium", subType: subtypeButton.title(for: .normal), colors: colors, seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: purchaseSourceTextField.text, storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: itemDate, loanedTo: personLoanedTo)
         delegate?.updateItem(item,  atIndexPath: selectedItemIndexPath!)
     }
 

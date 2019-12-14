@@ -104,9 +104,9 @@ class WardrobeModel: DataManagerDelegate {
         }
     }
     
-    func isItemLoanedFor(indexPath: IndexPath) -> Bool {
+    func itemLoanedToFor(indexPath: IndexPath) -> String? {
         
-        return filteredItems[indexPath.row].isLoaned
+        return filteredItems[indexPath.row].loanedTo
     }
     
     // MARK:- Filter Items
@@ -140,7 +140,7 @@ class WardrobeModel: DataManagerDelegate {
         filteredItems[indexPath.row].storeName = item.storeName
         filteredItems[indexPath.row].dateOfPurchase = item.dateOfPurchase
         filteredItems[indexPath.row].imageData = item.imageData
-        filteredItems[indexPath.row].isLoaned = item.isLoaned
+        filteredItems[indexPath.row].loanedTo = item.loanedTo
         dataManager.saveContext()
     }
     

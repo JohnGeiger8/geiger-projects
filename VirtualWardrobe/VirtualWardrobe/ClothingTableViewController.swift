@@ -65,7 +65,7 @@ class ClothingTableViewController: UITableViewController {
         }
         cell.itemImageView.contentMode = .scaleAspectFit
         cell.itemInfoLabel.text = wardrobeModel.clothingStoreNameFor(indexPath: indexPath)
-        cell.itemLoanedButton.isHidden = !wardrobeModel.isItemLoanedFor(indexPath: indexPath)
+        cell.itemLoanedButton.isHidden = wardrobeModel.itemLoanedToFor(indexPath: indexPath) == nil
         
         cell.backgroundColor = .backgroundColor
         

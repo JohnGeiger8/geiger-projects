@@ -23,7 +23,7 @@ struct WardrobeItem {
     var imageName : String
     var imageData : Data?
     var dateOfPurchase : Date?
-    var isLoaned : Bool
+    var loanedTo : String?
     
     func addItem(with dataManager: DataManager) -> WardrobeItemMO {
         
@@ -38,7 +38,7 @@ struct WardrobeItem {
         itemMO.colors = colors
         itemMO.subtype = subType
         itemMO.storeName = storeName
-        itemMO.isLoaned = isLoaned
+        itemMO.loanedTo = loanedTo
         
         return itemMO
     }
