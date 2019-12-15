@@ -12,6 +12,7 @@ class AddOutfitTableViewController: UITableViewController {
 
     let wardrobeModel = WardrobeModel.sharedinstance
     var wardrobeItems : [WardrobeItemMO] = []
+    var outfitName : String?
     @IBOutlet weak var bottomBarView: UIView!
     
     override func viewDidLoad() {
@@ -118,10 +119,39 @@ class AddOutfitTableViewController: UITableViewController {
     
     @IBAction func addOutfit(_ sender: Any) {
         
+        // Outfit must have a name and at least one item.  Use alert to tell user
+        guard outfitName != nil, outfitName != "" else {
+            let alertController = UIAlertController(title: "Incomplete", message: "Please name the Outfit", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+            
+            return
+        }
+        guard wardrobeItems.count > 0 else {
+            let alertController = UIAlertController(title: "Incomplete", message: "Please add at least 1 item to the outfit", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+
+            return
+        }
+        
+        wardrobeModel.addOutfit(outfitName!, withWardrobeItems: wardrobeItems)
+        navigationController?.popViewController(animated: true)
     }
 }
 
 extension AddOutfitTableViewController: UITextFieldDelegate {
     
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+        
+        outfitName = textField.text
+        textField.resignFirstResponder()
+    }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        outfitName = textField.text
+        textField.resignFirstResponder()
+        return true
+    }
 }

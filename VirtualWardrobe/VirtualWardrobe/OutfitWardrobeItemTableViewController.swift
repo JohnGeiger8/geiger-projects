@@ -54,6 +54,12 @@ class OutfitWardrobeItemTableViewController: UITableViewController {
         performSegue(withIdentifier: "UnwindToAddOutfits", sender: self)
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 175
+    }
+    
+    // MARK:- Navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "UnwindToAddOutfits":

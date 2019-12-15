@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0B2BA404858BC06BE30AB4AB /* Pods_VirtualWardrobe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F0EF6E13C6F043BED4DFAC6 /* Pods_VirtualWardrobe.framework */; };
+		2E58828523A6971E001A59F5 /* Date+timePeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E58828423A6971E001A59F5 /* Date+timePeriod.swift */; };
 		2E6CCC342399B1D3009DB6A6 /* UserInputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6CCC332399B1D3009DB6A6 /* UserInputTextField.swift */; };
 		2E77F4A2239F6680009CE46A /* WardrobeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E77F4A1239F6680009CE46A /* WardrobeItem.swift */; };
 		2E7DFBCB23694B4D0038CE99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DFBCA23694B4D0038CE99 /* AppDelegate.swift */; };
@@ -72,6 +73,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2E58828423A6971E001A59F5 /* Date+timePeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+timePeriod.swift"; sourceTree = "<group>"; };
 		2E6CCC332399B1D3009DB6A6 /* UserInputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputTextField.swift; sourceTree = "<group>"; };
 		2E77F4A1239F6680009CE46A /* WardrobeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeItem.swift; sourceTree = "<group>"; };
 		2E7DFBC723694B4D0038CE99 /* VirtualWardrobe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualWardrobe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,6 +205,7 @@
 				2E7DFBF3236A827D0038CE99 /* WardrobeModel.swift */,
 				2E77F4A1239F6680009CE46A /* WardrobeItem.swift */,
 				2E9D65802395964900269C40 /* DataManager.swift */,
+				2E58828423A6971E001A59F5 /* Date+timePeriod.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				2EB0DE14237C953C002D235E /* RootViewController.swift in Sources */,
 				2EDA5157239F0C4900DE3DD3 /* DatePickerViewController.swift in Sources */,
 				2EF2A03F238B64E7009D5EE4 /* SubTypeTableViewController.swift in Sources */,
+				2E58828523A6971E001A59F5 /* Date+timePeriod.swift in Sources */,
 				2EDA5155239F00F600DE3DD3 /* TrendsViewController.swift in Sources */,
 				2E7DFBF4236A827D0038CE99 /* WardrobeModel.swift in Sources */,
 				2EAEDA892398B91C00293AA8 /* UILabel+name.swift in Sources */,

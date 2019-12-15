@@ -16,7 +16,7 @@ class OutfitTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        tableView.reloadData()
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
@@ -34,13 +34,27 @@ class OutfitTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "OutfitItemCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "OutfitTableViewCell", for: indexPath) as! OutfitItemTableViewCell
         
-        cell.imageView?.image = UIImage(data: wardrobeModel.imageDataForOutfitItemFor(indexPath: indexPath))
+        if let imageData = wardrobeModel.imageDataOfOutfitFor(indexPath: indexPath) {
+            cell.itemImageView.image = UIImage(data: imageData)
+        } else {
+            cell.itemImageView.image = UIImage(named: "NoImageFound")
+        }
+        cell.itemNameLabel.text = wardrobeModel.itemNameForOutfitAt(indexPath: indexPath)
         cell.backgroundColor = .backgroundColor
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        let sectionTitle = wardrobeModel.outfitNameFor(section: section)
+        return sectionTitle
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 175
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -59,21 +73,6 @@ class OutfitTableViewController: UITableViewController {
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
     }
     */
 

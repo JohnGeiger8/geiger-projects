@@ -109,7 +109,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OutfitTableViewCell" rowHeight="91" id="jlI-Vb-cSr">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OutfitTableViewCell" rowHeight="91" id="jlI-Vb-cSr" customClass="OutfitItemTableViewCell" customModule="VirtualWardrobe" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="91"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jlI-Vb-cSr" id="2vZ-yk-SBa">
@@ -137,6 +137,10 @@
                                         <constraint firstItem="BBa-eY-9Yk" firstAttribute="top" secondItem="2vZ-yk-SBa" secondAttribute="top" constant="6" id="q9F-7C-PIR"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="itemImageView" destination="BBa-eY-9Yk" id="xSt-DA-tab"/>
+                                    <outlet property="itemNameLabel" destination="3WV-hm-oFm" id="zQv-mS-II7"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -511,7 +515,6 @@
                     <navigationItem key="navigationItem" title="Virtual Wardrobe" id="2rV-Id-Iu3"/>
                     <connections>
                         <outlet property="bottomBarView" destination="JhJ-bf-v7F" id="N8g-1c-vMG"/>
-                        <segue destination="pFi-9M-CjT" kind="show" identifier="ShowDetail" id="3cm-nR-liQ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J6N-wb-b6C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -561,17 +564,75 @@
                                         <color key="textColor" red="0.27250555199999998" green="0.01034594546" blue="0.02310753221" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trends Over Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z9D-U8-1aW">
+                                        <rect key="frame" x="118.5" y="367" width="138" height="22"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
+                                        <color key="textColor" red="0.27250555199999998" green="0.01034594546" blue="0.02310753221" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5FE-H6-zcI">
+                                        <rect key="frame" x="62" y="397" width="251" height="29"/>
+                                        <segments>
+                                            <segment title="Past Year"/>
+                                            <segment title="Past Month"/>
+                                            <segment title="Past Week"/>
+                                        </segments>
+                                        <color key="tintColor" red="0.27250555199999998" green="0.01034594546" blue="0.02310753221" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="changeGraphFilter:" destination="Zot-aC-ctF" eventType="valueChanged" id="Rci-vh-5vi"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7jr-0D-cfT">
+                                        <rect key="frame" x="16" y="446" width="343" height="149"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="149" id="yAi-Ip-whd"/>
+                                        </constraints>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TrendCell" textLabel="9Lp-fl-Dg6" detailTextLabel="PlK-AJ-c1E" rowHeight="68" style="IBUITableViewCellStyleSubtitle" id="kRo-eq-5Vr">
+                                                <rect key="frame" x="0.0" y="28" width="343" height="68"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kRo-eq-5Vr" id="6A1-x9-cNS">
+                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="67.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9Lp-fl-Dg6">
+                                                            <rect key="frame" x="15" y="14" width="33.5" height="20.5"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PlK-AJ-c1E">
+                                                            <rect key="frame" x="15" y="37.5" width="44" height="14.5"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="geL-N8-gpc" firstAttribute="leading" secondItem="Ewr-8f-b2k" secondAttribute="leading" constant="28" id="0wk-4H-BIc"/>
+                                    <constraint firstItem="5FE-H6-zcI" firstAttribute="top" secondItem="z9D-U8-1aW" secondAttribute="bottom" constant="8" id="4Ud-lY-Ij0"/>
                                     <constraint firstItem="kFE-ed-cKn" firstAttribute="top" secondItem="Ewr-8f-b2k" secondAttribute="top" constant="24" id="D4b-lm-5kG"/>
+                                    <constraint firstItem="z9D-U8-1aW" firstAttribute="top" secondItem="a0W-Kz-Y6f" secondAttribute="bottom" constant="17" id="GhG-5T-K1x"/>
                                     <constraint firstItem="kFE-ed-cKn" firstAttribute="centerX" secondItem="Ewr-8f-b2k" secondAttribute="centerX" id="Gxd-D7-mp3"/>
                                     <constraint firstItem="a0W-Kz-Y6f" firstAttribute="leading" secondItem="Ewr-8f-b2k" secondAttribute="leading" constant="16" id="Mx8-zh-IQb"/>
                                     <constraint firstItem="puZ-45-hr5" firstAttribute="centerX" secondItem="Ewr-8f-b2k" secondAttribute="centerX" id="R2i-kz-74r"/>
                                     <constraint firstItem="geL-N8-gpc" firstAttribute="centerX" secondItem="Ewr-8f-b2k" secondAttribute="centerX" id="W3T-yc-5QL"/>
+                                    <constraint firstItem="7jr-0D-cfT" firstAttribute="top" secondItem="5FE-H6-zcI" secondAttribute="bottom" constant="21" id="ZRc-T1-qlw"/>
                                     <constraint firstItem="a0W-Kz-Y6f" firstAttribute="top" secondItem="puZ-45-hr5" secondAttribute="bottom" constant="8" id="a3a-Pd-KZc"/>
+                                    <constraint firstItem="5FE-H6-zcI" firstAttribute="centerX" secondItem="Ewr-8f-b2k" secondAttribute="centerX" id="i3d-eq-WPb"/>
+                                    <constraint firstItem="7jr-0D-cfT" firstAttribute="leading" secondItem="Ewr-8f-b2k" secondAttribute="leading" constant="16" id="mGa-C7-nsh"/>
                                     <constraint firstItem="puZ-45-hr5" firstAttribute="top" secondItem="geL-N8-gpc" secondAttribute="bottom" constant="16" id="oRQ-eD-3Sp"/>
+                                    <constraint firstItem="7jr-0D-cfT" firstAttribute="centerX" secondItem="Ewr-8f-b2k" secondAttribute="centerX" id="rOU-hr-uOe"/>
                                     <constraint firstItem="geL-N8-gpc" firstAttribute="top" secondItem="kFE-ed-cKn" secondAttribute="bottom" constant="8" id="s5e-OU-Uf4"/>
+                                    <constraint firstItem="z9D-U8-1aW" firstAttribute="centerX" secondItem="Ewr-8f-b2k" secondAttribute="centerX" id="tFK-VV-vrd"/>
                                     <constraint firstItem="a0W-Kz-Y6f" firstAttribute="centerX" secondItem="Ewr-8f-b2k" secondAttribute="centerX" id="w7d-mT-jY8"/>
                                 </constraints>
                             </scrollView>
@@ -588,6 +649,7 @@
                     <connections>
                         <outlet property="chartView" destination="geL-N8-gpc" id="q9y-ke-fsf"/>
                         <outlet property="mainScrollView" destination="Ewr-8f-b2k" id="mWk-xw-ZAY"/>
+                        <outlet property="trendsTableView" destination="7jr-0D-cfT" id="NMP-45-tJf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tHL-MD-cSM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -917,7 +979,4 @@
         <image name="AddImage" width="576" height="452"/>
         <image name="AddSymbol" width="145" height="141"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="3cm-nR-liQ"/>
-    </inferredMetricsTieBreakers>
 </document>

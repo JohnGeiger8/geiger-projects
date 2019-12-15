@@ -24,6 +24,7 @@ class WardrobeModel: DataManagerDelegate {
     
     let types = ["Shirt", "Suit", "Pants", "Jacket", "Coat", "Vest", "Shorts", "Shoes", "Dress", "Hat", "Underwear", "Socks", "Necklace", "Bracelet", "Earrings", "Purse", "Handbag", "Ring", "Other"]
     let subtypes = ["Long-sleeve", "Short-sleeve", "Flannel", "Sports Jersey", "Button-Down", "Polo", "Khakis", "Jeans", "Baseball Hat", "Beanie", "Flat Rim Hat", "Boxers", "Briefs", "Sneakers", "Dress Shoes", "Heels", "Boots", "Slides", "Sandals", "Slip-ons", "Dress Socks", "Other"]
+    let trendFavorites = ["Favorite Store", "Favorite Brand", "Favorite Type of Wardrobe Item"]
     
     var allItems : [WardrobeItemMO]
     var filteredItems : [WardrobeItemMO]
@@ -31,6 +32,7 @@ class WardrobeModel: DataManagerDelegate {
     var filteredOutfits : [OutfitMO]
     var newOutfitName : String?
     var newOutfitSections : [Int:Int] = [AddOutfitSections.OutfitName.rawValue: 1, AddOutfitSections.AddNewItem.rawValue: 1, AddOutfitSections.WardrobeItem.rawValue: 0] // Number of rows of Add Outfit table view sections
+    var trends : [String:String] = [:]
     
     fileprivate init() {
         
@@ -39,6 +41,7 @@ class WardrobeModel: DataManagerDelegate {
         allOutfits = (dataManager.fetchManagedObjects(for: "OutfitMO", sortKeys: ["name"], predicate: nil) as? [OutfitMO])!
         filteredOutfits = allOutfits
         filteredItems = allItems
+
         dataManager.delegate = self
     }
     
@@ -170,18 +173,25 @@ extension WardrobeModel {
     // Outfits Table View Data Source
     var numberOfOutfits : Int { return filteredOutfits.count }
     
-    func outfitNameFor(indexPath: IndexPath) -> String {
+    func outfitNameFor(section: Int) -> String {
         
-        return filteredOutfits[indexPath.section].name!
+        return filteredOutfits[section].name!
     }
     
-    func imageDataForOutfitItemFor(indexPath: IndexPath) -> Data {
+    func imageDataOfOutfitFor(indexPath: IndexPath) -> Data? {
         
-        // FIXME: Not always image data
         let outfit = filteredOutfits[indexPath.section]
         let items = outfit.isMadeUpOf
         let wardrobeItems = items?.allObjects as? [WardrobeItemMO]
-        return wardrobeItems![indexPath.row].imageData!
+        return wardrobeItems![indexPath.row].imageData
+    }
+    
+    func itemNameForOutfitAt(indexPath: IndexPath) -> String {
+        
+        let outfit = filteredOutfits[indexPath.section]
+        let items = outfit.isMadeUpOf
+        let wardrobeItems = items?.allObjects as? [WardrobeItemMO]
+        return wardrobeItems![indexPath.row].name!
     }
     
     func numberOfItemsInOutfitFor(section: Int) -> Int {
@@ -189,8 +199,15 @@ extension WardrobeModel {
         return outfitItems!.count
     }
     
-    func addOutfit(_ outfit: OutfitMO) {
+    func addOutfit(_ outfitName: String, withWardrobeItems wardrobeItems: [WardrobeItemMO]) {
         
+        let newOutfit = OutfitMO(context: dataManager.context)
+        newOutfit.name = outfitName
+        for item in wardrobeItems {
+            newOutfit.addToIsMadeUpOf(item) // Add each part of outfit to it
+        }
+        allOutfits.append(newOutfit)
+        filteredOutfits = allOutfits
         
         dataManager.saveContext()
     }
@@ -262,98 +279,89 @@ extension WardrobeModel {
     
     func clothesBy(_ timePeriod: String, sizeOfTimePeriod: Int) -> [String:Int] {
         
-        var allItemsFiltered = allItems // Need to filter items within time period of size sizeOfTimePeriod
-        var timePeriodFilter = { (item: WardrobeItemMO) -> Bool in return true}
         var clothesByInterval : [String:Int] = [:]
-        let calendar = Calendar.current
         
         var timePeriodComponent : Calendar.Component = .year // Year by default
-        var currentTimePeriod : Int = 0
         switch timePeriod {
         case "Year":
-            currentTimePeriod = calendar.component(.year, from: Date()) // Current year
             timePeriodComponent = .year
-//            timePeriodFilter = { (item: WardrobeItemMO) -> Bool in
-//                let purchaseYear = calendar.component(.year, from: item.dateOfPurchase!)
-//                if purchaseYear <= currentTimePeriod, purchaseYear > currentTimePeriod - sizeOfTimePeriod { return true }
-//                else { return false }
-//            }
             
         case "Month":
-            currentTimePeriod = calendar.component(.month, from: Date()) // Current month
             timePeriodComponent = .month
-            // FIXME: Filter needs to make sure we aren't looking at prior years' months.  There's an easier way to do this. Possibly difference of dates
-//            timePeriodFilter = { (item: WardrobeItemMO) -> Bool in
-//                let purchaseYear = calendar.component(.year, from: item.dateOfPurchase!)
-//                let purchaseMonth = calendar.component(.month, from: item.dateOfPurchase!)
-//                let currentYear = calendar.component(.year, from: Date())
-//                let currentMonth = calendar.component(.month, from: Date())
-//                guard purchaseYear <= currentYear, purchaseYear > currentYear - sizeOfTimePeriod else { return false } // Correct years checks
-//                let monthDifference = (currentMonth - purchaseMonth) % 12
-//                guard monthDifference < sizeOfTimePeriod, purchaseMonth < currentMonth else { return false } // Correct months check
-//                return true
-//            }
             
-        // FIXME: Figure out how to do months with correct years being checked
         case "Week":
-            currentTimePeriod = calendar.component(.weekOfYear, from: Date()) // Current week out of 52
-//            timePeriodFilter = { (item: WardrobeItemMO) -> Bool in
-//                let purchaseYear = calendar.component(.year, from: item.dateOfPurchase!)
-//                let purchaseMonth = calendar.component(.month, from: item.dateOfPurchase!)
-//                let purchaseWeek = calendar.component(.weekOfYear, from: item.dateOfPurchase!)
-//                let currentYear = calendar.component(.year, from: Date())
-//                let currentMonth = calendar.component(.month, from: Date())
-//                let currentWeek = calendar.component(.weekOfYear, from: Date())
-//                guard purchaseYear <= currentYear, purchaseYear > currentYear - sizeOfTimePeriod else { return false } // Correct years checks
-//                let monthDifference = (currentMonth - purchaseMonth) % 12
-//                guard monthDifference < sizeOfTimePeriod, purchaseMonth < currentMonth else { return false } // Correct months check
-//                let weekDifference = (currentWeek - purchaseWeek) % 52
-//                guard weekDifference < sizeOfTimePeriod, purchaseWeek
-//                return true
-//            }
-            break
+            timePeriodComponent = .weekOfYear
+            
         default:
             assert(false, "Unhandled time period")
         }
         
+        // Check for dates within time period by year/month/week
+        var laterDate = Date().lastDayOf(dateComponent: timePeriodComponent)
+        var pastDate = laterDate.firstDayOf(dateComponent: timePeriodComponent)
         for _ in 0..<sizeOfTimePeriod {
-            let itemFilter = createItemDateFilter(by: timePeriodComponent, forTime: currentTimePeriod)
+            let itemFilter = createItemDateFilter(between: pastDate, and: laterDate)
             let clothesCount = allItems.filter(itemFilter).count
-            clothesByInterval[String(currentTimePeriod)] = clothesCount
-            currentTimePeriod -= 1
+            clothesByInterval[pastDate.textFromComponent(component: timePeriodComponent)] = clothesCount
+            
+            laterDate = Calendar.current.date(byAdding: timePeriodComponent, value: -1, to: laterDate)!
+            pastDate = laterDate.firstDayOf(dateComponent: timePeriodComponent)
         }
         
         return clothesByInterval
     }
     
-    func createItemDateFilter(by component: Calendar.Component, forTime targetTime: Int) -> ((WardrobeItemMO) -> Bool) {
+    func createItemDateFilter(between firstDate: Date, and secondDate: Date) -> ((WardrobeItemMO) -> Bool) {
         
-        let calendar = Calendar.current
-        
-        // Creates filter for either week, month, or year, and checks that component's value (targetTime) against the item's date of purchase
+        // Creates filter for either week, month, or year for being between two dates
         let filter = { (item: WardrobeItemMO) -> Bool in
-            if calendar.component(component, from: item.dateOfPurchase!) != targetTime {
-                return false
-            } else {
+            if item.dateOfPurchase! < secondDate, item.dateOfPurchase! > firstDate {
                 return true
+            } else {
+                return false
             }
         }
         return filter
     }
     
-    var favoriteStore : String {
+    var numberOfTrends : Int { return trendFavorites.count }
+    
+    func findTrends() {
         
-        // Look at all items' purchased store/website and figure out most frequented one
-        var stores : [String] = []
-        for item in allItems {
-            if let _ = item.storeName {
-                let store = item.storeName!.trimmingCharacters(in: CharacterSet(arrayLiteral: " "))
-                stores.append(store)
+        // Look at all trends' properties and the  and figure out most frequented one
+        var allOptions : [String:[String]] = [:]
+        for property in trendFavorites {
+            allOptions[property] = [] // Have to initialize to append
+            for item in allItems {
+                if let propertyValue = itemProperty(item: item, property) {
+                    allOptions[property]!.append(propertyValue.trimmingCharacters(in: CharacterSet(arrayLiteral: " ")))
+                }
             }
+            
+            let propertyValueFrequency = NSCountedSet(array: allOptions[property]!)
+            let favorite = propertyValueFrequency.max { propertyValueFrequency.count(for: $0) < propertyValueFrequency.count(for: $1) }
+            trends[property] = favorite as? String
         }
-        let storeFrequencies = NSCountedSet(array: stores)
-        let favoriteStore = storeFrequencies.max { storeFrequencies.count(for: $0) < storeFrequencies.count(for: $1) }
-        
-        return favoriteStore as! String
+    }
+    
+    func itemProperty(item: WardrobeItemMO, _ property: String) -> String? {
+        switch property {
+        case "Favorite Store":
+            return item.storeName
+        case "Favorite Brand":
+            return item.brandName
+        case "Favorite Type of Wardrobe Item":
+            return item.type
+        default:
+            assert(false, "Unhandled favorite")
+        }
+    }
+    
+    func trendNameAt(indexPath: IndexPath) -> String {
+        return trendFavorites[indexPath.row]
+    }
+    
+    func favoriteOf(_ trendName: String) -> String? {
+        return trends[trendName]
     }
 }

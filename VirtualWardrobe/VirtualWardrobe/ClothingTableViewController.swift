@@ -84,6 +84,8 @@ class ClothingTableViewController: UITableViewController {
             let wardrobeItem = self.wardrobeModel.clothingItemFor(indexPath: indexPath)
             itemDetailViewController?.configureForDetailView(item: wardrobeItem, atIndexPath: indexPath)
             itemDetailViewController?.delegate = self
+            itemDetailViewController?.view.backgroundColor = .navigationColor
+            itemDetailViewController?.mainScrollView.backgroundColor = .backgroundColor
         })
     }
     
