@@ -102,7 +102,7 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" red="0.95393797589999996" green="0.27402413930000002" blue="0.27025642859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="arO-A7-KxS" firstAttribute="centerY" secondItem="asd-oo-ms2" secondAttribute="centerY" constant="0.5" id="39F-ka-Iaf"/>
                                 <constraint firstItem="arO-A7-KxS" firstAttribute="centerX" secondItem="asd-oo-ms2" secondAttribute="centerX" constant="-0.5" id="S8z-rn-uHV"/>
@@ -144,6 +144,9 @@
                             <outlet property="delegate" destination="An0-oQ-MHB" id="l8d-YM-Ljq"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="bottomBarView" destination="asd-oo-ms2" id="2WS-rr-iYw"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WOS-Lh-0me" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -157,6 +160,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="SCx-gr-EcU">
                             <rect key="frame" x="0.0" y="261" width="375" height="59"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -173,7 +177,7 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" red="0.95393797589999996" green="0.27402413930000002" blue="0.27025642859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="drB-JC-wte" firstAttribute="centerY" secondItem="SCx-gr-EcU" secondAttribute="centerY" id="Q8N-Ye-OWi"/>
                                 <constraint firstItem="drB-JC-wte" firstAttribute="leading" secondItem="SCx-gr-EcU" secondAttribute="leading" constant="19" id="wa5-pN-5pp"/>
@@ -378,7 +382,7 @@
                                         <constraint firstAttribute="bottom" secondItem="paV-ne-jUc" secondAttribute="bottom" constant="5" id="wI1-If-OxQ"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="1" green="0.77300731209999995" blue="0.72468197550000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="brandNameLabel" destination="4ru-EK-Nve" id="7K9-24-xvN"/>
                                     <outlet property="itemImageView" destination="paV-ne-jUc" id="GlM-qo-h5z"/>
@@ -422,7 +426,7 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" red="0.95393797589999996" green="0.27402413930000002" blue="0.27025642859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="twJ-aJ-LSz" firstAttribute="centerX" secondItem="JhJ-bf-v7F" secondAttribute="centerX" constant="-0.5" id="3rR-aP-8CY"/>
                                 <constraint firstItem="twJ-aJ-LSz" firstAttribute="centerY" secondItem="JhJ-bf-v7F" secondAttribute="centerY" constant="0.5" id="b2U-EK-n7e"/>
@@ -486,7 +490,7 @@
                                         <constraint firstAttribute="bottom" secondItem="fWU-IK-i93" secondAttribute="bottom" constant="5" id="mF0-Yc-VwG"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="1" green="0.77300731209999995" blue="0.72468197550000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="brandNameLabel" destination="bo6-K6-Atr" id="5Sw-x3-eq0"/>
                                     <outlet property="itemImageView" destination="fWU-IK-i93" id="kVQ-YQ-Xx3"/>
@@ -502,6 +506,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Virtual Wardrobe" id="2rV-Id-Iu3"/>
+                    <connections>
+                        <outlet property="bottomBarView" destination="JhJ-bf-v7F" id="N8g-1c-vMG"/>
+                        <segue destination="pFi-9M-CjT" kind="show" identifier="ShowDetail" id="3cm-nR-liQ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J6N-wb-b6C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -565,7 +573,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.77300731209999995" blue="0.72468197550000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Ewr-8f-b2k" firstAttribute="bottom" secondItem="Gsp-aE-UGw" secondAttribute="bottom" id="EYJ-Hw-HVG"/>
                             <constraint firstItem="Ewr-8f-b2k" firstAttribute="trailing" secondItem="Gsp-aE-UGw" secondAttribute="trailing" id="Vwn-4V-Ew3"/>
@@ -630,7 +638,7 @@
                                         <constraint firstItem="hb3-Di-wmU" firstAttribute="leading" secondItem="wHJ-kp-SAj" secondAttribute="leading" constant="16" id="zuw-p5-TTs"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="1" green="0.77300731209999995" blue="0.72468197550000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="itemImageView" destination="hb3-Di-wmU" id="uas-my-LgN"/>
                                     <outlet property="itemInfoLabel" destination="oe3-Rx-REF" id="SCM-4i-533"/>
@@ -679,7 +687,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.77300731209999995" blue="0.72468197550000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="WZI-aJ-yNw" firstAttribute="leading" secondItem="mS7-FI-rTS" secondAttribute="leading" constant="8" id="58F-cQ-Xp6"/>
                                     <constraint firstItem="PQK-wD-hX6" firstAttribute="top" secondItem="WZI-aJ-yNw" secondAttribute="bottom" constant="8" id="7Ne-wP-J6e"/>
@@ -720,7 +728,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.77300731209999995" blue="0.72468197550000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="mS7-FI-rTS" firstAttribute="trailing" secondItem="leq-xu-8ml" secondAttribute="trailing" id="0gj-b1-cBf"/>
                             <constraint firstItem="leq-xu-8ml" firstAttribute="trailing" secondItem="6Kg-S5-69C" secondAttribute="trailing" constant="15" id="2uS-jH-es3"/>
@@ -769,7 +777,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="1" green="0.77300731209999995" blue="0.72468197550000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -829,7 +836,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="1" green="0.77300731209999995" blue="0.72468197550000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -882,7 +888,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.76788619680000003" green="0.88932966319999995" blue="0.70371678719999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="8Xf-5S-BMs" firstAttribute="top" secondItem="eBH-Ho-gPF" secondAttribute="bottom" constant="33" id="3Ge-nX-wk4"/>
                             <constraint firstItem="8Xf-5S-BMs" firstAttribute="trailing" secondItem="lCS-8H-0as" secondAttribute="trailing" id="C0R-99-cdf"/>
@@ -908,4 +914,7 @@
         <image name="AddImage" width="576" height="452"/>
         <image name="AddSymbol" width="145" height="141"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="3cm-nR-liQ"/>
+    </inferredMetricsTieBreakers>
 </document>

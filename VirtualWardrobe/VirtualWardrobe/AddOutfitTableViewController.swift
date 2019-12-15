@@ -37,17 +37,20 @@ class AddOutfitTableViewController: UITableViewController {
         case .OutfitName:
             let cell = tableView.dequeueReusableCell(withIdentifier: "OutfitName", for: indexPath) as! OutfitNameTableViewCell
             cell.outfitNameTextField.delegate = self
+            cell.backgroundColor = .backgroundColor
             
             return cell
             
         case .WardrobeItem:
             let cell = tableView.dequeueReusableCell(withIdentifier: "WardrobeItem", for: indexPath) as! OutfitItemTableViewCell
             //cell.itemImageView.image = UIImage(data: wardrobeModel.)
+            cell.backgroundColor = .backgroundColor
             
             return cell
             
         case .AddNewItem:
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewItem", for: indexPath) as! AddItemToOutfitTableViewCell
+            cell.backgroundColor = .backgroundColor
             
             return cell
             

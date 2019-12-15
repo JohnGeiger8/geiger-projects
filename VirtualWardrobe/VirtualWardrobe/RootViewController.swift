@@ -25,6 +25,7 @@ class RootViewController: UIViewController {
             let wardrobeController = segue.destination as? ClothingTableViewController
             wardrobeController?.tableView.backgroundColor = .backgroundColor
             wardrobeController?.view.backgroundColor = .backgroundColor
+            wardrobeController?.bottomBarView.backgroundColor = .navigationColor
             
         case "ToTrends":
             let trendsController = segue.destination as? TrendsViewController
@@ -34,6 +35,7 @@ class RootViewController: UIViewController {
             let outfitsController = segue.destination as? OutfitTableViewController
             outfitsController?.tableView.backgroundColor = .backgroundColor
             outfitsController?.view.backgroundColor = .backgroundColor
+            outfitsController?.bottomBarView.backgroundColor = .backgroundColor
 
         case "ToWishList":
             break

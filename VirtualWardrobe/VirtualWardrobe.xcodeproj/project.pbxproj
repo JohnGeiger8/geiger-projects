@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -31,7 +31,6 @@
 		2EDE451E23A4572A00F91337 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E7DFBD023694B4D0038CE99 /* Main.storyboard */; };
 		2EE1A6912389AF840066A620 /* TypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE1A6902389AF840066A620 /* TypeTableViewController.swift */; };
 		2EF2A03F238B64E7009D5EE4 /* SubTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF2A03E238B64E7009D5EE4 /* SubTypeTableViewController.swift */; };
-		2EF2A041238B6B1D009D5EE4 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF2A040238B6B1D009D5EE4 /* ItemDetailViewController.swift */; };
 		2EF2A043238B867A009D5EE4 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2EF2A042238B8679009D5EE4 /* README.txt */; };
 		2EF6010923A573C700F90D6B /* OutfitNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6010823A573C700F90D6B /* OutfitNameTableViewCell.swift */; };
 		2EF6010B23A5783E00F90D6B /* OutfitItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6010A23A5783E00F90D6B /* OutfitItemTableViewCell.swift */; };
@@ -100,7 +99,6 @@
 		2EDA5156239F0C4900DE3DD3 /* DatePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
 		2EE1A6902389AF840066A620 /* TypeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeTableViewController.swift; sourceTree = "<group>"; };
 		2EF2A03E238B64E7009D5EE4 /* SubTypeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTypeTableViewController.swift; sourceTree = "<group>"; };
-		2EF2A040238B6B1D009D5EE4 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		2EF2A042238B8679009D5EE4 /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		2EF6010823A573C700F90D6B /* OutfitNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitNameTableViewCell.swift; sourceTree = "<group>"; };
 		2EF6010A23A5783E00F90D6B /* OutfitItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitItemTableViewCell.swift; sourceTree = "<group>"; };
@@ -176,14 +174,9 @@
 		2E7DFBEC23694BA50038CE99 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				2E7DFBF5236A88580038CE99 /* ClothingTableViewController.swift */,
 				2EB0DE13237C953C002D235E /* RootViewController.swift */,
-				2EB0DE17237D272E002D235E /* AddItemViewController.swift */,
-				2EE1A6902389AF840066A620 /* TypeTableViewController.swift */,
-				2EF2A03E238B64E7009D5EE4 /* SubTypeTableViewController.swift */,
-				2EF2A040238B6B1D009D5EE4 /* ItemDetailViewController.swift */,
 				2EDA5154239F00F600DE3DD3 /* TrendsViewController.swift */,
-				2EDA5156239F0C4900DE3DD3 /* DatePickerViewController.swift */,
+				2ED6135723A602C3005B8F8F /* Wardrobe */,
 				2EF6011023A59F2F00F90D6B /* Outfits */,
 			);
 			name = Controller;
@@ -242,6 +235,18 @@
 			name = Delegate;
 			sourceTree = "<group>";
 		};
+		2ED6135723A602C3005B8F8F /* Wardrobe */ = {
+			isa = PBXGroup;
+			children = (
+				2E7DFBF5236A88580038CE99 /* ClothingTableViewController.swift */,
+				2EB0DE17237D272E002D235E /* AddItemViewController.swift */,
+				2EE1A6902389AF840066A620 /* TypeTableViewController.swift */,
+				2EF2A03E238B64E7009D5EE4 /* SubTypeTableViewController.swift */,
+				2EDA5156239F0C4900DE3DD3 /* DatePickerViewController.swift */,
+			);
+			name = Wardrobe;
+			sourceTree = "<group>";
+		};
 		2EDA514E239EFE7600DE3DD3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,7 +272,6 @@
 				C243960B105034C1D1E248C8 /* Pods-VirtualWardrobe.debug.xcconfig */,
 				AC0CCA8CA8561AE965D61A80 /* Pods-VirtualWardrobe.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -446,7 +450,6 @@
 				2EB0DE18237D272E002D235E /* AddItemViewController.swift in Sources */,
 				2E7DFBCB23694B4D0038CE99 /* AppDelegate.swift in Sources */,
 				2EBBD1A0237F2E0E00E72BD1 /* CurvedEdgeButton.swift in Sources */,
-				2EF2A041238B6B1D009D5EE4 /* ItemDetailViewController.swift in Sources */,
 				2E9D657F2394AC9800269C40 /* VirtualWardrobe.xcdatamodeld in Sources */,
 				2EA3BC7723A2094600C37F7F /* OutfitTableViewController.swift in Sources */,
 				2E6CCC342399B1D3009DB6A6 /* UserInputTextField.swift in Sources */,

@@ -11,7 +11,8 @@ import UIKit
 class OutfitTableViewController: UITableViewController {
     
     let wardrobeModel = WardrobeModel.sharedinstance
-
+    @IBOutlet weak var bottomBarView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VirtualWardrobe/ClothingTableViewController.swift"
-            timestampString = "598063367.4596649"
+            timestampString = "598083668.831804"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VirtualWardrobe/ClothingTableViewController.swift"
-            timestampString = "598063367.45978"
+            timestampString = "598083668.83193"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VirtualWardrobe/AddItemViewController.swift"
-            timestampString = "598069538.503925"
+            timestampString = "598083668.832038"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "307"
@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VirtualWardrobe/AddItemViewController.swift"
-            timestampString = "598069538.504482"
+            timestampString = "598083668.8329411"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "298"
@@ -74,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VirtualWardrobe/AddItemViewController.swift"
-            timestampString = "598069538.504619"
+            timestampString = "598083668.833685"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "349"
@@ -122,7 +122,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VirtualWardrobe/AddItemViewController.swift"
-            timestampString = "598069538.504751"
+            timestampString = "598083668.834335"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "348"
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VirtualWardrobe/AddItemViewController.swift"
-            timestampString = "598069538.504934"
+            timestampString = "598083668.834857"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "417"
-            endingLineNumber = "417"
+            startingLineNumber = "419"
+            endingLineNumber = "419"
             landmarkName = "toggleEditingFields(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -154,7 +154,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VirtualWardrobe/AddItemViewController.swift"
-            timestampString = "598069538.505055"
+            timestampString = "598083668.835315"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "159"
@@ -186,13 +186,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VirtualWardrobe/AddOutfitTableViewController.swift"
-            timestampString = "598069538.506722"
+            timestampString = "598083668.835847"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "34"
             endingLineNumber = "34"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -202,13 +202,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VirtualWardrobe/AddOutfitTableViewController.swift"
-            timestampString = "598069538.507486"
+            timestampString = "598083668.835933"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "addNewItemCell(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

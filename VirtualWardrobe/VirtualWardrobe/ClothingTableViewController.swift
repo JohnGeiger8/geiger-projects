@@ -20,7 +20,9 @@ class ClothingTableViewController: UITableViewController {
     let wardrobeModel = WardrobeModel.sharedinstance
     let searchController = UISearchController(searchResultsController: nil)
     var filterIndex = SearchWardrobeFilters.ByName
-
+    
+    @IBOutlet weak var bottomBarView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -74,7 +76,7 @@ class ClothingTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        // Create an item detail view controller
+        // Present an item detail view controller
         let itemDetailViewController = (self.storyboard?.instantiateViewController(withIdentifier: "ItemViewController") as? AddItemViewController)
         
         self.present(itemDetailViewController!, animated: true, completion: {
@@ -88,7 +90,7 @@ class ClothingTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
-        return 300  // FIXME: Need to make this more dynamic
+        return 250  // FIXME: Need to make this more dynamic
     }
     
 //    // Override to support conditional editing of the table view.
@@ -117,6 +119,7 @@ class ClothingTableViewController: UITableViewController {
             let destinationViewController = segue.destination as! AddItemViewController
             destinationViewController.delegate = self
             destinationViewController.view.backgroundColor = .backgroundColor
+            destinationViewController.mainScrollView.backgroundColor = .backgroundColor
             
         default:
             assert(false, "Unhandled segue")
