@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B2BA404858BC06BE30AB4AB /* Pods_VirtualWardrobe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F0EF6E13C6F043BED4DFAC6 /* Pods_VirtualWardrobe.framework */; };
 		2E6CCC342399B1D3009DB6A6 /* UserInputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6CCC332399B1D3009DB6A6 /* UserInputTextField.swift */; };
 		2E77F4A2239F6680009CE46A /* WardrobeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E77F4A1239F6680009CE46A /* WardrobeItem.swift */; };
 		2E7DFBCB23694B4D0038CE99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DFBCA23694B4D0038CE99 /* AppDelegate.swift */; };
@@ -106,6 +107,9 @@
 		2EF6010C23A57AA700F90D6B /* AddItemToOutfitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemToOutfitTableViewCell.swift; sourceTree = "<group>"; };
 		2EF6010E23A59F2500F90D6B /* OutfitItemTypeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitItemTypeTableViewController.swift; sourceTree = "<group>"; };
 		2EF6011123A5B04900F90D6B /* OutfitWardrobeItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitWardrobeItemTableViewController.swift; sourceTree = "<group>"; };
+		6F0EF6E13C6F043BED4DFAC6 /* Pods_VirtualWardrobe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VirtualWardrobe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC0CCA8CA8561AE965D61A80 /* Pods-VirtualWardrobe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VirtualWardrobe.release.xcconfig"; path = "Target Support Files/Pods-VirtualWardrobe/Pods-VirtualWardrobe.release.xcconfig"; sourceTree = "<group>"; };
+		C243960B105034C1D1E248C8 /* Pods-VirtualWardrobe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VirtualWardrobe.debug.xcconfig"; path = "Target Support Files/Pods-VirtualWardrobe/Pods-VirtualWardrobe.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B2BA404858BC06BE30AB4AB /* Pods_VirtualWardrobe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +138,7 @@
 				2E7DFBE023694B4F0038CE99 /* VirtualWardrobeTests */,
 				2E7DFBC823694B4D0038CE99 /* Products */,
 				2EDA514E239EFE7600DE3DD3 /* Frameworks */,
+				55A0F2F1599C74E8C993D17A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -239,6 +245,7 @@
 		2EDA514E239EFE7600DE3DD3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6F0EF6E13C6F043BED4DFAC6 /* Pods_VirtualWardrobe.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -254,6 +261,16 @@
 			name = Outfits;
 			sourceTree = "<group>";
 		};
+		55A0F2F1599C74E8C993D17A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C243960B105034C1D1E248C8 /* Pods-VirtualWardrobe.debug.xcconfig */,
+				AC0CCA8CA8561AE965D61A80 /* Pods-VirtualWardrobe.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -261,11 +278,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2E7DFBE623694B500038CE99 /* Build configuration list for PBXNativeTarget "VirtualWardrobe" */;
 			buildPhases = (
+				D6EAE4D7687543B5F6975C28 /* [CP] Check Pods Manifest.lock */,
 				2E7DFBC323694B4D0038CE99 /* Sources */,
 				2E7DFBC423694B4D0038CE99 /* Frameworks */,
 				2E7DFBC523694B4D0038CE99 /* Resources */,
 				2EDA514D239EFE3300DE3DD3 /* CopyFiles */,
 				2E77F4A0239F2CFB009CE46A /* Embed App Extensions */,
+				8B3273739D6342815719E357 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -360,6 +379,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8B3273739D6342815719E357 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VirtualWardrobe/Pods-VirtualWardrobe-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VirtualWardrobe/Pods-VirtualWardrobe-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VirtualWardrobe/Pods-VirtualWardrobe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D6EAE4D7687543B5F6975C28 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VirtualWardrobe-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2E7DFBC323694B4D0038CE99 /* Sources */ = {
@@ -548,6 +609,7 @@
 		};
 		2E7DFBE723694B500038CE99 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C243960B105034C1D1E248C8 /* Pods-VirtualWardrobe.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -569,6 +631,7 @@
 		};
 		2E7DFBE823694B500038CE99 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC0CCA8CA8561AE965D61A80 /* Pods-VirtualWardrobe.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

@@ -1,0 +1,10 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '12.4'
+
+target 'VirtualWardrobe' do
+  use_frameworks!
+  pod 'SwiftCharts', '~> 0.6.5'
+
+  # Pods for VirtualWardrobe
+
+end
