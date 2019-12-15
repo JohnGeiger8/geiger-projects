@@ -88,6 +88,8 @@ class OutfitTableViewController: UITableViewController {
             let addOutfitController = segue.destination as? AddOutfitTableViewController
             addOutfitController?.view.backgroundColor = .backgroundColor
             addOutfitController?.tableView.backgroundColor = .backgroundColor
+            addOutfitController?.bottomBarView.backgroundColor = .navigationColor
+            
         default:
             assert(false, "Unhandled segue")
         }

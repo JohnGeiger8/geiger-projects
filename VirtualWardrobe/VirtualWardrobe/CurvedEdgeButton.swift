@@ -23,6 +23,7 @@ class CurvedEdgeButton: UIButton {
         layer.cornerRadius = 5
         contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         self.backgroundColor = .brightBlue
+        self.setTitleColor(.white, for: .normal)
     }
     
     required init?(coder: NSCoder) {
@@ -32,6 +33,7 @@ class CurvedEdgeButton: UIButton {
         layer.cornerRadius = 5
         contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         self.backgroundColor = .brightBlue
+        self.setTitleColor(.white, for: .normal)
     }
     
 }

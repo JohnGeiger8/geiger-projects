@@ -10,10 +10,11 @@ import Foundation
 import MapKit
 import CoreData
 
+// Keep track of prototype cells in AddOutfitTableViewController
 enum AddOutfitSections: Int {
     case OutfitName = 0
-    case AddNewItem = 1
-    case WardrobeItem = 2
+    case WardrobeItem = 1
+    case AddNewItem = 2
 }
 
 class WardrobeModel: DataManagerDelegate {
@@ -29,7 +30,7 @@ class WardrobeModel: DataManagerDelegate {
     var allOutfits : [OutfitMO]
     var filteredOutfits : [OutfitMO]
     var newOutfitName : String?
-    var newOutfitSections : [Int:Int] = [AddOutfitSections.OutfitName.rawValue: 1, AddOutfitSections.AddNewItem.rawValue: 1, AddOutfitSections.WardrobeItem.rawValue: 0] // Row numbers of Add Outfit table view sections
+    var newOutfitSections : [Int:Int] = [AddOutfitSections.OutfitName.rawValue: 1, AddOutfitSections.AddNewItem.rawValue: 1, AddOutfitSections.WardrobeItem.rawValue: 0] // Number of rows of Add Outfit table view sections
     
     fileprivate init() {
         
@@ -241,6 +242,12 @@ extension WardrobeModel {
         default:
             assert(false, "Unhandled cell type")
         }
+    }
+    
+    func addWardrobeItemRow() {
+        
+        let currentNumber = newOutfitSections[AddOutfitSections.WardrobeItem.rawValue]
+        newOutfitSections[AddOutfitSections.WardrobeItem.rawValue] = currentNumber! + 1
     }
     
     func addNewItemRow() {

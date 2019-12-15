@@ -12,7 +12,8 @@ class AddOutfitTableViewController: UITableViewController {
 
     let wardrobeModel = WardrobeModel.sharedinstance
     var wardrobeItems : [WardrobeItemMO] = []
-
+    @IBOutlet weak var bottomBarView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -43,7 +44,12 @@ class AddOutfitTableViewController: UITableViewController {
             
         case .WardrobeItem:
             let cell = tableView.dequeueReusableCell(withIdentifier: "WardrobeItem", for: indexPath) as! OutfitItemTableViewCell
-            //cell.itemImageView.image = UIImage(data: wardrobeModel.)
+            if let imageData = wardrobeItems[indexPath.row].imageData {
+                cell.itemImageView.image = UIImage(data: imageData)
+            } else {
+                cell.itemImageView.image = UIImage(named: "NoImageFound")
+            }
+            cell.itemNameLabel.text = wardrobeItems[indexPath.row].name
             cell.backgroundColor = .backgroundColor
             
             return cell
@@ -58,6 +64,27 @@ class AddOutfitTableViewController: UITableViewController {
             assert(false, "Unhandled cell")
         }
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == AddOutfitSections.WardrobeItem.rawValue {
+            return 200
+        } else {
+            return tableView.estimatedRowHeight
+        }
+    }
+    
+    // MARK:- Create Outfit
+    
+    func addItemToOutfit(item: WardrobeItemMO) {
+        
+        wardrobeItems.append(item)
+        wardrobeModel.addWardrobeItemRow()
+        
+        let indexPathSection = AddOutfitSections.WardrobeItem.rawValue
+        let indexPath = IndexPath(row: wardrobeItems.count-1, section: indexPathSection)
+        tableView.insertRows(at: [indexPath], with: UITableView.RowAnimation.left)
+    }
+    
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -67,21 +94,30 @@ class AddOutfitTableViewController: UITableViewController {
             let typeViewController = segue.destination as! OutfitItemTypeTableViewController
             typeViewController.tableView.backgroundColor = .backgroundColor
             typeViewController.view.backgroundColor = .backgroundColor
+            typeViewController.addOutfitTableViewController = self
             
         default:
             assert(false, "Unhandled segue")
         }
     }
     
+    @IBAction func unwindToAddOutfit(_ segue: UIStoryboardSegue) {
+        
+    }
     
     // MARK:- Action Methods
     
     @IBAction func addNewItemCell(_ sender: Any) {
+        
         wardrobeModel.addNewItemRow()
         
         let indexPathSection = AddOutfitSections.AddNewItem.rawValue
         let indexPath = IndexPath(row: 0, section: indexPathSection)
         tableView.insertRows(at: [indexPath], with: UITableView.RowAnimation.left)
+    }
+    
+    @IBAction func addOutfit(_ sender: Any) {
+        
     }
 }
 

@@ -12,6 +12,7 @@ class OutfitItemTypeTableViewController: UITableViewController {
 
     var wardrobeModel = WardrobeModel.sharedinstance
     var chosenType : String?
+    var addOutfitTableViewController : AddOutfitTableViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
