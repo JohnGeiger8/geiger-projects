@@ -206,6 +206,7 @@
 				2E77F4A1239F6680009CE46A /* WardrobeItem.swift */,
 				2E9D65802395964900269C40 /* DataManager.swift */,
 				2E58828423A6971E001A59F5 /* Date+timePeriod.swift */,
+				2E9D657D2394AC9800269C40 /* VirtualWardrobe.xcdatamodeld */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -216,7 +217,6 @@
 				2E7DFBD323694B4F0038CE99 /* Assets.xcassets */,
 				2EF2A042238B8679009D5EE4 /* README.txt */,
 				2E7DFBD823694B4F0038CE99 /* Info.plist */,
-				2E9D657D2394AC9800269C40 /* VirtualWardrobe.xcdatamodeld */,
 			);
 			name = Other;
 			sourceTree = "<group>";

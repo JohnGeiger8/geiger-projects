@@ -39,7 +39,11 @@ class OutfitWardrobeItemTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ClothingTableViewCell
         
-        cell.itemImageView.image = UIImage(data: wardrobeModel.clothingImageDataFor(indexPath: indexPath)!)
+        if let imageData = wardrobeModel.clothingImageDataFor(indexPath: indexPath) {
+            cell.itemImageView.image = UIImage(data: imageData)
+        } else {
+            cell.itemImageView.image = UIImage(named: "NoImageFound")
+        }
         cell.itemNameLabel.text = wardrobeModel.clothingNameFor(indexPath: indexPath)
         cell.brandNameLabel.text = wardrobeModel.clothingBrandNameFor(indexPath: indexPath)
         cell.itemInfoLabel.text = wardrobeModel.clothingStoreNameFor(indexPath: indexPath)

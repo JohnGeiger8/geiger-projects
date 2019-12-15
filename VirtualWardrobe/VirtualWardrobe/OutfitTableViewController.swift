@@ -39,7 +39,7 @@ class OutfitTableViewController: UITableViewController {
         if let imageData = wardrobeModel.imageDataOfOutfitFor(indexPath: indexPath) {
             cell.itemImageView.image = UIImage(data: imageData)
         } else {
-            cell.itemImageView.image = UIImage(named: "NoImageFound")
+            cell.itemImageView.image = UIImage(named: "noImageFound")
         }
         cell.itemNameLabel.text = wardrobeModel.itemNameForOutfitAt(indexPath: indexPath)
         cell.backgroundColor = .backgroundColor
@@ -56,25 +56,34 @@ class OutfitTableViewController: UITableViewController {
         return 175
     }
 
-    /*
-    // Override to support conditional editing of the table view.
+    // MARK:- Item Deletion
+
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
-
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            wardrobeModel.deleteOutfitAt(indexPath: indexPath)
+            tableView.deleteRows(at: [indexPath], with: .left)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete Outfit") { (action, view, completion) in
+            
+            self.wardrobeModel.deleteOutfitAt(indexPath: indexPath)
+            self.tableView.deleteRows(at: [indexPath], with: .left)
+        }
+        let swipeAction = UISwipeActionsConfiguration(actions: [deleteAction])
+        return swipeAction
+    }
+ 
 
     
     // MARK: - Navigation

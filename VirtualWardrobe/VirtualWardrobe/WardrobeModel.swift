@@ -11,10 +11,10 @@ import MapKit
 import CoreData
 
 // Keep track of prototype cells in AddOutfitTableViewController
-enum AddOutfitSections: Int {
-    case OutfitName = 0
-    case WardrobeItem = 1
-    case AddNewItem = 2
+struct AddOutfitSections {
+    static let OutfitName = 0
+    static let WardrobeItem = 1
+    static let AddNewItem = 2
 }
 
 class WardrobeModel: DataManagerDelegate {
@@ -31,7 +31,7 @@ class WardrobeModel: DataManagerDelegate {
     var allOutfits : [OutfitMO]
     var filteredOutfits : [OutfitMO]
     var newOutfitName : String?
-    var newOutfitSections : [Int:Int] = [AddOutfitSections.OutfitName.rawValue: 1, AddOutfitSections.AddNewItem.rawValue: 1, AddOutfitSections.WardrobeItem.rawValue: 0] // Number of rows of Add Outfit table view sections
+    var newOutfitSections : [Int:Int] = [AddOutfitSections.OutfitName: 1, AddOutfitSections.AddNewItem: 1, AddOutfitSections.WardrobeItem: 0] // Number of rows of Add Outfit table view sections
     var trends : [String:String] = [:]
     
     fileprivate init() {
@@ -151,6 +151,13 @@ class WardrobeModel: DataManagerDelegate {
         dataManager.saveContext()
     }
     
+    func deleteWardrobeItemAt(indexPath: IndexPath) {
+        
+        let item = filteredItems.remove(at: indexPath.row)
+        dataManager.context.delete(item)
+        dataManager.saveContext()
+    }
+    
     // MARK: - Type and SubType Table View Controller
     var numberOfTypes : Int { return self.types.count }
     
@@ -218,6 +225,13 @@ extension WardrobeModel {
         dataManager.saveContext()
     }
     
+    func deleteOutfitAt(indexPath: IndexPath) {
+        
+        let outfit = filteredOutfits.remove(at: indexPath.section)
+        dataManager.context.delete(outfit)
+        dataManager.saveContext()
+    }
+    
     // MARK:- Outfit filter
     
     func resetOutfitFilter() {
@@ -231,29 +245,29 @@ extension WardrobeModel {
     func numberOfRowsInAddOutfitFor(section: Int) -> Int {
         
         switch section {
-        case AddOutfitSections.AddNewItem.rawValue:
+        case AddOutfitSections.AddNewItem:
             return newOutfitSections[section]!
             
-        case AddOutfitSections.OutfitName.rawValue:
+        case AddOutfitSections.OutfitName:
             return newOutfitSections[section]!
             
-        case AddOutfitSections.WardrobeItem.rawValue:
+        case AddOutfitSections.WardrobeItem:
             return newOutfitSections[section]!
         default:
             assert(false, "Unhandled section")
         }
     }
     
-    func typeOfCellFor(section: Int) -> AddOutfitSections {
+    func typeOfCellFor(section: Int) -> Int {
         
         switch section {
-        case AddOutfitSections.AddNewItem.rawValue:
+        case AddOutfitSections.AddNewItem:
             return AddOutfitSections.AddNewItem
             
-        case AddOutfitSections.OutfitName.rawValue:
+        case AddOutfitSections.OutfitName:
             return AddOutfitSections.OutfitName
             
-        case AddOutfitSections.WardrobeItem.rawValue:
+        case AddOutfitSections.WardrobeItem:
             return AddOutfitSections.WardrobeItem
             
         default:
@@ -263,14 +277,14 @@ extension WardrobeModel {
     
     func addWardrobeItemRow() {
         
-        let currentNumber = newOutfitSections[AddOutfitSections.WardrobeItem.rawValue]
-        newOutfitSections[AddOutfitSections.WardrobeItem.rawValue] = currentNumber! + 1
+        let currentNumber = newOutfitSections[AddOutfitSections.WardrobeItem]
+        newOutfitSections[AddOutfitSections.WardrobeItem] = currentNumber! + 1
     }
     
     func addNewItemRow() {
         
-        let currentNumber = newOutfitSections[AddOutfitSections.AddNewItem.rawValue]
-        newOutfitSections[AddOutfitSections.AddNewItem.rawValue] = currentNumber! + 1
+        let currentNumber = newOutfitSections[AddOutfitSections.AddNewItem]
+        newOutfitSections[AddOutfitSections.AddNewItem] = currentNumber! + 1
     }
 }
 

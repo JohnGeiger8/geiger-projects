@@ -36,14 +36,14 @@ class AddOutfitTableViewController: UITableViewController {
         
         let cellType = wardrobeModel.typeOfCellFor(section: indexPath.section)
         switch cellType {
-        case .OutfitName:
+        case AddOutfitSections.OutfitName:
             let cell = tableView.dequeueReusableCell(withIdentifier: "OutfitName", for: indexPath) as! OutfitNameTableViewCell
             cell.outfitNameTextField.delegate = self
             cell.backgroundColor = .backgroundColor
             
             return cell
             
-        case .WardrobeItem:
+        case AddOutfitSections.WardrobeItem:
             let cell = tableView.dequeueReusableCell(withIdentifier: "WardrobeItem", for: indexPath) as! OutfitItemTableViewCell
             if let imageData = wardrobeItems[indexPath.row].imageData {
                 cell.itemImageView.image = UIImage(data: imageData)
@@ -55,7 +55,7 @@ class AddOutfitTableViewController: UITableViewController {
             
             return cell
             
-        case .AddNewItem:
+        case AddOutfitSections.AddNewItem:
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewItem", for: indexPath) as! AddItemToOutfitTableViewCell
             cell.backgroundColor = .backgroundColor
             
@@ -67,7 +67,7 @@ class AddOutfitTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == AddOutfitSections.WardrobeItem.rawValue {
+        if indexPath.section == AddOutfitSections.WardrobeItem {
             return 200
         } else {
             return tableView.estimatedRowHeight
@@ -81,7 +81,7 @@ class AddOutfitTableViewController: UITableViewController {
         wardrobeItems.append(item)
         wardrobeModel.addWardrobeItemRow()
         
-        let indexPathSection = AddOutfitSections.WardrobeItem.rawValue
+        let indexPathSection = AddOutfitSections.WardrobeItem
         let indexPath = IndexPath(row: wardrobeItems.count-1, section: indexPathSection)
         tableView.insertRows(at: [indexPath], with: UITableView.RowAnimation.left)
     }
@@ -112,7 +112,7 @@ class AddOutfitTableViewController: UITableViewController {
         
         wardrobeModel.addNewItemRow()
         
-        let indexPathSection = AddOutfitSections.AddNewItem.rawValue
+        let indexPathSection = AddOutfitSections.AddNewItem
         let indexPath = IndexPath(row: 0, section: indexPathSection)
         tableView.insertRows(at: [indexPath], with: UITableView.RowAnimation.left)
     }
