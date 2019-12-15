@@ -2,7 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14492.1" systemVersion="18G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="OutfitMO" representedClassName="OutfitMO" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="isMadeUpOf" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WardrobeItemMO" syncable="YES"/>
+        <relationship name="isMadeUpOf" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WardrobeItemMO" inverseName="isInOutfits" inverseEntity="WardrobeItemMO" syncable="YES"/>
     </entity>
     <entity name="WardrobeItemMO" representedClassName="WardrobeItemMO" syncable="YES" codeGenerationType="class">
         <attribute name="brandName" optional="YES" attributeType="String" syncable="YES"/>
@@ -15,9 +15,10 @@
         <attribute name="storeName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="subtype" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="isInOutfits" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="OutfitMO" inverseName="isMadeUpOf" inverseEntity="OutfitMO" syncable="YES"/>
     </entity>
     <elements>
         <element name="OutfitMO" positionX="-63" positionY="54" width="128" height="75"/>
-        <element name="WardrobeItemMO" positionX="-63" positionY="-18" width="128" height="195"/>
+        <element name="WardrobeItemMO" positionX="-63" positionY="-18" width="128" height="210"/>
     </elements>
 </model>

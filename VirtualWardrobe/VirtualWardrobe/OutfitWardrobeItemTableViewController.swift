@@ -1,42 +1,48 @@
 //
-//  OutfitTableViewController.swift
+//  OutfitWardrobeItemTableViewController.swift
 //  VirtualWardrobe
 //
-//  Created by John Geiger on 12/12/19.
+//  Created by John Geiger on 12/14/19.
 //  Copyright © 2019 John Geiger. All rights reserved.
 //
 
 import UIKit
 
-class OutfitTableViewController: UITableViewController {
-    
-    let wardrobeModel = WardrobeModel.sharedinstance
+class OutfitWardrobeItemTableViewController: UITableViewController {
 
+    let wardrobeModel = WardrobeModel.sharedinstance
+    var itemsType : String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+       
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return wardrobeModel.numberOfOutfits
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return wardrobeModel.numberOfItemsInOutfitFor(section: section)
+
+        let filter = {(wardrobeItem: WardrobeItemMO) in
+            wardrobeItem.type!.contains(self.itemsType)
+        }
+        wardrobeModel.updateItemFilter(filter: filter)
+        return wardrobeModel.numberOfClothes(forSection: section)
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "OutfitItemCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ClothingTableViewCell
         
-        cell.imageView?.image = UIImage(data: wardrobeModel.imageDataForOutfitItemFor(indexPath: indexPath))
-        cell.backgroundColor = .backgroundColor
+        cell.itemImageView.image = UIImage(data: wardrobeModel.clothingImageDataFor(indexPath: indexPath)!)
+        cell.itemNameLabel.text = wardrobeModel.clothingNameFor(indexPath: indexPath)
+        cell.brandNameLabel.text = wardrobeModel.clothingBrandNameFor(indexPath: indexPath)
+        cell.itemInfoLabel.text = wardrobeModel.clothingStoreNameFor(indexPath: indexPath)
+
         return cell
     }
     
@@ -76,21 +82,14 @@ class OutfitTableViewController: UITableViewController {
     }
     */
 
-    
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        switch segue.identifier {
-        case "ToAddOutfit":
-            let addOutfitController = segue.destination as? AddOutfitTableViewController
-            addOutfitController?.view.backgroundColor = .backgroundColor
-            addOutfitController?.tableView.backgroundColor = .backgroundColor
-        default:
-            assert(false, "Unhandled segue")
-        }
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
     }
- 
+    */
 
 }

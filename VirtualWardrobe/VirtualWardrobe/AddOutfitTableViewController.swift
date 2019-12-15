@@ -11,6 +11,7 @@ import UIKit
 class AddOutfitTableViewController: UITableViewController {
 
     let wardrobeModel = WardrobeModel.sharedinstance
+    var wardrobeItems : [WardrobeItemMO] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,83 +20,69 @@ class AddOutfitTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+
+        return wardrobeModel.numberOfSectionsForAddOutfit
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 4 // FIXME: Obviously needs to be changed to use model
+
+        return wardrobeModel.numberOfRowsInAddOutfitFor(section: section)
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell : UITableViewCell?
         
-        let rowNumber = indexPath.row
-        switch rowNumber {
-        case 0:
-            cell = tableView.dequeueReusableCell(withIdentifier: "OutfitName", for: indexPath)
-            cell!.textLabel?.text = "Outfit Name: "
+        let cellType = wardrobeModel.typeOfCellFor(section: indexPath.section)
+        switch cellType {
+        case .OutfitName:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "OutfitName", for: indexPath) as! OutfitNameTableViewCell
+            cell.outfitNameTextField.delegate = self
             
-        case 1:
-            cell = tableView.dequeueReusableCell(withIdentifier: "WardrobeItem", for: indexPath)
+            return cell
             
-        case 2:
-            cell = tableView.dequeueReusableCell(withIdentifier: "NewItem", for: indexPath)
+        case .WardrobeItem:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "WardrobeItem", for: indexPath) as! OutfitItemTableViewCell
+            //cell.itemImageView.image = UIImage(data: wardrobeModel.)
+            
+            return cell
+            
+        case .AddNewItem:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NewItem", for: indexPath) as! AddItemToOutfitTableViewCell
+            
+            return cell
             
         default:
             assert(false, "Unhandled cell")
         }
-        // Configure the cell...
-
-        return cell!
     }
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
+        switch segue.identifier {
+        case "ChooseTypeSegue":
+            let typeViewController = segue.destination as! OutfitItemTypeTableViewController
+            typeViewController.tableView.backgroundColor = .backgroundColor
+            typeViewController.view.backgroundColor = .backgroundColor
+            
+        default:
+            assert(false, "Unhandled segue")
+        }
     }
-    */
+    
+    
+    // MARK:- Action Methods
+    
+    @IBAction func addNewItemCell(_ sender: Any) {
+        wardrobeModel.addNewItemRow()
+        
+        let indexPathSection = AddOutfitSections.AddNewItem.rawValue
+        let indexPath = IndexPath(row: 0, section: indexPathSection)
+        tableView.insertRows(at: [indexPath], with: UITableView.RowAnimation.left)
+    }
+}
 
+extension AddOutfitTableViewController: UITextFieldDelegate {
+    
+    
 }

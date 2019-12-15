@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2E29887F23A43B1900818FD9 /* SwiftCharts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E29887A23A43AEB00818FD9 /* SwiftCharts.framework */; };
 		2E6CCC342399B1D3009DB6A6 /* UserInputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6CCC332399B1D3009DB6A6 /* UserInputTextField.swift */; };
 		2E77F4A2239F6680009CE46A /* WardrobeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E77F4A1239F6680009CE46A /* WardrobeItem.swift */; };
 		2E7DFBCB23694B4D0038CE99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DFBCA23694B4D0038CE99 /* AppDelegate.swift */; };
@@ -23,7 +22,6 @@
 		2EA3BC7C23A218D700C37F7F /* AddOutfitTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA3BC7B23A218D700C37F7F /* AddOutfitTableViewController.swift */; };
 		2EAEDA892398B91C00293AA8 /* UILabel+name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAEDA882398B91C00293AA8 /* UILabel+name.swift */; };
 		2EB0DE14237C953C002D235E /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB0DE13237C953C002D235E /* RootViewController.swift */; };
-		2EB0DE16237CB960002D235E /* WardrobeTableFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB0DE15237CB960002D235E /* WardrobeTableFooterView.swift */; };
 		2EB0DE18237D272E002D235E /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB0DE17237D272E002D235E /* AddItemViewController.swift */; };
 		2EBBD1A0237F2E0E00E72BD1 /* CurvedEdgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBBD19F237F2E0E00E72BD1 /* CurvedEdgeButton.swift */; };
 		2ECB90A62377444300AE4E83 /* UIColor+CustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECB90A52377444300AE4E83 /* UIColor+CustomColors.swift */; };
@@ -34,58 +32,14 @@
 		2EF2A03F238B64E7009D5EE4 /* SubTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF2A03E238B64E7009D5EE4 /* SubTypeTableViewController.swift */; };
 		2EF2A041238B6B1D009D5EE4 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF2A040238B6B1D009D5EE4 /* ItemDetailViewController.swift */; };
 		2EF2A043238B867A009D5EE4 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2EF2A042238B8679009D5EE4 /* README.txt */; };
+		2EF6010923A573C700F90D6B /* OutfitNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6010823A573C700F90D6B /* OutfitNameTableViewCell.swift */; };
+		2EF6010B23A5783E00F90D6B /* OutfitItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6010A23A5783E00F90D6B /* OutfitItemTableViewCell.swift */; };
+		2EF6010D23A57AA700F90D6B /* AddItemToOutfitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6010C23A57AA700F90D6B /* AddItemToOutfitTableViewCell.swift */; };
+		2EF6010F23A59F2600F90D6B /* OutfitItemTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6010E23A59F2500F90D6B /* OutfitItemTypeTableViewController.swift */; };
+		2EF6011223A5B04900F90D6B /* OutfitWardrobeItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6011123A5B04900F90D6B /* OutfitWardrobeItemTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2E29887923A43AEB00818FD9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2E29887223A43AEB00818FD9 /* SwiftCharts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 06405DA61B8AA74700A689FF;
-			remoteInfo = SwiftCharts;
-		};
-		2E29887B23A43AEB00818FD9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2E29887223A43AEB00818FD9 /* SwiftCharts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 06342AC11B8AAD7F001C9F5D;
-			remoteInfo = Examples;
-		};
-		2E29887D23A43AEB00818FD9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2E29887223A43AEB00818FD9 /* SwiftCharts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 22E7020F1BF5B8EC00C19675;
-			remoteInfo = "SwiftCharts tvOS";
-		};
-		2E29888023A43B2300818FD9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2E29887223A43AEB00818FD9 /* SwiftCharts.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 06405DA51B8AA74700A689FF;
-			remoteInfo = SwiftCharts;
-		};
-		2E29888923A43B3F00818FD9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2E29888223A43B3E00818FD9 /* SwiftCharts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 06405DA61B8AA74700A689FF;
-			remoteInfo = SwiftCharts;
-		};
-		2E29888B23A43B3F00818FD9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2E29888223A43B3E00818FD9 /* SwiftCharts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 06342AC11B8AAD7F001C9F5D;
-			remoteInfo = Examples;
-		};
-		2E29888D23A43B3F00818FD9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2E29888223A43B3E00818FD9 /* SwiftCharts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 22E7020F1BF5B8EC00C19675;
-			remoteInfo = "SwiftCharts tvOS";
-		};
 		2E7DFBDE23694B4F0038CE99 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2E7DFBBF23694B4D0038CE99 /* Project object */;
@@ -118,8 +72,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2E29887223A43AEB00818FD9 /* SwiftCharts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftCharts.xcodeproj; path = "../../../CMPSC475_files/finalProject/SwiftCharts-master/SwiftCharts.xcodeproj"; sourceTree = "<group>"; };
-		2E29888223A43B3E00818FD9 /* SwiftCharts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftCharts.xcodeproj; path = "../../../CMPSC475_files/SwiftCharts-master 3/SwiftCharts.xcodeproj"; sourceTree = "<group>"; };
 		2E6CCC332399B1D3009DB6A6 /* UserInputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputTextField.swift; sourceTree = "<group>"; };
 		2E77F4A1239F6680009CE46A /* WardrobeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeItem.swift; sourceTree = "<group>"; };
 		2E7DFBC723694B4D0038CE99 /* VirtualWardrobe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualWardrobe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,7 +92,6 @@
 		2EA3BC7B23A218D700C37F7F /* AddOutfitTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOutfitTableViewController.swift; sourceTree = "<group>"; };
 		2EAEDA882398B91C00293AA8 /* UILabel+name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+name.swift"; sourceTree = "<group>"; };
 		2EB0DE13237C953C002D235E /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
-		2EB0DE15237CB960002D235E /* WardrobeTableFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WardrobeTableFooterView.swift; sourceTree = "<group>"; };
 		2EB0DE17237D272E002D235E /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		2EBBD19F237F2E0E00E72BD1 /* CurvedEdgeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurvedEdgeButton.swift; sourceTree = "<group>"; };
 		2ECB90A52377444300AE4E83 /* UIColor+CustomColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+CustomColors.swift"; sourceTree = "<group>"; };
@@ -150,6 +101,11 @@
 		2EF2A03E238B64E7009D5EE4 /* SubTypeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTypeTableViewController.swift; sourceTree = "<group>"; };
 		2EF2A040238B6B1D009D5EE4 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		2EF2A042238B8679009D5EE4 /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		2EF6010823A573C700F90D6B /* OutfitNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitNameTableViewCell.swift; sourceTree = "<group>"; };
+		2EF6010A23A5783E00F90D6B /* OutfitItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitItemTableViewCell.swift; sourceTree = "<group>"; };
+		2EF6010C23A57AA700F90D6B /* AddItemToOutfitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemToOutfitTableViewCell.swift; sourceTree = "<group>"; };
+		2EF6010E23A59F2500F90D6B /* OutfitItemTypeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitItemTypeTableViewController.swift; sourceTree = "<group>"; };
+		2EF6011123A5B04900F90D6B /* OutfitWardrobeItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitWardrobeItemTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,7 +113,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E29887F23A43B1900818FD9 /* SwiftCharts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,30 +126,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2E29887323A43AEB00818FD9 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2E29887A23A43AEB00818FD9 /* SwiftCharts.framework */,
-				2E29887C23A43AEB00818FD9 /* Examples.app */,
-				2E29887E23A43AEB00818FD9 /* SwiftCharts.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		2E29888323A43B3E00818FD9 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2E29888A23A43B3F00818FD9 /* SwiftCharts.framework */,
-				2E29888C23A43B3F00818FD9 /* Examples.app */,
-				2E29888E23A43B3F00818FD9 /* SwiftCharts.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		2E7DFBBE23694B4D0038CE99 = {
 			isa = PBXGroup;
 			children = (
-				2E29888223A43B3E00818FD9 /* SwiftCharts.xcodeproj */,
 				2E7DFBC923694B4D0038CE99 /* VirtualWardrobe */,
 				2E7DFBE023694B4F0038CE99 /* VirtualWardrobeTests */,
 				2E7DFBC823694B4D0038CE99 /* Products */,
@@ -244,8 +178,7 @@
 				2EF2A040238B6B1D009D5EE4 /* ItemDetailViewController.swift */,
 				2EDA5154239F00F600DE3DD3 /* TrendsViewController.swift */,
 				2EDA5156239F0C4900DE3DD3 /* DatePickerViewController.swift */,
-				2EA3BC7623A2094600C37F7F /* OutfitTableViewController.swift */,
-				2EA3BC7B23A218D700C37F7F /* AddOutfitTableViewController.swift */,
+				2EF6011023A59F2F00F90D6B /* Outfits */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -255,10 +188,12 @@
 			children = (
 				2E7DFBF7236A893D0038CE99 /* ClothingTableViewCell.swift */,
 				2ECB90A52377444300AE4E83 /* UIColor+CustomColors.swift */,
-				2EB0DE15237CB960002D235E /* WardrobeTableFooterView.swift */,
 				2EBBD19F237F2E0E00E72BD1 /* CurvedEdgeButton.swift */,
 				2EAEDA882398B91C00293AA8 /* UILabel+name.swift */,
 				2E6CCC332399B1D3009DB6A6 /* UserInputTextField.swift */,
+				2EF6010823A573C700F90D6B /* OutfitNameTableViewCell.swift */,
+				2EF6010A23A5783E00F90D6B /* OutfitItemTableViewCell.swift */,
+				2EF6010C23A57AA700F90D6B /* AddItemToOutfitTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -304,9 +239,19 @@
 		2EDA514E239EFE7600DE3DD3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2E29887223A43AEB00818FD9 /* SwiftCharts.xcodeproj */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2EF6011023A59F2F00F90D6B /* Outfits */ = {
+			isa = PBXGroup;
+			children = (
+				2EA3BC7623A2094600C37F7F /* OutfitTableViewController.swift */,
+				2EA3BC7B23A218D700C37F7F /* AddOutfitTableViewController.swift */,
+				2EF6010E23A59F2500F90D6B /* OutfitItemTypeTableViewController.swift */,
+				2EF6011123A5B04900F90D6B /* OutfitWardrobeItemTableViewController.swift */,
+			);
+			name = Outfits;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,7 +270,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				2E29888123A43B2300818FD9 /* PBXTargetDependency */,
 			);
 			name = VirtualWardrobe;
 			productName = VirtualWardrobe;
@@ -388,16 +332,6 @@
 			mainGroup = 2E7DFBBE23694B4D0038CE99;
 			productRefGroup = 2E7DFBC823694B4D0038CE99 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 2E29887323A43AEB00818FD9 /* Products */;
-					ProjectRef = 2E29887223A43AEB00818FD9 /* SwiftCharts.xcodeproj */;
-				},
-				{
-					ProductGroup = 2E29888323A43B3E00818FD9 /* Products */;
-					ProjectRef = 2E29888223A43B3E00818FD9 /* SwiftCharts.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				2E7DFBC623694B4D0038CE99 /* VirtualWardrobe */,
@@ -405,51 +339,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		2E29887A23A43AEB00818FD9 /* SwiftCharts.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SwiftCharts.framework;
-			remoteRef = 2E29887923A43AEB00818FD9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2E29887C23A43AEB00818FD9 /* Examples.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = Examples.app;
-			remoteRef = 2E29887B23A43AEB00818FD9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2E29887E23A43AEB00818FD9 /* SwiftCharts.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SwiftCharts.framework;
-			remoteRef = 2E29887D23A43AEB00818FD9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2E29888A23A43B3F00818FD9 /* SwiftCharts.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SwiftCharts.framework;
-			remoteRef = 2E29888923A43B3F00818FD9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2E29888C23A43B3F00818FD9 /* Examples.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = Examples.app;
-			remoteRef = 2E29888B23A43B3F00818FD9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		2E29888E23A43B3F00818FD9 /* SwiftCharts.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SwiftCharts.framework;
-			remoteRef = 2E29888D23A43B3F00818FD9 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		2E7DFBC523694B4D0038CE99 /* Resources */ = {
@@ -477,8 +366,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EF6010D23A57AA700F90D6B /* AddItemToOutfitTableViewCell.swift in Sources */,
 				2E9D65812395964900269C40 /* DataManager.swift in Sources */,
 				2E77F4A2239F6680009CE46A /* WardrobeItem.swift in Sources */,
+				2EF6011223A5B04900F90D6B /* OutfitWardrobeItemTableViewController.swift in Sources */,
 				2E7DFBF8236A893D0038CE99 /* ClothingTableViewCell.swift in Sources */,
 				2EE1A6912389AF840066A620 /* TypeTableViewController.swift in Sources */,
 				2EB0DE14237C953C002D235E /* RootViewController.swift in Sources */,
@@ -487,7 +378,9 @@
 				2EDA5155239F00F600DE3DD3 /* TrendsViewController.swift in Sources */,
 				2E7DFBF4236A827D0038CE99 /* WardrobeModel.swift in Sources */,
 				2EAEDA892398B91C00293AA8 /* UILabel+name.swift in Sources */,
-				2EB0DE16237CB960002D235E /* WardrobeTableFooterView.swift in Sources */,
+				2EF6010923A573C700F90D6B /* OutfitNameTableViewCell.swift in Sources */,
+				2EF6010B23A5783E00F90D6B /* OutfitItemTableViewCell.swift in Sources */,
+				2EF6010F23A59F2600F90D6B /* OutfitItemTypeTableViewController.swift in Sources */,
 				2EA3BC7C23A218D700C37F7F /* AddOutfitTableViewController.swift in Sources */,
 				2EB0DE18237D272E002D235E /* AddItemViewController.swift in Sources */,
 				2E7DFBCB23694B4D0038CE99 /* AppDelegate.swift in Sources */,
@@ -512,11 +405,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2E29888123A43B2300818FD9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SwiftCharts;
-			targetProxy = 2E29888023A43B2300818FD9 /* PBXContainerItemProxy */;
-		};
 		2E7DFBDF23694B4F0038CE99 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2E7DFBC623694B4D0038CE99 /* VirtualWardrobe */;

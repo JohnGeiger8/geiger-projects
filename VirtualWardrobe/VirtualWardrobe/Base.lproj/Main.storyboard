@@ -87,7 +87,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="asd-oo-ms2">
-                            <rect key="frame" x="0.0" y="160" width="375" height="59"/>
+                            <rect key="frame" x="0.0" y="119" width="375" height="59"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="arO-A7-KxS">
@@ -109,12 +109,33 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OutfitTableViewCell" rowHeight="132" id="jlI-Vb-cSr">
-                                <rect key="frame" x="0.0" y="28" width="375" height="132"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OutfitTableViewCell" rowHeight="91" id="jlI-Vb-cSr">
+                                <rect key="frame" x="0.0" y="28" width="375" height="91"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jlI-Vb-cSr" id="2vZ-yk-SBa">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="131.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="90.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BBa-eY-9Yk">
+                                            <rect key="frame" x="16" y="6" width="88" height="78"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="88" id="jFf-xG-T0y"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3WV-hm-oFm">
+                                            <rect key="frame" x="112" y="33.5" width="95.5" height="24"/>
+                                            <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="22"/>
+                                            <color key="textColor" red="0.27250555199999998" green="0.01034594546" blue="0.02310753221" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="BBa-eY-9Yk" secondAttribute="bottom" constant="6.5" id="4bb-ZZ-BCW"/>
+                                        <constraint firstItem="3WV-hm-oFm" firstAttribute="centerY" secondItem="2vZ-yk-SBa" secondAttribute="centerY" id="Pr2-gv-hSz"/>
+                                        <constraint firstItem="3WV-hm-oFm" firstAttribute="leading" secondItem="BBa-eY-9Yk" secondAttribute="trailing" constant="8" id="a26-E1-TLV"/>
+                                        <constraint firstItem="BBa-eY-9Yk" firstAttribute="leading" secondItem="2vZ-yk-SBa" secondAttribute="leading" constant="16" id="cT7-qd-4NH"/>
+                                        <constraint firstItem="BBa-eY-9Yk" firstAttribute="top" secondItem="2vZ-yk-SBa" secondAttribute="top" constant="6" id="q9F-7C-PIR"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -136,47 +157,128 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="SCx-gr-EcU">
+                            <rect key="frame" x="0.0" y="261" width="375" height="59"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="drB-JC-wte">
+                                    <rect key="frame" x="19" y="13" width="34" height="33"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="34" id="RoM-YG-bI8"/>
+                                        <constraint firstAttribute="height" constant="33" id="mls-A9-6uO"/>
+                                    </constraints>
+                                    <state key="normal" image="AddSymbol"/>
+                                    <connections>
+                                        <action selector="addNewItemCell:" destination="gAa-oh-XE0" eventType="touchUpInside" id="teK-3L-Skq"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.95393797589999996" green="0.27402413930000002" blue="0.27025642859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="drB-JC-wte" firstAttribute="centerY" secondItem="SCx-gr-EcU" secondAttribute="centerY" id="Q8N-Ye-OWi"/>
+                                <constraint firstItem="drB-JC-wte" firstAttribute="leading" secondItem="SCx-gr-EcU" secondAttribute="leading" constant="19" id="wa5-pN-5pp"/>
+                            </constraints>
+                        </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OutfitName" id="tIJ-36-aTX">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OutfitName" id="tIJ-36-aTX" customClass="OutfitNameTableViewCell" customModule="VirtualWardrobe" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tIJ-36-aTX" id="gPS-Yt-Wc0">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Outfit Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwW-E9-M9x">
+                                            <rect key="frame" x="24" y="12" width="87" height="19"/>
+                                            <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
+                                            <color key="textColor" red="0.27250555199999998" green="0.01034594546" blue="0.02310753221" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v9U-Cv-W5s">
+                                            <rect key="frame" x="119" y="6" width="240" height="30"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="v9U-Cv-W5s" firstAttribute="top" secondItem="gPS-Yt-Wc0" secondAttribute="top" constant="6" id="6cF-8G-gle"/>
+                                        <constraint firstItem="kwW-E9-M9x" firstAttribute="leading" secondItem="gPS-Yt-Wc0" secondAttribute="leadingMargin" constant="8" id="8Xc-2g-t91"/>
+                                        <constraint firstItem="v9U-Cv-W5s" firstAttribute="leading" secondItem="kwW-E9-M9x" secondAttribute="trailing" constant="8" id="DcO-Ba-66O"/>
+                                        <constraint firstItem="kwW-E9-M9x" firstAttribute="top" secondItem="gPS-Yt-Wc0" secondAttribute="topMargin" constant="1" id="Elc-W0-45X"/>
+                                        <constraint firstAttribute="trailing" secondItem="v9U-Cv-W5s" secondAttribute="trailing" constant="16" id="u3f-Xn-D5z"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="outfitNameTextField" destination="v9U-Cv-W5s" id="rgA-wl-jBw"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WardrobeItem" rowHeight="144" id="qUN-eV-EZn">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WardrobeItem" rowHeight="144" id="qUN-eV-EZn" customClass="OutfitItemTableViewCell" customModule="VirtualWardrobe" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="72" width="375" height="144"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qUN-eV-EZn" id="BvU-Du-hcN">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="143.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KRi-RE-2VA">
-                                            <rect key="frame" x="16" y="11" width="111" height="122"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KRi-RE-2VA">
+                                            <rect key="frame" x="16" y="11" width="127" height="122"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="127" id="1gp-0e-YD0"/>
+                                            </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Item Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Luv-7t-5oF">
-                                            <rect key="frame" x="135" y="60" width="188" height="24"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Luv-7t-5oF">
+                                            <rect key="frame" x="151" y="60" width="95.5" height="24"/>
                                             <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="22"/>
                                             <color key="textColor" red="0.27250555199999998" green="0.01034594546" blue="0.02310753221" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="Luv-7t-5oF" firstAttribute="centerY" secondItem="BvU-Du-hcN" secondAttribute="centerY" id="Jpx-br-HAH"/>
                                         <constraint firstItem="KRi-RE-2VA" firstAttribute="bottom" secondItem="BvU-Du-hcN" secondAttribute="bottomMargin" id="JwU-ip-vW3"/>
+                                        <constraint firstItem="Luv-7t-5oF" firstAttribute="leading" secondItem="KRi-RE-2VA" secondAttribute="trailing" constant="8" id="KlA-o9-YAJ"/>
                                         <constraint firstItem="KRi-RE-2VA" firstAttribute="leading" secondItem="BvU-Du-hcN" secondAttribute="leadingMargin" id="Xjg-px-whV"/>
                                         <constraint firstItem="KRi-RE-2VA" firstAttribute="top" secondItem="BvU-Du-hcN" secondAttribute="topMargin" id="tPQ-wv-TNi"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="itemImageView" destination="KRi-RE-2VA" id="5Ve-wn-EUH"/>
+                                    <outlet property="itemNameLabel" destination="Luv-7t-5oF" id="mqh-HS-LeQ"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewItem" rowHeight="101" id="dRT-jk-zzp">
-                                <rect key="frame" x="0.0" y="216" width="375" height="101"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewItem" rowHeight="45" id="DnP-4j-CU6" customClass="AddItemToOutfitTableViewCell" customModule="VirtualWardrobe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="216" width="375" height="45"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dRT-jk-zzp" id="XTl-Aj-Ra8">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="100.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DnP-4j-CU6" id="Y4I-Pz-vAP">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s1a-Po-0bk" customClass="CurvedEdgeButton" customModule="VirtualWardrobe" customModuleProvider="target">
+                                            <rect key="frame" x="103" y="7" width="53" height="30"/>
+                                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <state key="normal" title="Choose">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <connections>
+                                                <segue destination="Mai-da-YnA" kind="show" identifier="ChooseTypeSegue" id="jNT-Lq-dje"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Item:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivY-yh-HGR">
+                                            <rect key="frame" x="25" y="11" width="67" height="19"/>
+                                            <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="17"/>
+                                            <color key="textColor" red="0.27250555199999998" green="0.01034594546" blue="0.02310753221" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="s1a-Po-0bk" firstAttribute="top" secondItem="Y4I-Pz-vAP" secondAttribute="top" constant="7" id="1Vz-qN-CKA"/>
+                                        <constraint firstItem="ivY-yh-HGR" firstAttribute="leading" secondItem="Y4I-Pz-vAP" secondAttribute="leadingMargin" constant="9" id="Cru-C2-Eav"/>
+                                        <constraint firstItem="s1a-Po-0bk" firstAttribute="leading" secondItem="ivY-yh-HGR" secondAttribute="trailing" constant="11" id="Gtd-ES-2RP"/>
+                                        <constraint firstItem="ivY-yh-HGR" firstAttribute="top" secondItem="Y4I-Pz-vAP" secondAttribute="topMargin" id="bXH-uy-wrV"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="chooseItemTypeButton" destination="s1a-Po-0bk" id="QEn-jR-RI5"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -188,6 +290,112 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fyX-bV-X9z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2788" y="-596.85157421289364"/>
+        </scene>
+        <!--Outfit Item Type Table View Controller-->
+        <scene sceneID="VBW-9C-yMf">
+            <objects>
+                <tableViewController id="Mai-da-YnA" customClass="OutfitItemTypeTableViewController" customModule="VirtualWardrobe" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="BeF-dw-pVT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TypeCell" id="2r2-dw-IA0">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2r2-dw-IA0" id="trQ-Wm-ggN">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Mai-da-YnA" id="WTv-93-y3P"/>
+                            <outlet property="delegate" destination="Mai-da-YnA" id="dLn-qr-TNq"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="vab-uq-4le" kind="show" identifier="SelectItemSegue" id="eAg-9Z-TF2"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MR0-Z6-oOS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3531" y="-599"/>
+        </scene>
+        <!--Outfit Wardrobe Item Table View Controller-->
+        <scene sceneID="f3g-Hf-TnA">
+            <objects>
+                <tableViewController id="vab-uq-4le" customClass="OutfitWardrobeItemTableViewController" customModule="VirtualWardrobe" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VpZ-dU-dCP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ItemCell" rowHeight="149" id="TFQ-QV-q82" customClass="ClothingTableViewCell" customModule="VirtualWardrobe" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="149"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TFQ-QV-q82" id="b28-Yb-87k">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="148.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="paV-ne-jUc">
+                                            <rect key="frame" x="16" y="5" width="143" height="138.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="143" id="rRG-wW-QsE"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="As1-Qk-o7e">
+                                            <rect key="frame" x="171" y="14" width="188" height="24"/>
+                                            <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="22"/>
+                                            <color key="textColor" red="0.27250555199999998" green="0.01034594546" blue="0.02310753221" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Store bought from" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELD-2o-ZX7">
+                                            <rect key="frame" x="171" y="46" width="188" height="16.5"/>
+                                            <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="15"/>
+                                            <color key="textColor" red="0.56134993649999998" green="0.020639615770000001" blue="0.057458535099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brand Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ru-EK-Nve">
+                                            <rect key="frame" x="171" y="92" width="188" height="16.5"/>
+                                            <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="15"/>
+                                            <color key="textColor" red="0.56134993649999998" green="0.020639615770000001" blue="0.057458535099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="ELD-2o-ZX7" firstAttribute="leading" secondItem="paV-ne-jUc" secondAttribute="trailing" constant="12" id="3UJ-sT-7E7"/>
+                                        <constraint firstItem="As1-Qk-o7e" firstAttribute="top" secondItem="b28-Yb-87k" secondAttribute="topMargin" constant="3" id="69F-kr-tex"/>
+                                        <constraint firstItem="paV-ne-jUc" firstAttribute="leading" secondItem="b28-Yb-87k" secondAttribute="leading" constant="16" id="6rr-Ix-Trh"/>
+                                        <constraint firstItem="4ru-EK-Nve" firstAttribute="trailing" secondItem="ELD-2o-ZX7" secondAttribute="trailing" id="BHU-4a-d8n"/>
+                                        <constraint firstItem="As1-Qk-o7e" firstAttribute="trailing" secondItem="b28-Yb-87k" secondAttribute="trailingMargin" id="BaV-kI-OnM"/>
+                                        <constraint firstItem="ELD-2o-ZX7" firstAttribute="top" secondItem="As1-Qk-o7e" secondAttribute="bottom" constant="8" id="NYx-Iy-LgA"/>
+                                        <constraint firstItem="As1-Qk-o7e" firstAttribute="leading" secondItem="paV-ne-jUc" secondAttribute="trailing" constant="12" id="OAi-je-Gnc"/>
+                                        <constraint firstItem="4ru-EK-Nve" firstAttribute="top" secondItem="ELD-2o-ZX7" secondAttribute="bottom" constant="29.5" id="T4A-k7-jXC"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="ELD-2o-ZX7" secondAttribute="trailing" id="lBY-9o-jZC"/>
+                                        <constraint firstItem="paV-ne-jUc" firstAttribute="top" secondItem="b28-Yb-87k" secondAttribute="top" constant="5" id="qeU-0W-PGr"/>
+                                        <constraint firstItem="4ru-EK-Nve" firstAttribute="leading" secondItem="paV-ne-jUc" secondAttribute="trailing" constant="12" id="qhQ-Hr-ym4"/>
+                                        <constraint firstAttribute="bottom" secondItem="paV-ne-jUc" secondAttribute="bottom" constant="5" id="wI1-If-OxQ"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="1" green="0.77300731209999995" blue="0.72468197550000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="brandNameLabel" destination="4ru-EK-Nve" id="7K9-24-xvN"/>
+                                    <outlet property="itemImageView" destination="paV-ne-jUc" id="GlM-qo-h5z"/>
+                                    <outlet property="itemInfoLabel" destination="ELD-2o-ZX7" id="sOm-0S-T22"/>
+                                    <outlet property="itemNameLabel" destination="As1-Qk-o7e" id="AnI-yj-F3J"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="vab-uq-4le" id="rrA-5y-kVX"/>
+                            <outlet property="delegate" destination="vab-uq-4le" id="WdF-pC-4ms"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8pu-FX-Pey" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4248.8000000000002" y="-602.24887556221893"/>
         </scene>
         <!--Virtual Wardrobe-->
         <scene sceneID="zfQ-1V-sJk">
@@ -254,12 +462,21 @@
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                         </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brand Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bo6-K6-Atr">
+                                            <rect key="frame" x="171" y="86" width="188" height="16.5"/>
+                                            <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="15"/>
+                                            <color key="textColor" red="0.56134993649999998" green="0.020639615770000001" blue="0.057458535099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="fWU-IK-i93" firstAttribute="top" secondItem="VLL-s5-bjD" secondAttribute="top" constant="5" id="01A-5C-emH"/>
                                         <constraint firstItem="vHo-tD-n6V" firstAttribute="leading" secondItem="fWU-IK-i93" secondAttribute="trailing" constant="12" id="7eV-ec-OX2"/>
+                                        <constraint firstItem="bo6-K6-Atr" firstAttribute="top" secondItem="Ezu-5E-P4F" secondAttribute="bottom" constant="23.5" id="8vo-DU-arG"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Ezu-5E-P4F" secondAttribute="trailing" id="BZ0-7P-4MB"/>
                                         <constraint firstItem="fWU-IK-i93" firstAttribute="leading" secondItem="VLL-s5-bjD" secondAttribute="leading" constant="16" id="Cfu-a9-7tw"/>
+                                        <constraint firstItem="bo6-K6-Atr" firstAttribute="leading" secondItem="fWU-IK-i93" secondAttribute="trailing" constant="12" id="FrR-VF-K0f"/>
+                                        <constraint firstItem="bo6-K6-Atr" firstAttribute="trailing" secondItem="Ezu-5E-P4F" secondAttribute="trailing" id="Htb-LJ-khX"/>
                                         <constraint firstItem="vHo-tD-n6V" firstAttribute="top" secondItem="VLL-s5-bjD" secondAttribute="topMargin" constant="3" id="Ktn-nh-bQN"/>
                                         <constraint firstItem="vHo-tD-n6V" firstAttribute="trailing" secondItem="VLL-s5-bjD" secondAttribute="trailingMargin" id="Y6Z-wM-Pco"/>
                                         <constraint firstItem="Ezu-5E-P4F" firstAttribute="top" secondItem="vHo-tD-n6V" secondAttribute="bottom" constant="8" id="dsb-iR-C7H"/>
@@ -271,6 +488,7 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="1" green="0.77300731209999995" blue="0.72468197550000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
+                                    <outlet property="brandNameLabel" destination="bo6-K6-Atr" id="5Sw-x3-eq0"/>
                                     <outlet property="itemImageView" destination="fWU-IK-i93" id="kVQ-YQ-Xx3"/>
                                     <outlet property="itemInfoLabel" destination="Ezu-5E-P4F" id="8RJ-cO-rwD"/>
                                     <outlet property="itemLoanedButton" destination="EOT-o7-sLR" id="OBr-mH-Ghk"/>

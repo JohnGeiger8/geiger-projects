@@ -10,6 +10,12 @@ import Foundation
 import MapKit
 import CoreData
 
+enum AddOutfitSections: Int {
+    case OutfitName = 0
+    case AddNewItem = 1
+    case WardrobeItem = 2
+}
+
 class WardrobeModel: DataManagerDelegate {
     
     // Have all files using model use the same instance
@@ -22,9 +28,8 @@ class WardrobeModel: DataManagerDelegate {
     var filteredItems : [WardrobeItemMO]
     var allOutfits : [OutfitMO]
     var filteredOutfits : [OutfitMO]
-    
-    // Number of sections.  This should change depending on filter user chooses
-    var numberOfSections = 1
+    var newOutfitName : String?
+    var newOutfitSections : [Int:Int] = [AddOutfitSections.OutfitName.rawValue: 1, AddOutfitSections.AddNewItem.rawValue: 1, AddOutfitSections.WardrobeItem.rawValue: 0] // Row numbers of Add Outfit table view sections
     
     fileprivate init() {
         
@@ -43,7 +48,6 @@ class WardrobeModel: DataManagerDelegate {
     let entityName = "WardrobeItemMO"
     
     func createDatabase() {
-        // FIXME: do i need this
         dataManager.saveContext()
     }
     
@@ -111,11 +115,11 @@ class WardrobeModel: DataManagerDelegate {
     
     // MARK:- Filter Items
     
-    func updateFilter(filter: (WardrobeItemMO) -> Bool) {
+    func updateItemFilter(filter: (WardrobeItemMO) -> Bool) {
         filteredItems = allItems.filter(filter)
     }
     
-    func resetFilter() {
+    func resetItemFilter() {
         filteredItems = allItems
     }
     
@@ -124,9 +128,8 @@ class WardrobeModel: DataManagerDelegate {
         
         let itemMO = item.addItem(with: dataManager)
         dataManager.saveContext()
-        
         allItems.append(itemMO)
-        filteredItems = allItems
+        resetItemFilter()
     }
     
     func updateWardrobeItem(_ item: WardrobeItem, atIndexPath indexPath: IndexPath) {
@@ -168,7 +171,82 @@ extension WardrobeModel {
     
     func outfitNameFor(indexPath: IndexPath) -> String {
         
-        return filteredOutfits[indexPath.row].name!
+        return filteredOutfits[indexPath.section].name!
+    }
+    
+    func imageDataForOutfitItemFor(indexPath: IndexPath) -> Data {
+        
+        // FIXME: Not always image data
+        let outfit = filteredOutfits[indexPath.section]
+        let items = outfit.isMadeUpOf
+        let wardrobeItems = items?.allObjects as? [WardrobeItemMO]
+        return wardrobeItems![indexPath.row].imageData!
+    }
+    
+    func numberOfItemsInOutfitFor(section: Int) -> Int {
+        let outfitItems = filteredOutfits[section].isMadeUpOf
+        return outfitItems!.count
+    }
+    
+    func addOutfit(_ outfit: OutfitMO) {
+        
+        
+        dataManager.saveContext()
+    }
+    
+    func addItemToOutfitFor(indexPath: IndexPath, item: WardrobeItemMO) {
+        
+        filteredOutfits[indexPath.section].addToIsMadeUpOf(item)
+        dataManager.saveContext()
+    }
+    
+    // MARK:- Outfit filter
+    
+    func resetOutfitFilter() {
+        filteredOutfits = allOutfits
+    }
+    
+    // MARK:- Add Outfit Table View Data Source
+    
+    var numberOfSectionsForAddOutfit : Int { return newOutfitSections.count }
+    
+    func numberOfRowsInAddOutfitFor(section: Int) -> Int {
+        
+        switch section {
+        case AddOutfitSections.AddNewItem.rawValue:
+            return newOutfitSections[section]!
+            
+        case AddOutfitSections.OutfitName.rawValue:
+            return newOutfitSections[section]!
+            
+        case AddOutfitSections.WardrobeItem.rawValue:
+            return newOutfitSections[section]!
+        default:
+            assert(false, "Unhandled section")
+        }
+    }
+    
+    func typeOfCellFor(section: Int) -> AddOutfitSections {
+        
+        switch section {
+        case AddOutfitSections.AddNewItem.rawValue:
+            return AddOutfitSections.AddNewItem
+            
+        case AddOutfitSections.OutfitName.rawValue:
+            return AddOutfitSections.OutfitName
+            
+        case AddOutfitSections.WardrobeItem.rawValue:
+            return AddOutfitSections.WardrobeItem
+            
+        default:
+            assert(false, "Unhandled cell type")
+        }
+    }
+    
+    func addNewItemRow() {
+        
+        let currentNumber = newOutfitSections[AddOutfitSections.AddNewItem.rawValue]
+        newOutfitSections[AddOutfitSections.AddNewItem.rawValue] = currentNumber! + 1
     }
 }
 

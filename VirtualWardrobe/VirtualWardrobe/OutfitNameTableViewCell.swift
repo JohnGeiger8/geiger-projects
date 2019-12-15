@@ -1,23 +1,20 @@
 //
-//  ClothingTableViewCell.swift
+//  OutfitNameTableViewCell.swift
 //  VirtualWardrobe
 //
-//  Created by John Geiger on 10/30/19.
+//  Created by John Geiger on 12/14/19.
 //  Copyright © 2019 John Geiger. All rights reserved.
 //
 
 import UIKit
 
-class ClothingTableViewCell: UITableViewCell {
+class OutfitNameTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var itemImageView: UIImageView!
-    @IBOutlet weak var itemNameLabel: UILabel!
-    @IBOutlet weak var itemInfoLabel: UILabel!
-    @IBOutlet var itemLoanedButton: UIButton!
-    @IBOutlet weak var brandNameLabel: UILabel!
+    @IBOutlet weak var outfitNameTextField: UITextField!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

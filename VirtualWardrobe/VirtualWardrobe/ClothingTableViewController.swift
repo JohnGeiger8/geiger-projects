@@ -41,7 +41,7 @@ class ClothingTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
 
-        return wardrobeModel.numberOfSections
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -162,7 +162,7 @@ extension ClothingTableViewController : UISearchBarDelegate, UISearchResultsUpda
                 assert(false, "Unhandled filter chosen")
             }
         
-        self.wardrobeModel.updateFilter(filter: filter)
+        self.wardrobeModel.updateItemFilter(filter: filter)
         tableView.reloadData()
     }
     
@@ -186,7 +186,7 @@ extension ClothingTableViewController : UISearchBarDelegate, UISearchResultsUpda
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         if searchText == "" {
-            wardrobeModel.resetFilter()
+            wardrobeModel.resetItemFilter()
             tableView.reloadData()
         }
     }
@@ -197,7 +197,7 @@ extension ClothingTableViewController : UISearchBarDelegate, UISearchResultsUpda
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
 
-        wardrobeModel.resetFilter()
+        wardrobeModel.resetItemFilter()
         tableView.reloadData()
         //let topRow = IndexPath(row: 0, section: 0)
         //tableView.scrollToRow(at: topRow, at: .top, animated: true)
