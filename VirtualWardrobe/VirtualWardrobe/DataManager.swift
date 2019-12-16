@@ -5,6 +5,9 @@
 //  Created by John Geiger on 12/2/19.
 //  Copyright © 2019 John Geiger. All rights reserved.
 //
+//  Source:
+//        - CMPSC 475 class: Professor John Hannan
+//
 
 import Foundation
 import CoreData

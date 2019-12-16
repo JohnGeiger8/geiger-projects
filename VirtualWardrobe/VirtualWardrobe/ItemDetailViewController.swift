@@ -132,17 +132,4 @@ class ItemDetailViewController: UIViewController, EditItemDelegate {
             itemImageView.image = UIImage(named: "noImageFound")
         }
     }
-    
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        switch segue.identifier {
-//        case "ToAddItem":
-//
-//        default:
-//
-//        }
-    }
- 
-
 }

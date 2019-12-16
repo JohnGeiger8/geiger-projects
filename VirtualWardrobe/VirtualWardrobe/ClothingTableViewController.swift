@@ -92,7 +92,7 @@ class ClothingTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
-        return 250  // FIXME: Need to make this more dynamic
+        return 230
     }
     
     // MARK:- Deletion of Items
@@ -178,10 +178,7 @@ extension ClothingTableViewController : UISearchBarDelegate, UISearchResultsUpda
                         return false
                     }
                 }
-            
-            default:
-                assert(false, "Unhandled filter chosen")
-            }
+        }
         
         self.wardrobeModel.updateItemFilter(filter: filter)
         tableView.reloadData()

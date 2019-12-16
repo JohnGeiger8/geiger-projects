@@ -36,9 +36,6 @@ class RootViewController: UIViewController {
             outfitsController?.tableView.backgroundColor = .backgroundColor
             outfitsController?.view.backgroundColor = .backgroundColor
             outfitsController?.bottomBarView.backgroundColor = .navigationColor
-
-        case "ToWishList":
-            break
             
         default:
             assert(false, "Unhandled segue")

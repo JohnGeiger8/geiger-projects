@@ -1,20 +1,6 @@
 John Geiger
+12/15/2019
 
 Virtual Wardrobe App
 
-Beta State:
-
-The currently implemented features of my Virtual Wardrobe app are:
-  - accessing the Wardrobe section
-  - adding new items to the Wardrobe while specifying several item features, including a
-    picture taken from the Photos album or by taking a photo with the camera (if available)
-  - examining an item's details by tapping on it in the Wardrobe
-
-    Using the app's currently implemented features is very straightforward.
-
-Currently still need to implement:
-  - The search bar and filtering
-  - Core Data use
-  - Siri implementation
-  - Data trends, Wish List, Loan implementation
-  - Use of Map Views for looking at item's stores of purchase
+Created for Shopping Lovers whose memory often fails them while out on excursions.
