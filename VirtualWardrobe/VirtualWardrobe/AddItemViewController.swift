@@ -11,7 +11,9 @@ import MapKit
 
 protocol AddItemDelegate : NSObject {
     func addNewItem(_ item: WardrobeItem)
-    func updateItem(_ item: WardrobeItem, atIndexPath indexPath: IndexPath)
+}
+protocol EditItemDelegate : NSObject {
+    func updateItem(_ item: WardrobeItem)
 }
 
 class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate, TypeSelectionDelegate, PurchaseDateDelegate, ImageSelectorDelegate {
@@ -54,15 +56,12 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
     @IBOutlet weak var mainScrollView: UIScrollView!
     @IBOutlet weak var itemImageView: UIImageView!
     @IBOutlet weak var submitButton: CurvedEdgeButton!
-    @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var doneButton: UIButton!
     
     var imageSelector : ImageSelector?
-    weak var delegate : AddItemDelegate?
+    weak var addDelegate : AddItemDelegate?
+    weak var editDelegate : EditItemDelegate?
     
-    // Item selection fields
-    var selectedItemIndexPath : IndexPath?
-
     // WardrobeItem fields
     var imageData : Data?
     var itemDate : Date?
@@ -331,7 +330,7 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
         }
         
         let newItem = WardrobeItem(name: nameTextField.text!, type: typeButton.titleLabel!.text!, size: "Medium", subType: subtypeButton.titleLabel!.text, colors: colors, seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: purchaseSourceTextField.text!, storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: itemDate, loanedTo: personLoanedTo)
-        delegate?.addNewItem(newItem)
+        addDelegate?.addNewItem(newItem)
         navigationController?.popViewController(animated: true)
     }
     
@@ -344,12 +343,12 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
         personLoanedTo = person
         
         // Place loanedTo label off the screen for animation
-        personLoanedToLabel.frame.origin = CGPoint(x: self.view.frame.width, y: cancelButton.frame.origin.y)
+        personLoanedToLabel.frame.origin = CGPoint(x: self.view.frame.width, y: titleLabel.frame.origin.y - personLoanedToLabel.frame.height * 2)
         personLoanedToLabel.frame.size = personLoanedToLabel.intrinsicContentSize
         
         UIView.animate(withDuration: 1.0, animations: {
             let x = self.view.frame.width / 2 - self.personLoanedToLabel.frame.width / 2
-            let y = self.cancelButton.frame.origin.y
+            let y = self.titleLabel.frame.origin.y - self.personLoanedToLabel.frame.height * 2
             self.personLoanedToLabel.frame.origin = CGPoint(x: x, y: y)
             self.mainScrollView.addSubview(self.personLoanedToLabel)
         })
@@ -359,9 +358,8 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
 // MARK:- Configure controller for a Detail view
 extension AddItemViewController {
     
-    func configureForDetailView(item: WardrobeItemMO, atIndexPath indexPath: IndexPath) {
+    func configureForDetailView(item: WardrobeItemMO) {
         
-        selectedItemIndexPath = indexPath
         titleLabel.text = item.name
         nameTextField.text = item.name
         typeButton.setTitle(item.type, for: .normal)
@@ -396,53 +394,31 @@ extension AddItemViewController {
             itemImageView.image = itemImage!
         }
         
-        // Fields shouldn't be editable by default
-        itemImageView.isUserInteractionEnabled = false
-        for inputObjects in userInputObjectDictionary.values {
-            for viewObject in inputObjects {
-                viewObject.isUserInteractionEnabled = false
-            }
-        }
-        
         loanButton.isHidden = false
         submitButton.isHidden = true
-        editButton.isHidden = false
-        cancelButton.isHidden = false
+        doneButton.isHidden = false
         
         self.view.setNeedsLayout()
     }
     
-    @IBAction func toggleEditingFields(_ sender: Any) {
+    @IBAction func finishEditing(_ sender: Any) {
         
-        if editButton.title(for: .normal) == "Edit" {
-            editButton.setTitle("Done", for: .normal)
-        }
-        else {
-            guard nameTextField.text != "", isTypeSelected, isDatePicked else { return }
+        guard nameTextField.text != "", isTypeSelected, isDatePicked else { return }
             
-            editButton.setTitle("Edit", for: .normal)
-            submitItemChanges()
-        }
-        
-        // Toggle fields' editable properties
-        itemImageView.isUserInteractionEnabled.toggle()
-        for inputObjects in userInputObjectDictionary.values {
-            for viewObject in inputObjects {
-                viewObject.isUserInteractionEnabled.toggle()
-            }
-        }
+        submitItemChanges()
     }
     
     func submitItemChanges() {
 
-        // FIXME: Add size and seasons
         var colors : [String] = []
         for colorTextField in colorTextFields {
             if colorTextField.text != "" { colors.append(colorTextField.text!) }
         }
         
         let item = WardrobeItem(name: nameTextField.text!, type: typeButton.title(for: .normal)!, size: "Medium", subType: subtypeButton.title(for: .normal), colors: colors, seasons: [], brandName: brandNameTextField.text!, price: nil, storeName: purchaseSourceTextField.text, storeLocation: nil, imageName: "", imageData: imageData, dateOfPurchase: itemDate, loanedTo: personLoanedTo)
-        delegate?.updateItem(item,  atIndexPath: selectedItemIndexPath!)
+        editDelegate?.updateItem(item)
+        
+        self.dismiss(animated: true, completion: nil)
     }
 
     // MARK:- Date Purchased Delegate
@@ -535,24 +511,3 @@ class ImageSelector : NSObject, UIImagePickerControllerDelegate, UINavigationCon
         picker.dismiss(animated: true, completion: nil)
     }
 }
-
-//extension UIImage {
-//    // Parts of the following function retrieved from https://www.hackingwithswift.com/example-code/media/how-to-read-the-average-color-of-a-uiimage-using-ciareaaverage
-//    func closestCommonColor() -> UIColor? {
-//        guard let image = CIImage(image: self) else { return nil }
-//
-//        let extentVector = CIVector(x: image.extent.origin.x, y: image.extent.origin.y, z: image.extent.size.width, w: image.extent.size.height)
-//
-//        guard let filter = CIFilter(name: "CIAreaAverage", parameters: [kCIInputImageKey: image, kCIInputExtentKey: extentVector]) else { return nil }
-//        guard let outputImage = filter.outputImage else { return nil }
-//
-//        var bitmap : [UInt8] = [0,0,0,0]
-//        let context = CIContext(options: [.workingColorSpace: kCFNull])
-//        context.render(outputImage, toBitmap: &bitmap, rowBytes: 4, bounds: CGRect(x: 0, y: 0, width: 1, height: 1), format: .RGBA8, colorSpace: nil)
-//
-//        let averageColor = UIColor(red: CGFloat(bitmap[0]) / 255, green: CGFloat(bitmap[1]) / 255, blue: CGFloat(bitmap[2]) / 255, alpha: CGFloat(bitmap[3]) / 255)
-//
-//        // FIXME: Now compare this to common colors to find closest match . Also put this in its own file
-//        return averageColor
-//    }
-//}

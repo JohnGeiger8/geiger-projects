@@ -17,27 +17,37 @@ class AddOutfitTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Need Gesture Recognizer for getting rid of keyboard
+        let dismissTap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        self.view.addGestureRecognizer(dismissTap)
+        
+        self.tableView.keyboardDismissMode = .onDrag
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
 
-        return wardrobeModel.numberOfSectionsForAddOutfit
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        return wardrobeModel.numberOfRowsInAddOutfitFor(section: section)
+        
+        if section == AddOutfitSections.WardrobeItem {
+            return wardrobeItems.count
+        } else {
+            return 1
+        }
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cellType = wardrobeModel.typeOfCellFor(section: indexPath.section)
-        switch cellType {
+        switch indexPath.section {
         case AddOutfitSections.OutfitName:
             let cell = tableView.dequeueReusableCell(withIdentifier: "OutfitName", for: indexPath) as! OutfitNameTableViewCell
+            
             cell.outfitNameTextField.delegate = self
             cell.backgroundColor = .backgroundColor
             
@@ -45,6 +55,7 @@ class AddOutfitTableViewController: UITableViewController {
             
         case AddOutfitSections.WardrobeItem:
             let cell = tableView.dequeueReusableCell(withIdentifier: "WardrobeItem", for: indexPath) as! OutfitItemTableViewCell
+            
             if let imageData = wardrobeItems[indexPath.row].imageData {
                 cell.itemImageView.image = UIImage(data: imageData)
             } else {
@@ -57,6 +68,7 @@ class AddOutfitTableViewController: UITableViewController {
             
         case AddOutfitSections.AddNewItem:
             let cell = tableView.dequeueReusableCell(withIdentifier: "NewItem", for: indexPath) as! AddItemToOutfitTableViewCell
+            
             cell.backgroundColor = .backgroundColor
             
             return cell
@@ -79,7 +91,6 @@ class AddOutfitTableViewController: UITableViewController {
     func addItemToOutfit(item: WardrobeItemMO) {
         
         wardrobeItems.append(item)
-        wardrobeModel.addWardrobeItemRow()
         
         let indexPathSection = AddOutfitSections.WardrobeItem
         let indexPath = IndexPath(row: wardrobeItems.count-1, section: indexPathSection)
@@ -103,19 +114,10 @@ class AddOutfitTableViewController: UITableViewController {
     }
     
     @IBAction func unwindToAddOutfit(_ segue: UIStoryboardSegue) {
-        
+
     }
     
     // MARK:- Action Methods
-    
-    @IBAction func addNewItemCell(_ sender: Any) {
-        
-        wardrobeModel.addNewItemRow()
-        
-        let indexPathSection = AddOutfitSections.AddNewItem
-        let indexPath = IndexPath(row: 0, section: indexPathSection)
-        tableView.insertRows(at: [indexPath], with: UITableView.RowAnimation.left)
-    }
     
     @IBAction func addOutfit(_ sender: Any) {
         

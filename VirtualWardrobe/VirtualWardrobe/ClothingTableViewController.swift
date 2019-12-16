@@ -20,6 +20,8 @@ class ClothingTableViewController: UITableViewController {
     let wardrobeModel = WardrobeModel.sharedinstance
     let searchController = UISearchController(searchResultsController: nil)
     var filterIndex = SearchWardrobeFilters.ByName
+    var selectedItem : WardrobeItemMO?
+    var selectedIndexPath : IndexPath?
     
     @IBOutlet weak var bottomBarView: UIView!
     
@@ -37,6 +39,10 @@ class ClothingTableViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -68,6 +74,7 @@ class ClothingTableViewController: UITableViewController {
         cell.itemImageView.contentMode = .scaleAspectFit
         cell.itemInfoLabel.text = wardrobeModel.clothingStoreNameFor(indexPath: indexPath)
         cell.itemLoanedButton.isHidden = wardrobeModel.itemLoanedToFor(indexPath: indexPath) == nil
+        cell.brandNameLabel.text = wardrobeModel.clothingBrandNameFor(indexPath: indexPath)
         
         cell.backgroundColor = .backgroundColor
         
@@ -77,16 +84,9 @@ class ClothingTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // Present an item detail view controller
-        let itemDetailViewController = (self.storyboard?.instantiateViewController(withIdentifier: "ItemViewController") as? AddItemViewController)
-        
-        self.present(itemDetailViewController!, animated: true, completion: {
-
-            let wardrobeItem = self.wardrobeModel.clothingItemFor(indexPath: indexPath)
-            itemDetailViewController?.configureForDetailView(item: wardrobeItem, atIndexPath: indexPath)
-            itemDetailViewController?.delegate = self
-            itemDetailViewController?.view.backgroundColor = .navigationColor
-            itemDetailViewController?.mainScrollView.backgroundColor = .backgroundColor
-        })
+        selectedItem = wardrobeModel.clothingItemFor(indexPath: indexPath)
+        selectedIndexPath = indexPath
+        performSegue(withIdentifier: "ToDetail", sender: self)
     }
     
     
@@ -129,9 +129,15 @@ class ClothingTableViewController: UITableViewController {
         switch segue.identifier {
         case "AddItem":
             let destinationViewController = segue.destination as! AddItemViewController
-            destinationViewController.delegate = self
+            destinationViewController.addDelegate = self
             destinationViewController.view.backgroundColor = .backgroundColor
             destinationViewController.mainScrollView.backgroundColor = .backgroundColor
+            
+        case "ToDetail":
+            let destinationViewController = segue.destination as! ItemDetailViewController
+            destinationViewController.wardrobeItem = selectedItem!
+            destinationViewController.itemIndexPath = selectedIndexPath!
+            destinationViewController.view.backgroundColor = .backgroundColor
             
         default:
             assert(false, "Unhandled segue")
@@ -233,10 +239,4 @@ extension ClothingTableViewController : AddItemDelegate {
         wardrobeModel.addWardrobeItem(item)
         self.tableView.reloadData()
     }
-    
-    func updateItem(_ item: WardrobeItem, atIndexPath indexPath: IndexPath) {
-        wardrobeModel.updateWardrobeItem(item, atIndexPath: indexPath)
-        self.tableView.reloadData()
-    }
-
 }

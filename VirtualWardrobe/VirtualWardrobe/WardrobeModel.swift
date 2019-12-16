@@ -238,54 +238,6 @@ extension WardrobeModel {
         filteredOutfits = allOutfits
     }
     
-    // MARK:- Add Outfit Table View Data Source
-    
-    var numberOfSectionsForAddOutfit : Int { return newOutfitSections.count }
-    
-    func numberOfRowsInAddOutfitFor(section: Int) -> Int {
-        
-        switch section {
-        case AddOutfitSections.AddNewItem:
-            return newOutfitSections[section]!
-            
-        case AddOutfitSections.OutfitName:
-            return newOutfitSections[section]!
-            
-        case AddOutfitSections.WardrobeItem:
-            return newOutfitSections[section]!
-        default:
-            assert(false, "Unhandled section")
-        }
-    }
-    
-    func typeOfCellFor(section: Int) -> Int {
-        
-        switch section {
-        case AddOutfitSections.AddNewItem:
-            return AddOutfitSections.AddNewItem
-            
-        case AddOutfitSections.OutfitName:
-            return AddOutfitSections.OutfitName
-            
-        case AddOutfitSections.WardrobeItem:
-            return AddOutfitSections.WardrobeItem
-            
-        default:
-            assert(false, "Unhandled cell type")
-        }
-    }
-    
-    func addWardrobeItemRow() {
-        
-        let currentNumber = newOutfitSections[AddOutfitSections.WardrobeItem]
-        newOutfitSections[AddOutfitSections.WardrobeItem] = currentNumber! + 1
-    }
-    
-    func addNewItemRow() {
-        
-        let currentNumber = newOutfitSections[AddOutfitSections.AddNewItem]
-        newOutfitSections[AddOutfitSections.AddNewItem] = currentNumber! + 1
-    }
 }
 
 // MARK:- Trends

@@ -47,7 +47,8 @@ class TrendsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         for (timePeriod, count) in clothesQuantityXAxis! {
             graphBars.append((timePeriod, Double(count)))
         }
-        graphBars.sort(by: { Int($0.0)! < Int($1.0)! })
+        let sorter = sortFor(timePeriod: barXAxisTitle)
+        graphBars.sort(by: sorter)
         
         var chartFrame = chartView.frame
         chartFrame.size.width = self.view.frame.width - chartFrame.origin.x * 2
@@ -55,6 +56,40 @@ class TrendsViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         mainScrollView.addSubview(barChart!.view)
         mainScrollView.contentSize = view.frame.size
+    }
+    
+    // Convert the Strings into dates to compare them
+    func sortFor(timePeriod: String) -> ((String, Double), (String, Double)) -> Bool {
+        
+        let currentYear = Calendar.current.component(.year, from: Date())
+        let dateFormatter = DateFormatter()
+        switch timePeriod {
+        case "Year":
+            dateFormatter.dateFormat = "YYYY"
+            
+        case "Month":
+            dateFormatter.dateFormat = "MMM"
+            
+        case "Week":
+            dateFormatter.dateFormat = "MM/dd-YYYY"
+            let sorter : ((String, Double), (String, Double)) -> Bool = { (date1, date2) in
+                
+                let (firstWeek, _) = date1
+                let (secondWeek, _) = date2
+                let firstWeekRange = firstWeek.startIndex..<firstWeek.index(firstWeek.startIndex, offsetBy: 5)
+                let firstWeekDate = String(firstWeek[firstWeekRange]) + "-" + String(currentYear)
+                
+                let secondWeekRange = secondWeek.startIndex..<secondWeek.index(secondWeek.startIndex, offsetBy: 5)
+                let secondWeekDate = String(secondWeek[secondWeekRange]) + "-" + String(currentYear)
+                return dateFormatter.date(from: String(firstWeekDate))! < dateFormatter.date(from: String(secondWeekDate))!
+            }
+            return sorter
+
+            
+        default:
+            assert(false, "Unhandled format")
+        }
+        return { dateFormatter.date(from: $0.0)! < dateFormatter.date(from: $1.0)! }
     }
     
     // MARK:- Chart
@@ -79,12 +114,11 @@ class TrendsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     @IBAction func changeGraphFilter(_ sender: UISegmentedControl) {
-        // FIXME: weeks not implemented
         let selectedIndex = sender.selectedSegmentIndex
         
+        barXAxisTitle = sender.titleForSegment(at: selectedIndex)!
         configureChart(withTimePeriod: sender.titleForSegment(at: selectedIndex)!)
         
-        barXAxisTitle = sender.titleForSegment(at: selectedIndex)!
         self.view.setNeedsLayout()
     }
     

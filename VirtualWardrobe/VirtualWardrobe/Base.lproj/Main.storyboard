@@ -499,7 +499,7 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
-                                    <outlet property="brandNameLabel" destination="bo6-K6-Atr" id="5Sw-x3-eq0"/>
+                                    <outlet property="brandNameLabel" destination="bo6-K6-Atr" id="cHT-TY-LNr"/>
                                     <outlet property="itemImageView" destination="fWU-IK-i93" id="kVQ-YQ-Xx3"/>
                                     <outlet property="itemInfoLabel" destination="Ezu-5E-P4F" id="8RJ-cO-rwD"/>
                                     <outlet property="itemLoanedButton" destination="EOT-o7-sLR" id="OBr-mH-Ghk"/>
@@ -515,6 +515,7 @@
                     <navigationItem key="navigationItem" title="Virtual Wardrobe" id="2rV-Id-Iu3"/>
                     <connections>
                         <outlet property="bottomBarView" destination="JhJ-bf-v7F" id="N8g-1c-vMG"/>
+                        <segue destination="PkQ-uM-uiP" kind="show" identifier="ToDetail" id="rwu-lc-uXe"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J6N-wb-b6C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -744,22 +745,13 @@
                                             <constraint firstAttribute="height" constant="195" id="L4f-Om-toi"/>
                                         </constraints>
                                     </imageView>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SE3-Sv-vln">
-                                        <rect key="frame" x="8" y="7" width="48" height="30"/>
-                                        <state key="normal" title="Cancel"/>
-                                        <connections>
-                                            <segue destination="deT-eb-dCs" kind="unwind" identifier="UnwindFromItemDetail" unwindAction="unwindSegueWithSegue:" id="sCW-nX-uvV"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="WZI-aJ-yNw" firstAttribute="leading" secondItem="mS7-FI-rTS" secondAttribute="leading" constant="8" id="58F-cQ-Xp6"/>
                                     <constraint firstItem="PQK-wD-hX6" firstAttribute="top" secondItem="WZI-aJ-yNw" secondAttribute="bottom" constant="8" id="7Ne-wP-J6e"/>
                                     <constraint firstItem="WZI-aJ-yNw" firstAttribute="top" secondItem="mS7-FI-rTS" secondAttribute="top" constant="50" id="Eho-1X-iBn"/>
-                                    <constraint firstItem="SE3-Sv-vln" firstAttribute="top" secondItem="mS7-FI-rTS" secondAttribute="top" constant="7" id="KS5-BM-bLF"/>
                                     <constraint firstItem="PQK-wD-hX6" firstAttribute="centerX" secondItem="mS7-FI-rTS" secondAttribute="centerX" id="jWI-dJ-nVw"/>
-                                    <constraint firstItem="SE3-Sv-vln" firstAttribute="leading" secondItem="mS7-FI-rTS" secondAttribute="leading" constant="8" id="pY0-yW-O4i"/>
                                     <constraint firstItem="WZI-aJ-yNw" firstAttribute="centerX" secondItem="mS7-FI-rTS" secondAttribute="centerX" id="sZ8-lz-6ps"/>
                                     <constraint firstItem="PQK-wD-hX6" firstAttribute="leading" secondItem="mS7-FI-rTS" secondAttribute="leading" constant="68" id="wd9-Fj-7rW"/>
                                 </constraints>
@@ -775,10 +767,10 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Kg-S5-69C">
-                                <rect key="frame" x="330" y="627" width="30" height="30"/>
-                                <state key="normal" title="Edit"/>
+                                <rect key="frame" x="323" y="627" width="37" height="30"/>
+                                <state key="normal" title="Done"/>
                                 <connections>
-                                    <action selector="toggleEditingFields:" destination="pFi-9M-CjT" eventType="touchUpInside" id="t4O-HW-y6x"/>
+                                    <action selector="finishEditing:" destination="pFi-9M-CjT" eventType="touchUpInside" id="t4O-HW-y6x"/>
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GoW-uo-Lg2" customClass="CurvedEdgeButton" customModule="VirtualWardrobe">
@@ -809,8 +801,7 @@
                         <viewLayoutGuide key="safeArea" id="leq-xu-8ml"/>
                     </view>
                     <connections>
-                        <outlet property="cancelButton" destination="SE3-Sv-vln" id="d4M-cB-k5k"/>
-                        <outlet property="editButton" destination="6Kg-S5-69C" id="yv2-Ph-pKO"/>
+                        <outlet property="doneButton" destination="6Kg-S5-69C" id="yv2-Ph-pKO"/>
                         <outlet property="itemImageView" destination="PQK-wD-hX6" id="SXc-Y4-JjL"/>
                         <outlet property="loanButton" destination="GoW-uo-Lg2" id="TVH-Jo-q4j"/>
                         <outlet property="mainScrollView" destination="mS7-FI-rTS" id="4Ae-IU-YxI"/>
@@ -822,7 +813,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WgP-M4-7AF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="deT-eb-dCs" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2781.5999999999999" y="97.601199400299862"/>
         </scene>
@@ -884,6 +874,85 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WW7-zH-9zh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="138.40000000000001" y="97.601199400299862"/>
+        </scene>
+        <!--Item Detail View Controller-->
+        <scene sceneID="BSZ-lX-yck">
+            <objects>
+                <viewController id="PkQ-uM-uiP" customClass="ItemDetailViewController" customModule="VirtualWardrobe" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IRJ-se-RLO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xcE-St-KQ7">
+                                <rect key="frame" x="166.5" y="78" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VN1-f4-e7u">
+                                <rect key="frame" x="32" y="107" width="311" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="STi-ob-8Xt"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Purchased From:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UPH-qI-Hfi">
+                                <rect key="frame" x="122.5" y="379" width="130" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On Date:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0GR-Bz-nIC">
+                                <rect key="frame" x="154" y="421.5" width="67.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brand:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aC6-rX-xAd">
+                                <rect key="frame" x="162.5" y="464" width="50.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZf-G2-rVW" customClass="CurvedEdgeButton" customModule="VirtualWardrobe" customModuleProvider="target">
+                                <rect key="frame" x="8" y="73" width="30" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Edit">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="editItem:" destination="PkQ-uM-uiP" eventType="touchUpInside" id="Tc1-lE-BAa"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="VN1-f4-e7u" firstAttribute="leading" secondItem="srP-zi-2vx" secondAttribute="leading" constant="32" id="0Te-yC-6B8"/>
+                            <constraint firstItem="UPH-qI-Hfi" firstAttribute="top" secondItem="VN1-f4-e7u" secondAttribute="bottom" constant="22" id="7lB-6t-gaw"/>
+                            <constraint firstItem="VN1-f4-e7u" firstAttribute="centerX" secondItem="IRJ-se-RLO" secondAttribute="centerX" id="M6I-uF-ONb"/>
+                            <constraint firstItem="xcE-St-KQ7" firstAttribute="centerX" secondItem="IRJ-se-RLO" secondAttribute="centerX" id="MXs-Qe-uKR"/>
+                            <constraint firstItem="0GR-Bz-nIC" firstAttribute="top" secondItem="UPH-qI-Hfi" secondAttribute="bottom" constant="22" id="Qq3-xS-J7W"/>
+                            <constraint firstItem="VN1-f4-e7u" firstAttribute="top" secondItem="xcE-St-KQ7" secondAttribute="bottom" constant="8" id="aO4-cP-4km"/>
+                            <constraint firstItem="UPH-qI-Hfi" firstAttribute="centerX" secondItem="IRJ-se-RLO" secondAttribute="centerX" id="iCu-PX-tYw"/>
+                            <constraint firstItem="xcE-St-KQ7" firstAttribute="top" secondItem="srP-zi-2vx" secondAttribute="top" constant="14" id="jfl-yt-fDt"/>
+                            <constraint firstItem="0GR-Bz-nIC" firstAttribute="centerX" secondItem="IRJ-se-RLO" secondAttribute="centerX" id="kit-Sa-fZt"/>
+                            <constraint firstItem="aC6-rX-xAd" firstAttribute="top" secondItem="0GR-Bz-nIC" secondAttribute="bottom" constant="22" id="uFm-HC-gcf"/>
+                            <constraint firstItem="aC6-rX-xAd" firstAttribute="centerX" secondItem="IRJ-se-RLO" secondAttribute="centerX" id="uzJ-Ib-EnF"/>
+                            <constraint firstItem="SZf-G2-rVW" firstAttribute="leading" secondItem="srP-zi-2vx" secondAttribute="leading" constant="8" id="v1q-LK-w8R"/>
+                            <constraint firstItem="SZf-G2-rVW" firstAttribute="top" secondItem="srP-zi-2vx" secondAttribute="top" constant="9" id="yif-cd-9AR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="srP-zi-2vx"/>
+                    </view>
+                    <connections>
+                        <outlet property="datePurchasedLabel" destination="0GR-Bz-nIC" id="h9H-5n-PEq"/>
+                        <outlet property="itemBrandLabel" destination="aC6-rX-xAd" id="Kjh-yO-NMR"/>
+                        <outlet property="itemImageView" destination="VN1-f4-e7u" id="ReW-v8-4v8"/>
+                        <outlet property="itemPurchaseLabel" destination="UPH-qI-Hfi" id="uFg-wY-b00"/>
+                        <outlet property="itemTitleLabel" destination="xcE-St-KQ7" id="AVX-gy-5ns"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6vd-6J-Beh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2772" y="810.94452773613204"/>
         </scene>
         <!--Sub Type Table View Controller-->
         <scene sceneID="pgE-70-Ws6">

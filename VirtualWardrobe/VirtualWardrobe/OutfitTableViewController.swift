@@ -67,9 +67,10 @@ class OutfitTableViewController: UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             wardrobeModel.deleteOutfitAt(indexPath: indexPath)
+            tableView.deleteSections(IndexSet(indexPath), with: .left)
             tableView.deleteRows(at: [indexPath], with: .left)
         } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+            
         }    
     }
     
@@ -78,6 +79,7 @@ class OutfitTableViewController: UITableViewController {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete Outfit") { (action, view, completion) in
             
             self.wardrobeModel.deleteOutfitAt(indexPath: indexPath)
+            self.tableView.deleteSections(IndexSet(indexPath), with: .left)
             self.tableView.deleteRows(at: [indexPath], with: .left)
         }
         let swipeAction = UISwipeActionsConfiguration(actions: [deleteAction])

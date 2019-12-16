@@ -92,4 +92,11 @@ extension Date {
        
         return ""
     }
+    
+    var string : String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/YYYY"
+        return dateFormatter.string(from: self)
+    }
 }
