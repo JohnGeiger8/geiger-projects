@@ -26,13 +26,13 @@ class OutfitItemTypeTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return wardrobeModel.numberOfTypes
+        return wardrobeModel.numberOfTypesForOutfits()
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TypeCell", for: indexPath)
-        cell.textLabel?.text = wardrobeModel.typeFor(indexPath: indexPath)
+        cell.textLabel?.text = wardrobeModel.filteredTypeFor(indexPath: indexPath)
         cell.backgroundColor = .backgroundColor
         
         return cell

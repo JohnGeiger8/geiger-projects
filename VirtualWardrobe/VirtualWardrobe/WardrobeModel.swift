@@ -32,6 +32,7 @@ class WardrobeModel: DataManagerDelegate {
     var filteredOutfits : [OutfitMO]
     var newOutfitName : String?
     var newOutfitSections : [Int:Int] = [AddOutfitSections.OutfitName: 1, AddOutfitSections.AddNewItem: 1, AddOutfitSections.WardrobeItem: 0] // Number of rows of Add Outfit table view sections
+    var filteredOutfitTypes : [String] = []
     var trends : [String:String] = [:]
     
     fileprivate init() {
@@ -199,6 +200,22 @@ extension WardrobeModel {
         let items = outfit.isMadeUpOf
         let wardrobeItems = items?.allObjects as? [WardrobeItemMO]
         return wardrobeItems![indexPath.row].name!
+    }
+    
+    func numberOfTypesForOutfits() -> Int {
+        
+        for type in types {
+            let filter : (WardrobeItemMO) -> Bool = {(item: WardrobeItemMO) in return item.type!.contains(type)}
+            if allItems.filter(filter).count > 0 {
+                if !filteredOutfitTypes.contains(type) {                filteredOutfitTypes.append(type)
+                }
+            }
+        }
+        return filteredOutfitTypes.count
+    }
+    
+    func filteredTypeFor(indexPath: IndexPath) -> String {
+        return filteredOutfitTypes[indexPath.row]
     }
     
     func numberOfItemsInOutfitFor(section: Int) -> Int {

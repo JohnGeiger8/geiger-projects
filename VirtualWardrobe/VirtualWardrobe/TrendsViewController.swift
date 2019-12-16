@@ -55,7 +55,11 @@ class TrendsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         barChart = BarsChart(frame: chartFrame, chartConfig: chartConfiguration, xTitle: barXAxisTitle, yTitle: barYAxisTitle, bars: graphBars, color: .navigationColor, barWidth: CGFloat(barWidth))
 
         mainScrollView.addSubview(barChart!.view)
-        mainScrollView.contentSize = view.frame.size
+        
+        let scrollViewContentHeight = trendsTableView.frame.origin.y + trendsTableView.frame.height + 25.0
+        mainScrollView.contentSize = CGSize(width: self.view.frame.width, height: scrollViewContentHeight)
+        
+        trendsTableView.contentSize = CGSize(width: trendsTableView.frame.width, height: trendsTableView.contentSize.height) // Prevent horizontal scrolling
     }
     
     // Convert the Strings into dates to compare them
@@ -132,7 +136,6 @@ class TrendsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         trendsTableView.allowsSelection = false
         trendsTableView.backgroundColor = .navigationColor
         trendsTableView.contentInset = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
-        trendsTableView.contentSize = CGSize(width: trendsTableView.frame.width, height: trendsTableView.contentSize.height) // Prevent horizontal scrolling
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
