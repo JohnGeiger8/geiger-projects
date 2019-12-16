@@ -55,7 +55,7 @@ class DataManager {
                  * The store could not be migrated to the current model version.
                  Check the error message to determine what the actual problem was.
                  */
-                fatalError("Unresolved error \(error), \(error.userInfo)") // FIXME: fatal error
+                fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
         return container
@@ -72,7 +72,7 @@ class DataManager {
                 try context.save()
             } catch {
                 let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)") // FIXME: fatal error
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)") 
             }
         }
     }

@@ -55,7 +55,48 @@ class ItemDetailViewController: UIViewController, EditItemDelegate {
         }
         
         // Go to internet for website name
+        let goToInternetTap = UITapGestureRecognizer(target: self, action: #selector(goToWebsite(_:)))
+        itemPurchaseLabel.addGestureRecognizer(goToInternetTap)
+        itemPurchaseLabel.isUserInteractionEnabled = true
+    }
+    
+    @objc func goToWebsite(_ tapGesture: UITapGestureRecognizer) {
         
+        if let url = URL(string: "https://" + wardrobeItem.storeName!) {
+            if UIApplication.shared.canOpenURL(url) {
+                let alertController = UIAlertController(title: "Leave Virtual Wardrobe?", message: "URL's safety is unknown. Would you like to open Safari?", preferredStyle: .actionSheet)
+                let confirmAction = UIAlertAction(title: "Yes", style: .default, handler: {(alert) in
+                    
+                    UIApplication.shared.open(url)
+                })
+                let denyAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+                alertController.addAction(confirmAction)
+                alertController.addAction(denyAction)
+                
+                self.present(alertController, animated: true, completion: nil)
+            } else {
+                googleSearch()
+            }
+        } else {
+            googleSearch()
+        }
+    }
+    
+    func googleSearch() {
+        let alertController = UIAlertController(title: "Invalid URL/No application available to open URL", message: "Would you like to perform a Google search instead?", preferredStyle: .actionSheet)
+        let confirmAction = UIAlertAction(title: "Yes", style: .default, handler: {(alert) in
+            
+            let googleSearch = "https://www.google.com/search?q=" + self.wardrobeItem.storeName!.replacingOccurrences(of: " ", with: "+")
+            if let url = URL(string: googleSearch) {
+                guard UIApplication.shared.canOpenURL(url) else { return }
+                UIApplication.shared.open(url)
+            }
+        })
+        let denyAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        alertController.addAction(confirmAction)
+        alertController.addAction(denyAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     
     @IBAction func unwindToDetail(_ segue: UIStoryboardSegue) {
