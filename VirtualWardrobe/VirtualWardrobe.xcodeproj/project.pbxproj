@@ -39,6 +39,7 @@
 		2EF6010D23A57AA700F90D6B /* AddItemToOutfitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6010C23A57AA700F90D6B /* AddItemToOutfitTableViewCell.swift */; };
 		2EF6010F23A59F2600F90D6B /* OutfitItemTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6010E23A59F2500F90D6B /* OutfitItemTypeTableViewController.swift */; };
 		2EF6011223A5B04900F90D6B /* OutfitWardrobeItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF6011123A5B04900F90D6B /* OutfitWardrobeItemTableViewController.swift */; };
+		2EFB428B23DE41F500FF5FAC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFB428A23DE41F500FF5FAC /* SceneDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +110,7 @@
 		2EF6010C23A57AA700F90D6B /* AddItemToOutfitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemToOutfitTableViewCell.swift; sourceTree = "<group>"; };
 		2EF6010E23A59F2500F90D6B /* OutfitItemTypeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitItemTypeTableViewController.swift; sourceTree = "<group>"; };
 		2EF6011123A5B04900F90D6B /* OutfitWardrobeItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutfitWardrobeItemTableViewController.swift; sourceTree = "<group>"; };
+		2EFB428A23DE41F500FF5FAC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		6F0EF6E13C6F043BED4DFAC6 /* Pods_VirtualWardrobe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VirtualWardrobe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC0CCA8CA8561AE965D61A80 /* Pods-VirtualWardrobe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VirtualWardrobe.release.xcconfig"; path = "Target Support Files/Pods-VirtualWardrobe/Pods-VirtualWardrobe.release.xcconfig"; sourceTree = "<group>"; };
 		C243960B105034C1D1E248C8 /* Pods-VirtualWardrobe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VirtualWardrobe.debug.xcconfig"; path = "Target Support Files/Pods-VirtualWardrobe/Pods-VirtualWardrobe.debug.xcconfig"; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				2E7DFBCA23694B4D0038CE99 /* AppDelegate.swift */,
+				2EFB428A23DE41F500FF5FAC /* SceneDelegate.swift */,
 			);
 			name = Delegate;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				2EF2A03F238B64E7009D5EE4 /* SubTypeTableViewController.swift in Sources */,
 				2E58828523A6971E001A59F5 /* Date+timePeriod.swift in Sources */,
 				2E58828723A71A3B001A59F5 /* ItemDetailViewController.swift in Sources */,
+				2EFB428B23DE41F500FF5FAC /* SceneDelegate.swift in Sources */,
 				2EDA5155239F00F600DE3DD3 /* TrendsViewController.swift in Sources */,
 				2E7DFBF4236A827D0038CE99 /* WardrobeModel.swift in Sources */,
 				2EAEDA892398B91C00293AA8 /* UILabel+name.swift in Sources */,
