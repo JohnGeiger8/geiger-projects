@@ -39,7 +39,7 @@ class SnakeWindow(QMainWindow):
 class SnakeFrame(QFrame):
     """ Game frame where events occur and snake moves """
     
-    gameLoopTime = 100
+    gameLoopTime = 80
     squareSize = 10
     gameHeight = 50
     gameWidth = 50
@@ -58,6 +58,8 @@ class SnakeFrame(QFrame):
         
         self.snake.setBodyPositions(self.initialSnakePosition)
         
+        self.setFocusPolicy(Qt.StrongFocus)
+        
         self.setStyleSheet("background-color:black")
         
 
@@ -71,8 +73,24 @@ class SnakeFrame(QFrame):
         """ Moves snake every time timer times out """
         
         self.snake.move()
+        self.update() 
 
 
+    def keyPressEvent(self, event):
+        """ Handles key inputs """
+        
+        keyPressed = event.key()
+        
+        if keyPressed == Qt.Key_Left:
+            self.snake.direction = Direction.Left
+        elif keyPressed == Qt.Key_Right:
+            self.snake.direction = Direction.Right
+        elif keyPressed == Qt.Key_Up:
+            self.snake.direction = Direction.Up
+        elif keyPressed == Qt.Key_Down:
+            self.snake.direction = Direction.Down
+            
+            
     def paintEvent(self, event):
         
         painter = QPainter(self)
