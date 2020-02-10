@@ -10,7 +10,7 @@ Snake GUI
 """
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFrame
-from PyQt5.QtCore import Qt, QTimer, pyqtSignal
+from PyQt5.QtCore import Qt, QCoreApplication, QTimer, pyqtSignal
 from PyQt5.QtGui import QPainter, QColor, QPen, QBrush
 from SnakeModel import Snake, Direction
 
@@ -120,7 +120,9 @@ class SnakeFrame(QFrame):
             painter.drawRect(x, y, self.squareSize, self.squareSize)
 
 if __name__ == '__main__':
-    
-    app = QApplication(sys.argv)
+    if QCoreApplication.instance() != None:
+        app = QCoreApplication.instance()
+    else:
+        app = QApplication(sys.argv)
     window = SnakeWindow()
     app.exec_()
