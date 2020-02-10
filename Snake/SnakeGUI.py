@@ -39,10 +39,10 @@ class SnakeWindow(QMainWindow):
 class SnakeFrame(QFrame):
     """ Game frame where events occur and snake moves """
     
-    gameLoopTime = 80
-    squareSize = 10
-    gameHeight = 50
-    gameWidth = 50
+    gameLoopTime = 60
+    squareSize = 5
+    gameHeight = 80
+    gameWidth = 80
     initialSnakePosition = [(25,22), (25,23), (25,24), (25,25)]
     
     def __init__(self):
@@ -81,13 +81,13 @@ class SnakeFrame(QFrame):
         
         keyPressed = event.key()
         
-        if keyPressed == Qt.Key_Left:
+        if keyPressed == Qt.Key_Left and self.snake.direction != Direction.Right:
             self.snake.direction = Direction.Left
-        elif keyPressed == Qt.Key_Right:
+        elif keyPressed == Qt.Key_Right and self.snake.direction != Direction.Left:
             self.snake.direction = Direction.Right
-        elif keyPressed == Qt.Key_Up:
+        elif keyPressed == Qt.Key_Up and self.snake.direction != Direction.Down:
             self.snake.direction = Direction.Up
-        elif keyPressed == Qt.Key_Down:
+        elif keyPressed == Qt.Key_Down and self.snake.direction != Direction.Up:
             self.snake.direction = Direction.Down
             
             
