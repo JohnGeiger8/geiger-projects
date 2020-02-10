@@ -10,7 +10,7 @@ Snake GUI
 """
 import sys, random
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFrame
-from PyQt5.QtCore import Qt, QCoreApplication, QTimer, pyqtSignal
+from PyQt5.QtCore import Qt, QCoreApplication, QTimer
 from PyQt5.QtGui import QPainter, QColor, QPen, QBrush
 from SnakeModel import Snake, Direction
 
@@ -39,7 +39,7 @@ class SnakeFrame(QFrame):
     """ Game frame where events occur and snake moves """
     
     gameLoopTime = 60
-    squareSize = 5
+    squareSize = 8
     gameHeight = 80
     gameWidth = 80
     
@@ -79,11 +79,24 @@ class SnakeFrame(QFrame):
         self.snake.move()
         self.update() 
         
-        if self.snake.headPosition() == self.foodPosition:
+        snakeHead = self.snake.headPosition()
+        
+        if snakeHead == self.foodPosition:
             self.snake.eat()
             self.createNewFood()
             
+        # Check that snake isn't running into self
+        elif snakeHead in self.snake.bodyPositions[:-1]:
+            self.gameTimer.stop()
+            self.gameOver()
 
+        # Check that snake isn't running into the wall
+        elif snakeHead[0] not in range(0, self.gameWidth) or snakeHead[1] not in range(0, self.gameHeight):
+            self.gameTimer.stop()
+            self.gameOver()
+        
+        
+        
     def createNewFood(self):
         """ Creates new food square at random spot not on top of snake """
                 
@@ -146,6 +159,12 @@ class SnakeFrame(QFrame):
         y = self.foodPosition[1] * self.squareSize
         
         painter.drawRect(x, y, self.squareSize, self.squareSize)
+        
+        
+    def gameOver(self):
+        print("Game Over")
+        
+        
 
 if __name__ == '__main__':
     if QCoreApplication.instance() != None:
