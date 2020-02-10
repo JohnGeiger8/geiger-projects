@@ -9,10 +9,10 @@ Snake Model
 
 class Direction:
     
-    Left = -1
-    Up = -1
-    Right = 1
-    Down = 1
+    Left = 0
+    Up = 1
+    Right = 2
+    Down = 3
 
 class Snake:
     
@@ -38,8 +38,9 @@ class Snake:
         if self.direction == Direction.Left or self.direction == Direction.Right:
             """ Horizontal move """
             
-            # New position changes the column by 1 or -1 for right or left movement
-            newPosition = (headPosition[0], headPosition[1] + self.direction)
+            # New position changes the x value by 1 or -1 for right or left movement
+            directionValue = 1 if self.direction == Direction.Right else -1
+            newPosition = (headPosition[0] + directionValue, headPosition[1])
             
             self.bodyPositions.append(newPosition)
             
@@ -47,8 +48,9 @@ class Snake:
         elif self.direction == Direction.Up or self.direction == Direction.Down:
             """ Vertical move """
             
-            # New position changes the row by 1 or -1 for down or up movement
-            newPosition = (headPosition[0] + self.direction, headPosition[1])
+            # New position changes the y value by 1 or -1 for down or up movement
+            directionValue = 1 if self.direction == Direction.Down else -1
+            newPosition = (headPosition[0], headPosition[1] + directionValue)
             
             self.bodyPositions.append(newPosition)
 
