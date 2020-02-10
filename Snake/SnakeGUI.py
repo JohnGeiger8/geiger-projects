@@ -8,12 +8,11 @@ Created on Sat Feb  8 15:32:20 2020
 Snake GUI
 
 """
-import sys
+import sys, random
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFrame
 from PyQt5.QtCore import Qt, QCoreApplication, QTimer, pyqtSignal
 from PyQt5.QtGui import QPainter, QColor, QPen, QBrush
 from SnakeModel import Snake, Direction
-
 
 class SnakeWindow(QMainWindow):
     """ Main window that starts the game """
@@ -43,7 +42,6 @@ class SnakeFrame(QFrame):
     squareSize = 5
     gameHeight = 80
     gameWidth = 80
-    initialSnakePosition = [(25,22), (25,23), (25,24), (25,25)]
     
     def __init__(self):
         
@@ -56,10 +54,16 @@ class SnakeFrame(QFrame):
         self.gameTimer = QTimer()
         self.snake = Snake()
         
+        # Set snake's initial body positions and direction
+        xPosition = self.gameWidth // 4
+        yPosition = self.gameHeight // 2
+        self.initialSnakePosition = [(i,yPosition) for i in range(xPosition-3, xPosition+1)]
         self.snake.setBodyPositions(self.initialSnakePosition)
+        self.snake.direction = Direction.Right
+        
+        self.foodPosition = (self.gameWidth // 1.33, self.gameHeight // 2)
         
         self.setFocusPolicy(Qt.StrongFocus)
-        
         self.setStyleSheet("background-color:black")
         
 
@@ -74,7 +78,25 @@ class SnakeFrame(QFrame):
         
         self.snake.move()
         self.update() 
+        
+        if self.snake.headPosition() == self.foodPosition:
+            self.snake.eat()
+            self.createNewFood()
+            
 
+    def createNewFood(self):
+        """ Creates new food square at random spot not on top of snake """
+                
+        while True:
+            newX = random.randint(0, self.gameWidth-1)
+            newY = random.randint(0, self.gameHeight-1)
+            newPosition = (newX, newY)
+            
+            if newPosition not in self.snake.bodyPositions:
+                break
+        
+        self.foodPosition = newPosition
+        
 
     def keyPressEvent(self, event):
         """ Handles key inputs """
@@ -94,10 +116,10 @@ class SnakeFrame(QFrame):
     def paintEvent(self, event):
         
         painter = QPainter(self)
-        self.drawSnake(event, painter)
+        self.drawSnakeAndFood(event, painter)
         
         
-    def drawSnake(self, event, painter):
+    def drawSnakeAndFood(self, event, painter):
         """ Draws the snake """
         
         pen = QPen()
@@ -118,6 +140,12 @@ class SnakeFrame(QFrame):
             y = bodySquare[1] * self.squareSize
             
             painter.drawRect(x, y, self.squareSize, self.squareSize)
+
+        # Draw food
+        x = self.foodPosition[0] * self.squareSize
+        y = self.foodPosition[1] * self.squareSize
+        
+        painter.drawRect(x, y, self.squareSize, self.squareSize)
 
 if __name__ == '__main__':
     if QCoreApplication.instance() != None:
