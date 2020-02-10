@@ -17,7 +17,8 @@ class Direction:
 class Snake:
     
     bodyPositions = []
-    direction = Direction.Down
+    direction = Direction.Right
+    isEating = False
     
     def __init__(self):
         
@@ -29,9 +30,18 @@ class Snake:
         self.bodyPositions = positions
         
         
+    def headPosition(self):
+        
+        return self.bodyPositions[len(self.bodyPositions) - 1]
+    
+        
     def move(self):
         
-        self.bodyPositions.pop(0)
+        # Allow snake to get longer if it's eating
+        if self.isEating == True:
+            self.isEating = False # Snake only eats for 1 move
+        else:
+            self.bodyPositions.pop(0) # Snake stays same size
 
         headPosition = self.bodyPositions[len(self.bodyPositions) - 1]
 
@@ -53,5 +63,7 @@ class Snake:
             newPosition = (headPosition[0], headPosition[1] + directionValue)
             
             self.bodyPositions.append(newPosition)
-
-                
+            
+    def eat(self):
+        
+        self.isEating = True
