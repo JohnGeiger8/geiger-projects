@@ -67,3 +67,10 @@ class Snake:
     def eat(self):
         
         self.isEating = True
+        
+
+class GameState:
+    
+    NotStarted = 0
+    GameOver = 1
+    Running = 2
