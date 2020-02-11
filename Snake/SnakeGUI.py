@@ -84,9 +84,16 @@ class SnakeFrame(QFrame):
         
         snakeHead = self.snake.headPosition()
         
+        # Check if snake is on food
         if snakeHead == self.foodPosition:
             self.snake.eat()
             self.createNewFood()
+            
+            # Check if user filled the entire screen (and thus won)
+            if len(self.snake.bodyPositions) == self.gameWidth * self.gameHeight - 1:
+                self.gameTimer.stop()
+                self.gameState = GameState.GameWon
+                self.update()
             
         # Check that snake isn't running into self
         elif snakeHead in self.snake.bodyPositions[:-1]:
@@ -99,7 +106,6 @@ class SnakeFrame(QFrame):
             self.gameTimer.stop()
             self.gameState = GameState.GameOver
             self.update()
-        
         
         
     def createNewFood(self):
@@ -144,6 +150,8 @@ class SnakeFrame(QFrame):
             self.drawGameStart(event, painter)
         elif self.gameState == GameState.GameOver:
             self.drawGameOver(event, painter)
+        elif self.gameState == GameState.GameWon:
+            self.drawGameWon(event, painter)
         
         self.drawSnakeAndFood(event, painter)
         
@@ -151,17 +159,9 @@ class SnakeFrame(QFrame):
     def drawGameStart(self, event, painter):
         """ Draw Game Start message """
         
-        font = QFont("Courier", 30, QFont.Bold)
-        painter.setFont(font)
-        painter.setPen(Qt.white)
-
-        painter.drawText(0, self.squareSize * self.gameHeight // 4 - 40, 
-                         self.squareSize * self.gameWidth, 40, Qt.AlignCenter, "SNAKE")
-        
-        font.setPointSize(18)
-        painter.setFont(font)
-        painter.drawText(0, self.squareSize * self.gameHeight // 4, 
-                         self.squareSize * self.gameWidth, 30, Qt.AlignCenter, "Press the spacebar to start")
+        title = "SNAKE"
+        subTitle = "Press the spacebar to start"
+        self.drawTitleMessages(title, subTitle, painter)
         
         
     def drawSnakeAndFood(self, event, painter):
@@ -196,19 +196,35 @@ class SnakeFrame(QFrame):
     def drawGameOver(self, event, painter):
         """ Draw Game Over message """
         
+        title = "GAME OVER"
+        subTitle = "Press the spacebar to restart"
+        self.drawTitleMessages(title, subTitle, painter)
+        
+        
+    def drawGameWon(self, event, painter):
+        """ Draw Game Won message """
+        
+        title = "YOU WON! CONGRATULATIONS"
+        subTitle = "Press the spacebar to play again"
+        self.drawTitleMessages(title, subTitle, painter)
+
+        
+    def drawTitleMessages(self, title, subTitle, painter):
+        """ Draw title and subTitle with a certain style """
+                
         font = QFont("Courier", 30, QFont.Bold)
         painter.setFont(font)
         painter.setPen(Qt.white)
 
-        painter.drawText(0, self.squareSize * self.gameHeight // 2 - 40, 
-                         self.squareSize * self.gameWidth, 40, Qt.AlignCenter, "GAME OVER")
+        painter.drawText(0, self.squareSize * self.gameHeight // 3 - 40, 
+                         self.squareSize * self.gameWidth, 40, Qt.AlignCenter, title)
         
         font.setPointSize(18)
         painter.setFont(font)
-        painter.drawText(0, self.squareSize * self.gameHeight // 2, 
-                         self.squareSize * self.gameWidth, 30, Qt.AlignCenter, "Press the spacebar to restart")
+        painter.drawText(0, self.squareSize * self.gameHeight // 3, 
+                         self.squareSize * self.gameWidth, 30, Qt.AlignCenter, subTitle)
         
-    
+        
         
 if __name__ == '__main__':
     if QCoreApplication.instance() != None:
