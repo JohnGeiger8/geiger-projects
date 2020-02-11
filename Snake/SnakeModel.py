@@ -74,3 +74,4 @@ class GameState:
     NotStarted = 0
     GameOver = 1
     Running = 2
+    GameWon = 3
