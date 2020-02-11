@@ -8,11 +8,13 @@ Created on Sat Feb  8 15:32:20 2020
 Snake GUI
 
 """
+
 import sys, random
-from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFrame
+from PyQt5.QtWidgets import QApplication, QMainWindow, QFrame
 from PyQt5.QtCore import Qt, QCoreApplication, QTimer, QPoint
 from PyQt5.QtGui import QPainter, QColor, QPen, QBrush, QFont
-from SnakeModel import Snake, Direction
+from SnakeModel import Snake, Direction, GameState
+
 
 class SnakeWindow(QMainWindow):
     """ Main window that starts the game """
@@ -25,7 +27,6 @@ class SnakeWindow(QMainWindow):
     def initGame(self):
         
         self.gameFrame = SnakeFrame()
-        self.gameFrame.startGame()
         
         self.setCentralWidget(self.gameFrame)
                 
@@ -38,7 +39,7 @@ class SnakeWindow(QMainWindow):
 class SnakeFrame(QFrame):
     """ Game frame where events occur and snake moves """
     
-    isGameOver = False
+    gameState = GameState.NotStarted
     gameLoopTime = 60
     squareSize = 8
     gameHeight = 80
@@ -70,6 +71,7 @@ class SnakeFrame(QFrame):
 
     def startGame(self):
         
+        self.gameState = GameState.Running
         self.gameTimer.timeout.connect(self.moveSnake)
         self.gameTimer.start(self.gameLoopTime)
        
@@ -89,13 +91,13 @@ class SnakeFrame(QFrame):
         # Check that snake isn't running into self
         elif snakeHead in self.snake.bodyPositions[:-1]:
             self.gameTimer.stop()
-            self.isGameOver = True
+            self.gameState = GameState.GameOver
             self.update()
 
         # Check that snake isn't running into the wall
         elif snakeHead[0] not in range(0, self.gameWidth) or snakeHead[1] not in range(0, self.gameHeight):
             self.gameTimer.stop()
-            self.isGameOver = True
+            self.gameState = GameState.GameOver
             self.update()
         
         
@@ -127,9 +129,9 @@ class SnakeFrame(QFrame):
             self.snake.direction = Direction.Up
         elif keyPressed == Qt.Key_Down and self.snake.direction != Direction.Up:
             self.snake.direction = Direction.Down
-        # Restart game
-        elif keyPressed == Qt.Key_Space and self.isGameOver == True:
-            self.isGameOver = False
+        # Start/Restart game
+        elif keyPressed == Qt.Key_Space and self.gameState != GameState.Running:
+            self.gameState = GameState.Running
             self.initFrame()
             self.startGame()
             
@@ -138,14 +140,32 @@ class SnakeFrame(QFrame):
         
         painter = QPainter(self)
         
-        if self.isGameOver:
+        if self.gameState == GameState.NotStarted:
+            self.drawGameStart(event, painter)
+        elif self.gameState == GameState.GameOver:
             self.drawGameOver(event, painter)
         
         self.drawSnakeAndFood(event, painter)
         
+    
+    def drawGameStart(self, event, painter):
+        """ Draw Game Start message """
+        
+        font = QFont("Courier", 30, QFont.Bold)
+        painter.setFont(font)
+        painter.setPen(Qt.white)
+
+        painter.drawText(0, self.squareSize * self.gameHeight // 4 - 40, 
+                         self.squareSize * self.gameWidth, 40, Qt.AlignCenter, "SNAKE")
+        
+        font.setPointSize(18)
+        painter.setFont(font)
+        painter.drawText(0, self.squareSize * self.gameHeight // 4, 
+                         self.squareSize * self.gameWidth, 30, Qt.AlignCenter, "Press the spacebar to start")
+        
         
     def drawSnakeAndFood(self, event, painter):
-        """ Draws the snake """
+        """ Draws the snake and food"""
         
         pen = QPen()
         pen.setWidth(1)
@@ -158,8 +178,8 @@ class SnakeFrame(QFrame):
         painter.setPen(pen)
         painter.setBrush(brush)
         
+        # Draw each individual square of snake 
         for bodySquare in self.snake.bodyPositions:
-            """ Draw each individual square of snake """
             
             x = bodySquare[0] * self.squareSize
             y = bodySquare[1] * self.squareSize
@@ -180,11 +200,16 @@ class SnakeFrame(QFrame):
         painter.setFont(font)
         painter.setPen(Qt.white)
 
-                
         painter.drawText(0, self.squareSize * self.gameHeight // 2 - 40, 
-                         self.squareSize * self.gameWidth, 50, Qt.AlignCenter, "GAME OVER")
+                         self.squareSize * self.gameWidth, 40, Qt.AlignCenter, "GAME OVER")
         
-
+        font.setPointSize(18)
+        painter.setFont(font)
+        painter.drawText(0, self.squareSize * self.gameHeight // 2, 
+                         self.squareSize * self.gameWidth, 30, Qt.AlignCenter, "Press the spacebar to restart")
+        
+    
+        
 if __name__ == '__main__':
     if QCoreApplication.instance() != None:
         app = QCoreApplication.instance()
