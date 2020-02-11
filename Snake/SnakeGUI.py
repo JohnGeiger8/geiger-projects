@@ -10,8 +10,8 @@ Snake GUI
 """
 import sys, random
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QFrame
-from PyQt5.QtCore import Qt, QCoreApplication, QTimer
-from PyQt5.QtGui import QPainter, QColor, QPen, QBrush
+from PyQt5.QtCore import Qt, QCoreApplication, QTimer, QPoint
+from PyQt5.QtGui import QPainter, QColor, QPen, QBrush, QFont
 from SnakeModel import Snake, Direction
 
 class SnakeWindow(QMainWindow):
@@ -38,6 +38,7 @@ class SnakeWindow(QMainWindow):
 class SnakeFrame(QFrame):
     """ Game frame where events occur and snake moves """
     
+    isGameOver = False
     gameLoopTime = 60
     squareSize = 8
     gameHeight = 80
@@ -88,12 +89,14 @@ class SnakeFrame(QFrame):
         # Check that snake isn't running into self
         elif snakeHead in self.snake.bodyPositions[:-1]:
             self.gameTimer.stop()
-            self.gameOver()
+            self.isGameOver = True
+            self.update()
 
         # Check that snake isn't running into the wall
         elif snakeHead[0] not in range(0, self.gameWidth) or snakeHead[1] not in range(0, self.gameHeight):
             self.gameTimer.stop()
-            self.gameOver()
+            self.isGameOver = True
+            self.update()
         
         
         
@@ -124,11 +127,20 @@ class SnakeFrame(QFrame):
             self.snake.direction = Direction.Up
         elif keyPressed == Qt.Key_Down and self.snake.direction != Direction.Up:
             self.snake.direction = Direction.Down
+        # Restart game
+        elif keyPressed == Qt.Key_Space and self.isGameOver == True:
+            self.isGameOver = False
+            self.initFrame()
+            self.startGame()
             
             
     def paintEvent(self, event):
         
         painter = QPainter(self)
+        
+        if self.isGameOver:
+            self.drawGameOver(event, painter)
+        
         self.drawSnakeAndFood(event, painter)
         
         
@@ -161,9 +173,16 @@ class SnakeFrame(QFrame):
         painter.drawRect(x, y, self.squareSize, self.squareSize)
         
         
-    def gameOver(self):
-        print("Game Over")
+    def drawGameOver(self, event, painter):
+        """ Draw Game Over message """
         
+        font = QFont("Courier", 30, QFont.Bold)
+        painter.setFont(font)
+        painter.setPen(Qt.white)
+
+                
+        painter.drawText(0, self.squareSize * self.gameHeight // 2 - 40, 
+                         self.squareSize * self.gameWidth, 50, Qt.AlignCenter, "GAME OVER")
         
 
 if __name__ == '__main__':
