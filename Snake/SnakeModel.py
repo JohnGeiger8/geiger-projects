@@ -1,22 +1,28 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 Created on Sat Feb 8 2020
 
 @author: JohnGeiger
 
-Snake Model
+Snake Clone Model
 
 """
-
+ 
 class Direction:
+    """ Enumeration of different directions Snake can go in """
     
     Left = 0
     Up = 1
     Right = 2
     Down = 3
 
+
+
 class Snake:
+    """ Model of Snake used in game """
     
-    bodyPositions = []
+    bodyPositions = [] 
     direction = Direction.Right
     isEating = False
     
@@ -64,12 +70,14 @@ class Snake:
             
             self.bodyPositions.append(newPosition)
             
+            
     def eat(self):
-        
         self.isEating = True
-        
+
+
 
 class GameState:
+    """ Possible game states that Snake clone can be in """
     
     NotStarted = 0
     GameOver = 1
