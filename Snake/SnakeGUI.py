@@ -5,14 +5,14 @@ Created on Sat Feb  8 15:32:20 2020
 
 @author: JohnGeiger
 
-Snake GUI
+Snake Clone GUI
 
 """
 
-import sys, random
-from PyQt5.QtWidgets import QApplication, QMainWindow, QFrame
-from PyQt5.QtCore import Qt, QCoreApplication, QTimer, QPoint
-from PyQt5.QtGui import QPainter, QColor, QPen, QBrush, QFont
+import random
+from PyQt5.QtWidgets import QMainWindow, QFrame
+from PyQt5.QtCore import Qt, QTimer
+from PyQt5.QtGui import QPainter, QPen, QBrush, QFont
 from SnakeModel import Snake, Direction, GameState
 
 
@@ -30,20 +30,21 @@ class SnakeWindow(QMainWindow):
         
         self.setCentralWidget(self.gameFrame)
                 
-        self.setGeometry(300, 150, self.gameFrame.gameWidth * 
-                         self.gameFrame.squareSize, self.gameFrame.gameHeight * self.gameFrame.squareSize)
+        self.setGeometry(300, 50, self.gameFrame.gameWidth * self.gameFrame.squareSize, 
+                         self.gameFrame.gameHeight * self.gameFrame.squareSize)
         self.setWindowTitle('Snake')    
         self.show()
         
         
 class SnakeFrame(QFrame):
-    """ Game frame where events occur and snake moves """
+    """ Game frame where events occur, drawing happens, and game loop runs """
     
     gameState = GameState.NotStarted
-    gameLoopTime = 60
-    squareSize = 8
-    gameHeight = 80
-    gameWidth = 80
+    gameLoopTime = 70
+    squareSize = 12
+    gameHeight = 50
+    gameWidth = 60
+    isDirectionChanging = False # Makes sure user can't make 2 quick moves in a row
     
     def __init__(self):
         
@@ -81,6 +82,8 @@ class SnakeFrame(QFrame):
         
         self.snake.move()
         self.update() 
+        
+        self.isDirectionChanging = False
         
         snakeHead = self.snake.headPosition()
         
@@ -126,15 +129,19 @@ class SnakeFrame(QFrame):
         """ Handles key inputs """
         
         keyPressed = event.key()
-        
-        if keyPressed == Qt.Key_Left and self.snake.direction != Direction.Right:
-            self.snake.direction = Direction.Left
-        elif keyPressed == Qt.Key_Right and self.snake.direction != Direction.Left:
-            self.snake.direction = Direction.Right
-        elif keyPressed == Qt.Key_Up and self.snake.direction != Direction.Down:
-            self.snake.direction = Direction.Up
-        elif keyPressed == Qt.Key_Down and self.snake.direction != Direction.Up:
-            self.snake.direction = Direction.Down
+           
+        if self.isDirectionChanging == False:
+            if keyPressed == Qt.Key_Left and self.snake.direction != Direction.Right:
+                self.snake.direction = Direction.Left
+            elif keyPressed == Qt.Key_Right and self.snake.direction != Direction.Left:
+                self.snake.direction = Direction.Right
+            elif keyPressed == Qt.Key_Up and self.snake.direction != Direction.Down:
+                self.snake.direction = Direction.Up
+            elif keyPressed == Qt.Key_Down and self.snake.direction != Direction.Up:
+                self.snake.direction = Direction.Down
+            
+            self.isDirectionChanging = True
+            
         # Start/Restart game
         elif keyPressed == Qt.Key_Space and self.gameState != GameState.Running:
             self.gameState = GameState.Running
@@ -143,8 +150,11 @@ class SnakeFrame(QFrame):
             
             
     def paintEvent(self, event):
+        """ Handles all drawing whenever update() is called """
         
         painter = QPainter(self)
+        
+        self.drawSnakeAndFood(event, painter)
         
         if self.gameState == GameState.NotStarted:
             self.drawGameStart(event, painter)
@@ -152,9 +162,7 @@ class SnakeFrame(QFrame):
             self.drawGameOver(event, painter)
         elif self.gameState == GameState.GameWon:
             self.drawGameWon(event, painter)
-        
-        self.drawSnakeAndFood(event, painter)
-        
+                
     
     def drawGameStart(self, event, painter):
         """ Draw Game Start message """
@@ -214,7 +222,7 @@ class SnakeFrame(QFrame):
                 
         font = QFont("Courier", 30, QFont.Bold)
         painter.setFont(font)
-        painter.setPen(Qt.white)
+        painter.setPen(Qt.green)
 
         painter.drawText(0, self.squareSize * self.gameHeight // 3 - 40, 
                          self.squareSize * self.gameWidth, 40, Qt.AlignCenter, title)
@@ -224,12 +232,3 @@ class SnakeFrame(QFrame):
         painter.drawText(0, self.squareSize * self.gameHeight // 3, 
                          self.squareSize * self.gameWidth, 30, Qt.AlignCenter, subTitle)
         
-        
-        
-if __name__ == '__main__':
-    if QCoreApplication.instance() != None:
-        app = QCoreApplication.instance()
-    else:
-        app = QApplication(sys.argv)
-    window = SnakeWindow()
-    app.exec_()
