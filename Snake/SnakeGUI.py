@@ -32,7 +32,8 @@ class SnakeWindow(QMainWindow):
                 
         self.setGeometry(300, 50, self.gameFrame.gameWidth * self.gameFrame.squareSize, 
                          self.gameFrame.gameHeight * self.gameFrame.squareSize)
-        self.setWindowTitle('Snake')    
+        self.setWindowTitle('Snake')
+        self.setFixedSize(self.size())
         self.show()
         
         
@@ -42,8 +43,8 @@ class SnakeFrame(QFrame):
     gameState = GameState.NotStarted
     gameLoopTime = 70
     squareSize = 12
-    gameHeight = 50
-    gameWidth = 60
+    gameHeight = 40
+    gameWidth = 40
     isDirectionChanging = False # Makes sure user can't make 2 quick moves in a row
     
     def __init__(self):
