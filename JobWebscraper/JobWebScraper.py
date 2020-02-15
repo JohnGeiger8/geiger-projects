@@ -10,6 +10,7 @@ Web Scraper for finding job listings
 """
 
 import requests
+import os
 from bs4 import BeautifulSoup
 
 
@@ -25,26 +26,39 @@ def retrieve_LinkedIn_Jobs(jobDescription, jobLocation="United States"):
     # Create a Beautiful Soup variable that we'll use to parse the request
     soupParser = BeautifulSoup(linkedInRequest.content, "html.parser")
 
-    titlesAndCompanies = soupParser.findAll("a")
-    jobs = []
+    jobs = [] 
     companies = []
+    locations = []
+    
+    # Parse through the HTML results to get all the job items
+    resultsParameters = {"class": ["results__container", 
+                                   "results__container--two-pane"]}
+    resultsContainer = soupParser.find("div", resultsParameters)
+    
+    jobItemParameters = {"class": ["result-card", "job-result-card", 
+                                   "result-card--with-hover-state"]}
+    jobItems = resultsContainer.findAll("li", jobItemParameters)
 
-    for item in titlesAndCompanies:
+    # Retrieve desired information from each job item
+    for jobItem in jobItems:
+        
+        jobTitle = jobItem.find("a", {"class":["result-card__full-card-link"]})
+        company = jobItem.find("h4", {"class":["result-card__subtitle",
+                                               "job-result-card__subtitle"]})
+        location = jobItem.find("span", 
+                                   {"class":["job-result-card__location"]})
+        
+        jobs.append(jobTitle.text)
+        companies.append(company.text)
+        locations.append(location.text)
 
-        for classItem in item.get("class"):
-            if classItem == "result-card__full-card-link":
-                jobs.append(item)
-                break
-            elif classItem == "result-card__subtitle-link":
-                companies.append(item)
-                break
-
-    return (jobs, companies)
+    return (jobs, companies, locations)
 
 
-jobs, companies = retrieve_LinkedIn_Jobs("Software engineer",
-                                         jobLocation="Madison Wisconsin United States")
+jobs, companies, locations = retrieve_LinkedIn_Jobs(
+        jobDescription="Software engineer",
+        jobLocation="Madison, Wisconsin, United States")
 
 print("Jobs:")
-for job, company in zip(jobs, companies):
-    print(job.text, "with", company.text)
+for job, company, location in zip(jobs, companies, locations):
+    print(job, "with", company, "in", location)
