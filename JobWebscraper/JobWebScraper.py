@@ -7,6 +7,9 @@ Created on Thu Feb 13 17:16:30 2020
 
 Web Scraper for finding job listings
 
+TO DO:
+    - Add job link
+    -
 """
 
 import requests
@@ -26,39 +29,44 @@ def retrieve_LinkedIn_Jobs(jobDescription, jobLocation="United States"):
     # Create a Beautiful Soup variable that we'll use to parse the request
     soupParser = BeautifulSoup(linkedInRequest.content, "html.parser")
 
-    jobs = [] 
+    jobs = []
+    jobLinks = []
     companies = []
     locations = []
-    
+
     # Parse through the HTML results to get all the job items
-    resultsParameters = {"class": ["results__container", 
+    resultsParameters = {"class": ["results__container",
                                    "results__container--two-pane"]}
     resultsContainer = soupParser.find("div", resultsParameters)
-    
-    jobItemParameters = {"class": ["result-card", "job-result-card", 
+
+    jobItemParameters = {"class": ["result-card", "job-result-card",
                                    "result-card--with-hover-state"]}
     jobItems = resultsContainer.findAll("li", jobItemParameters)
 
     # Retrieve desired information from each job item
     for jobItem in jobItems:
-        
-        jobTitle = jobItem.find("a", {"class":["result-card__full-card-link"]})
+
+        jobLink = jobItem.find("a", {"class":["result-card__full-card-link"]})
         company = jobItem.find("h4", {"class":["result-card__subtitle",
                                                "job-result-card__subtitle"]})
         location = jobItem.find("span", 
                                    {"class":["job-result-card__location"]})
-        
-        jobs.append(jobTitle.text)
+
+        jobs.append(jobLink.text)
+        jobLinks.append(jobLink.get("href"))
         companies.append(company.text)
         locations.append(location.text)
 
-    return (jobs, companies, locations)
+    return (jobs, jobLinks, companies, locations)
 
 
-jobs, companies, locations = retrieve_LinkedIn_Jobs(
+
+
+
+jobs, jobLinks, companies, locations = retrieve_LinkedIn_Jobs(
         jobDescription="Software engineer",
         jobLocation="Madison, Wisconsin, United States")
 
 print("Jobs:")
-for job, company, location in zip(jobs, companies, locations):
-    print(job, "with", company, "in", location)
+for job, link, company, location in zip(jobs, jobLinks, companies, locations):
+    print(job, "with", company, "in", location, ".  Apply at", link, "\n")
