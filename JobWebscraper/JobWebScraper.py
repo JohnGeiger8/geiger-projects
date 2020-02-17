@@ -92,7 +92,7 @@ class JobWebScraper:
         """ Get Indeed search results from the BeatifulSoup object """
 
         # Items that will be returned
-        jobs, jobLinks, companies, locations = [], [], [], []
+        jobs, companies, locations = [], [], []
 
         # Parse through the HTML results to get all the job items
         results = soupParser.find("table", id="resultsBody")
@@ -106,11 +106,10 @@ class JobWebScraper:
 
             jobLink = jobItem.find("a", {"class": ["jobtitle", "turnstileLink"]})
             company = jobItem.find("span", {"class": ["company"]})
-            location = jobItem.find("div", {"class": ["location"]})
+            location = jobItem.find("div", {"class": ["recJobLoc"]})
 
             jobs.append(jobLink.text)
-            jobLinks.append(jobLink.get("href"))
             companies.append(company.text[1:]) # Skip newline at front of string
             locations.append(location.get("data-rc-loc")) 
 
-        return (jobs, jobLinks, companies, locations)
+        return (jobs, companies, locations)
