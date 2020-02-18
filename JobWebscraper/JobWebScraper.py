@@ -50,10 +50,16 @@ class JobWebScraper:
         # Create a Beautiful Soup variable that we'll use to parse the request
         soupParser = BeautifulSoup(request.content, "html.parser")
 
-        if self.jobSite == "LinkedIn":
-            return self.retrieve_LinkedIn_jobs(soupParser)
-        elif self.jobSite == "Indeed":
-            return self.retrieve_Indeed_jobs(soupParser)
+        # Catch and raise error where nothing is found in the below functions
+        try:
+            if self.jobSite == "LinkedIn":
+                return self.retrieve_LinkedIn_jobs(soupParser)
+            elif self.jobSite == "Indeed":
+                return self.retrieve_Indeed_jobs(soupParser)
+        
+        except AttributeError as error:
+                print("Unable to get requested info.")
+                raise error
 
 
     def retrieve_LinkedIn_jobs(self, soupParser):
@@ -85,6 +91,7 @@ class JobWebScraper:
             companies.append(company.text)
             locations.append(location.text)
 
+
         return (jobs, jobLinks, companies, locations)
 
 
@@ -110,6 +117,7 @@ class JobWebScraper:
 
             jobs.append(jobLink.text)
             companies.append(company.text[1:]) # Skip newline at front of string
-            locations.append(location.get("data-rc-loc")) 
+            locations.append(location.get("data-rc-loc"))
+
 
         return (jobs, companies, locations)
