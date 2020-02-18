@@ -13,13 +13,15 @@ from JobWebScraper import JobWebScraper
 
 
 class TestWebScraper:
+    """ Class for testing the JobWebScraper class' functions """
 
     def test_linkedIn_scrape(self):
-        
+        """ Test scraping of LinkedIn job site """
+
         scraper = JobWebScraper("LinkedIn")
-        
+
         try:
-            jobs, jobLinks, companies, locations = scraper.retrieve_jobs(
+            jobs, links, companies, locations = scraper.retrieve_jobs(
                             jobDescription="Software engineer",
                             jobLocation="Milwaukee, Wisconsin")
         except AttributeError as error:
@@ -27,16 +29,16 @@ class TestWebScraper:
             print("Tags are likely outdated or incorrect")
             assert False
 
-        size = len(jobs)
+        n = len(jobs)
 
-        if len(jobLinks) != size or len(companies) != size or len(locations) != size:
+        if len(links) != n or len(companies) != n or len(locations) != n:
             assert False
 
         else:
             assert True
 
-
     def test_indeed_scrape(self):
+        """ Test scraping of Indeed job site """
 
         scraper = JobWebScraper("Indeed")
 
@@ -49,7 +51,7 @@ class TestWebScraper:
             print(error)
             print("Tags are likely outdated or incorrect")
             assert False
-        
+
         size = len(jobs)
 
         if len(companies) != size or len(locations) != size:

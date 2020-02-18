@@ -17,9 +17,9 @@ from JobWebScraper import JobWebScraper
 try:
     linkedInScraper = JobWebScraper("LinkedIn")
     indeedScraper = JobWebScraper("Indeed")
-    
+
 except ValueError:
-    
+
     print("Exception: Value Error: Invalid job site specified")
     sys.exit(1)
 
@@ -33,7 +33,8 @@ try:
 
     print("LinkedIn Jobs:")
     for job, link, company, location in zip(jobs, links, companies, locations):
-        print(job, "with", company, "in " + location + ".  Apply at", link, "\n")
+        print(job, "with", company, "in " + location +
+              ". Apply at", link, "\n")
 
     jobs, companies, locations = indeedScraper.retrieve_jobs(keyword, location)
 
@@ -41,6 +42,6 @@ try:
     for job, company, location in zip(jobs, companies, locations):
         print(job, "with", company, "in " + location + ".")
 
-except AttributeError as error:
+except AttributeError:
 
     print("Please try again later.")

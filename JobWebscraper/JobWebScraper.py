@@ -30,14 +30,14 @@ class JobWebScraper:
         else:
             self.jobSite = jobSite
 
-
     def retrieve_jobs(self, jobDescription, jobLocation="United States"):
         """ Get search results for the given job in the given location """
 
         # Define the different variables that will be used depending on jobSite
         if self.jobSite == "LinkedIn":
 
-            searchParameters = {"keywords": jobDescription,"location": jobLocation}
+            searchParameters = {"keywords": jobDescription,
+                                "location": jobLocation}
             url = "https://www.linkedin.com/jobs/search/"
 
         elif self.jobSite == "Indeed":
@@ -56,11 +56,10 @@ class JobWebScraper:
                 return self.retrieve_LinkedIn_jobs(soupParser)
             elif self.jobSite == "Indeed":
                 return self.retrieve_Indeed_jobs(soupParser)
-        
-        except AttributeError as error:
-                print("Unable to get requested info.")
-                raise error
 
+        except AttributeError as error:
+            print("Unable to get requested info.")
+            raise error
 
     def retrieve_LinkedIn_jobs(self, soupParser):
         """ Get LinkedIn search results from the BeatifulSoup object """
@@ -69,7 +68,7 @@ class JobWebScraper:
         jobs, jobLinks, companies, locations = [], [], [], []
 
         # Parse through the HTML results to get all the job items
-        parameters = {"class": ["results__container", 
+        parameters = {"class": ["results__container",
                                 "results__container--two-pane"]}
         results = soupParser.find("div", parameters)
 
@@ -80,44 +79,43 @@ class JobWebScraper:
         # Retrieve desired information from each job item
         for jobItem in jobItems:
 
-            jobLink = jobItem.find("a", {"class":["result-card__full-card-link"]})
-            company = jobItem.find("h4", {"class":["result-card__subtitle",
-                                                   "job-result-card__subtitle"]})
-            location = jobItem.find("span", 
-                                       {"class":["job-result-card__location"]})
+            jobLink = jobItem.find("a",
+                                   {"class": ["result-card__full-card-link"]})
+            company = jobItem.find("h4", {"class":
+                                          ["result-card__subtitle",
+                                           "job-result-card__subtitle"]})
+            location = jobItem.find("span",
+                                    {"class": ["job-result-card__location"]})
 
             jobs.append(jobLink.text)
             jobLinks.append(jobLink.get("href").strip())
             companies.append(company.text)
             locations.append(location.text)
 
-
         return (jobs, jobLinks, companies, locations)
-
 
     def retrieve_Indeed_jobs(self, soupParser):
         """ Get Indeed search results from the BeatifulSoup object """
 
-        # Items that will be returned
         jobs, companies, locations = [], [], []
 
         # Parse through the HTML results to get all the job items
         results = soupParser.find("table", id="resultsBody")
 
-        jobItemParameters = {"class": ["jobsearch-SerpJobCard", "unifiedRow", 
+        jobItemParameters = {"class": ["jobsearch-SerpJobCard", "unifiedRow",
                                        "row", "result"]}
         jobItems = results.findAll("div", jobItemParameters)
 
         # Retrieve desired information from each job item
         for jobItem in jobItems:
 
-            jobLink = jobItem.find("a", {"class": ["jobtitle", "turnstileLink"]})
+            jobLink = jobItem.find("a", {"class":
+                                         ["jobtitle", "turnstileLink"]})
             company = jobItem.find("span", {"class": ["company"]})
             location = jobItem.find("div", {"class": ["recJobLoc"]})
 
             jobs.append(jobLink.text)
-            companies.append(company.text[1:]) # Skip newline at front of string
+            companies.append(company.text[1:])  # Skip the first character: \n
             locations.append(location.get("data-rc-loc"))
-
 
         return (jobs, companies, locations)
