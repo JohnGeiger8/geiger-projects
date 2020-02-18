@@ -9,21 +9,51 @@ Web Scraper Unit tests
 
 """
 
-from JobWebScraper import retrieve_LinkedIn_Jobs
+from JobWebScraper import JobWebScraper
 
 
 class TestWebScraper:
-    
+
     def test_linkedIn_scrape(self):
         
-        jobs, jobLinks, companies, locations = retrieve_LinkedIn_Jobs(
+        scraper = JobWebScraper("LinkedIn")
+        
+        try:
+            jobs, jobLinks, companies, locations = scraper.retrieve_jobs(
                             jobDescription="Software engineer",
-                            jobLocation="Madison, Wisconsin, United States")
-        
+                            jobLocation="Milwaukee, Wisconsin")
+        except AttributeError as error:
+            print(error)
+            print("Tags are likely outdated or incorrect")
+            assert False
+
         size = len(jobs)
-        
+
         if len(jobLinks) != size or len(companies) != size or len(locations) != size:
             assert False
+
+        else:
+            assert True
+
+
+    def test_indeed_scrape(self):
+
+        scraper = JobWebScraper("Indeed")
+
+        try:
+            jobs, companies, locations = scraper.retrieve_jobs(
+                            jobDescription="Software engineer",
+                            jobLocation="Madison, Wisconsin, United States")
+
+        except AttributeError as error:
+            print(error)
+            print("Tags are likely outdated or incorrect")
+            assert False
         
+        size = len(jobs)
+
+        if len(companies) != size or len(locations) != size:
+            assert False
+
         else:
             assert True
