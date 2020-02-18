@@ -19,6 +19,7 @@ try:
     indeedScraper = JobWebScraper("Indeed")
     
 except ValueError:
+    
     print("Exception: Value Error: Invalid job site specified")
     sys.exit(1)
 
@@ -40,6 +41,6 @@ try:
     for job, company, location in zip(jobs, companies, locations):
         print(job, "with", company, "in " + location + ".")
 
-except:
-    print("ERROR!")
-    
+except AttributeError as error:
+
+    print("Please try again later.")
