@@ -59,7 +59,7 @@ class Snake:
 
             self.bodyPositions.append(newPosition)
 
-        elif direction == Direction.Up or direction==Direction.Down:
+        elif direction == Direction.Up or direction == Direction.Down:
             """ Vertical move """
 
             # New position changes y value by 1 or -1 for down or up movement
