@@ -15,12 +15,12 @@ from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import QCoreApplication
 
 if __name__ == '__main__':
-    
-    # Prevents issue in Spyder IDE where application can't be run twice in a row
-    if QCoreApplication.instance() != None:
+
+    # Prevents bug in Spyder IDE where application can't be run twice in a row
+    if QCoreApplication.instance() is not None:
         app = QCoreApplication.instance()
     else:
         app = QApplication(sys.argv)
-        
+
     window = SnakeWindow()
     app.exec_()
