@@ -48,7 +48,7 @@ class JobWebScraper:
         request = requests.get(url, params=searchParameters)
 
         # Create a Beautiful Soup variable that we'll use to parse the request
-        soupParser = BeautifulSoup(request.content, "html.parser")
+        soupParser = BeautifulSoup(request.content, "html5lib")
 
         # Catch and raise error where nothing is found in the below functions
         try:
@@ -70,8 +70,6 @@ class JobWebScraper:
         # Parse through the HTML results to get all the job items
         parameters = {"class": ["results__list"]}
         results = soupParser.find("section", parameters)
-        print(soupParser)
-        print(results)
 
         jobItemParameters = {"class": ["result-card", "job-result-card",
                                        "result-card--with-hover-state"]}
