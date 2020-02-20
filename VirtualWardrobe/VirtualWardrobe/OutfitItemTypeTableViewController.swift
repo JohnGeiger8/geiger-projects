@@ -40,7 +40,7 @@ class OutfitItemTypeTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        chosenType = wardrobeModel.typeFor(indexPath: indexPath)
+        chosenType = wardrobeModel.filteredTypeFor(indexPath: indexPath)
         performSegue(withIdentifier: "SelectItemSegue", sender: self)
     }
     

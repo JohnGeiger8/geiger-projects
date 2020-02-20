@@ -207,7 +207,8 @@ extension WardrobeModel {
         for type in types {
             let filter : (WardrobeItemMO) -> Bool = {(item: WardrobeItemMO) in return item.type!.contains(type)}
             if allItems.filter(filter).count > 0 {
-                if !filteredOutfitTypes.contains(type) {                filteredOutfitTypes.append(type)
+                if !filteredOutfitTypes.contains(type) {
+                    filteredOutfitTypes.append(type)
                 }
             }
         }
