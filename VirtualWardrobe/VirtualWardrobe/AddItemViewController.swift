@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import AVFoundation
 
 protocol AddItemDelegate : NSObject {
     func addNewItem(_ item: WardrobeItem)
@@ -224,6 +225,23 @@ class AddItemViewController: UIViewController, UIScrollViewDelegate, UIGestureRe
     // MARK:- Gesture Recognizers
     
     @objc func addImage(_ sender: UITapGestureRecognizer) {
+        
+        // Get authorization for the camera and saved photos
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+            
+            case .authorized:
+                imageSelector?.present(withViewController: self)
+            
+            case .notDetermined:
+                AVCaptureDevice.requestAccess(for: .video) { granted in
+                    if granted {
+                        self.imageSelector?.present(withViewController: self)
+                    }
+                }
+            
+            default:
+                return
+        }
         
         imageSelector?.present(withViewController: self)
     }
@@ -481,6 +499,7 @@ class ImageSelector : NSObject, UIImagePickerControllerDelegate, UINavigationCon
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let cameraAction = UIAlertAction(title: "Use Camera", style: .default) { (action) in
                 
+                self.imagePickerViewController.sourceType = .camera
                 viewController.present(self.imagePickerViewController, animated: true, completion: nil)
             }
             photoAlertController.addAction(cameraAction)
@@ -488,8 +507,8 @@ class ImageSelector : NSObject, UIImagePickerControllerDelegate, UINavigationCon
         
         if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
             let photoAction = UIAlertAction(title: "Browse Photos", style: .default) { (action) in
-                guard UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) else { return }
                 
+                self.imagePickerViewController.sourceType = .savedPhotosAlbum
                 viewController.present(self.imagePickerViewController, animated: true, completion: nil)
             }
             photoAlertController.addAction(photoAction)
