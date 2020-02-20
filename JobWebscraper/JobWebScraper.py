@@ -70,6 +70,8 @@ class JobWebScraper:
         # Parse through the HTML results to get all the job items
         parameters = {"class": ["results__list"]}
         results = soupParser.find("section", parameters)
+        print(soupParser)
+        print(results)
 
         jobItemParameters = {"class": ["result-card", "job-result-card",
                                        "result-card--with-hover-state"]}
