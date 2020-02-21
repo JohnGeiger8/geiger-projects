@@ -30,48 +30,24 @@ class JobWebScraper:
         else:
             self.jobSite = jobSite
 
-    def retrieve_jobs(self, jobDescription, jobLocation="United States"):
-        """ Get search results for the given job in the given location """
-
-        # Define the different variables that will be used depending on jobSite
-        if self.jobSite == "LinkedIn":
-
-            searchParameters = {"keywords": jobDescription,
-                                "location": jobLocation}
-            url = "https://www.linkedin.com/jobs/search/"
-
-        elif self.jobSite == "Indeed":
-
-            searchParameters = {"q": jobDescription, "l": jobLocation}
-            url = "https://www.indeed.com/jobs"
-
-        request = requests.get(url, params=searchParameters)
-
-        # Create a Beautiful Soup variable that we'll use to parse the request
-        soupParser = BeautifulSoup(request.content, "html.parser")
-
-        # Catch and raise error where nothing is found in the below functions
-        try:
-            if self.jobSite == "LinkedIn":
-                return self.retrieve_LinkedIn_jobs(soupParser)
-            elif self.jobSite == "Indeed":
-                return self.retrieve_Indeed_jobs(soupParser)
-
-        except AttributeError as error:
-            print("Unable to get requested info.")
-            raise error
-
-    def retrieve_LinkedIn_jobs(self, soupParser):
-        """ Get LinkedIn search results from the BeatifulSoup object """
+    def retrieve_LinkedIn_jobs(self, jobDescription, jobLocation="USA"):
+        """ Get LinkedIn search results for the described job """
 
         # Items that will be returned
         jobs, jobLinks, companies, locations = [], [], [], []
 
+        searchParameters = {"keywords": jobDescription,
+                            "location": jobLocation}
+        url = "https://www.linkedin.com/jobs/search/"
+
+        # Fetch the webpage's html
+        request = requests.get(url, params=searchParameters)
+
+        soupParser = BeautifulSoup(request.content, "html5lib")
+
         # Parse through the HTML results to get all the job items
         parameters = {"class": ["results__list"]}
         results = soupParser.find("section", parameters)
-        print(soupParser)
-        print(results)
 
         jobItemParameters = {"class": ["result-card", "job-result-card",
                                        "result-card--with-hover-state"]}
@@ -95,14 +71,21 @@ class JobWebScraper:
 
         return (jobs, jobLinks, companies, locations)
 
-    def retrieve_Indeed_jobs(self, soupParser):
+    def retrieve_Indeed_jobs(self, jobDescription, jobLocation="USA"):
         """ Get Indeed search results from the BeatifulSoup object """
 
         jobs, companies, locations = [], [], []
 
+        searchParameters = {"q": jobDescription, "l": jobLocation}
+        url = "https://www.indeed.com/jobs"
+
+        # Fetch the webpage's html
+        request = requests.get(url, params=searchParameters)
+
+        soupParser = BeautifulSoup(request.content, "html5lib")
+
         # Parse through the HTML results to get all the job items
         results = soupParser.find("table", id="resultsBody")
-
         jobItemParameters = {"class": ["jobsearch-SerpJobCard", "unifiedRow",
                                        "row", "result"]}
         jobItems = results.findAll("div", jobItemParameters)
