@@ -28,15 +28,16 @@ location = input("Job location:\n")
 print()
 
 try:
-    jobs, links, companies, locations = linkedInScraper.retrieve_jobs(keyword,
-                                                                      location)
+    jobs, links, companies, locations = linkedInScraper.retrieve_LinkedIn_jobs(
+            keyword, location)
 
     print("LinkedIn Jobs:")
     for job, link, company, location in zip(jobs, links, companies, locations):
         print(job, "with", company, "in " + location +
               ". Apply at", link, "\n")
 
-    jobs, companies, locations = indeedScraper.retrieve_jobs(keyword, location)
+    jobs, companies, locations = indeedScraper.retrieve_Indeed_jobs(keyword,
+                                                                    location)
 
     print("Indeed Jobs:")
     for job, company, location in zip(jobs, companies, locations):
