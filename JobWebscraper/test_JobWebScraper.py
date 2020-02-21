@@ -21,7 +21,7 @@ class TestWebScraper:
         scraper = JobWebScraper("LinkedIn")
 
         try:
-            jobs, links, companies, locations = scraper.retrieve_jobs(
+            jobs, links, companies, locations = scraper.retrieve_LinkedIn_jobs(
                             jobDescription="Software engineer",
                             jobLocation="Milwaukee, Wisconsin")
         except AttributeError as error:
@@ -43,7 +43,7 @@ class TestWebScraper:
         scraper = JobWebScraper("Indeed")
 
         try:
-            jobs, companies, locations = scraper.retrieve_jobs(
+            jobs, companies, locations = scraper.retrieve_Indeed_jobs(
                             jobDescription="Software engineer",
                             jobLocation="Madison, Wisconsin, United States")
 
