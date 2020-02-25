@@ -59,10 +59,11 @@ class TrendsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let scrollViewContentHeight = trendsTableView.frame.origin.y + trendsTableView.frame.height + 25.0
         mainScrollView.contentSize = CGSize(width: self.view.frame.width, height: scrollViewContentHeight)
         
-        trendsTableView.contentSize = CGSize(width: trendsTableView.frame.width, height: trendsTableView.contentSize.height) // Prevent horizontal scrolling
+        // Prevent horizontal scrolling for trendsTableView
+        trendsTableView.contentSize = CGSize(width: trendsTableView.frame.width, height: trendsTableView.contentSize.height)
     }
     
-    // Convert the Strings into dates to compare them
+    // Convert the Strings into dates to compare thems
     func sortFor(timePeriod: String) -> ((String, Double), (String, Double)) -> Bool {
         
         let currentYear = Calendar.current.component(.year, from: Date())
@@ -126,7 +127,7 @@ class TrendsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.view.setNeedsLayout()
     }
     
-    // MARK:- Trends
+    // MARK:- Trends Table View
     
     func configureTableView() {
         
@@ -135,7 +136,9 @@ class TrendsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         trendsTableView.delegate = self
         trendsTableView.allowsSelection = false
         trendsTableView.backgroundColor = .navigationColor
-        trendsTableView.contentInset = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
+        trendsTableView.layer.masksToBounds = true
+        trendsTableView.layer.borderColor = UIColor.navigationColor.cgColor
+        trendsTableView.layer.borderWidth = 2.0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
