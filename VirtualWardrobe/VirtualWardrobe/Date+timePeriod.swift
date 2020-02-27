@@ -45,37 +45,13 @@ extension Date {
             return String(year)
             
         case .month:
+            let year = String(Calendar.current.component(.year, from: self))
             let monthNumber = Calendar.current.component(.month, from: self)
-            var month = "Jan"
-            switch monthNumber {
-            case 1:
-                month = "Jan"
-            case 2:
-                month = "Feb"
-            case 3:
-                month = "Mar"
-            case 4:
-                month = "Apr"
-            case 5:
-                month = "May"
-            case 6:
-                month = "June"
-            case 7:
-                month = "July"
-            case 8:
-                month = "Aug"
-            case 9:
-                month = "Sep"
-            case 10:
-                month = "Oct"
-            case 11:
-                month = "Nov"
-            case 12:
-                month = "Dec"
-            default:
-                break
-            }
-            return month
+            
+            // Create MM-yyyy string
+            let dateString = String(monthNumber) + "-" + String(year)
+
+            return dateString
             
         case .weekOfYear:
             let dateFormatter = DateFormatter()

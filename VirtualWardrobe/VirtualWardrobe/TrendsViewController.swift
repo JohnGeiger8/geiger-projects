@@ -43,12 +43,7 @@ class TrendsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         barChart?.view.removeFromSuperview()
         
-        var graphBars : [(String, Double)] = []
-        for (timePeriod, count) in clothesQuantityXAxis! {
-            graphBars.append((timePeriod, Double(count)))
-        }
-        let sorter = sortFor(timePeriod: barXAxisTitle)
-        graphBars.sort(by: sorter)
+        let graphBars : [(String, Double)] = createGraphBars()
         
         var chartFrame = chartView.frame
         chartFrame.size.width = self.view.frame.width - chartFrame.origin.x * 2
@@ -63,17 +58,31 @@ class TrendsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         trendsTableView.contentSize = CGSize(width: trendsTableView.frame.width, height: trendsTableView.contentSize.height)
     }
     
-    // Convert the Strings into dates to compare thems
+    func createGraphBars() -> [(String, Double)] {
+        
+        var graphBars : [(String, Double)] = []
+        for (timePeriod, count) in clothesQuantityXAxis! {
+            graphBars.append((timePeriod, Double(count)))
+        }
+        let sorter = sortFor(timePeriod: barXAxisTitle)
+        graphBars.sort(by: sorter)
+        
+        return graphBars
+    }
+    
+    // Convert the Date Strings into Dates to compare them
     func sortFor(timePeriod: String) -> ((String, Double), (String, Double)) -> Bool {
         
         let currentYear = Calendar.current.component(.year, from: Date())
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = TimeZone.current
         switch timePeriod {
         case "Year":
-            dateFormatter.dateFormat = "YYYY"
+            dateFormatter.dateFormat = "yyyy"
             
         case "Month":
-            dateFormatter.dateFormat = "MMM"
+            dateFormatter.dateFormat = "MM-yyyy"
             
         case "Week":
             dateFormatter.dateFormat = "MM/dd-YYYY"
@@ -94,6 +103,7 @@ class TrendsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         default:
             assert(false, "Unhandled format")
         }
+        print(dateFormatter.date(from: "1-2019"))
         return { dateFormatter.date(from: $0.0)! < dateFormatter.date(from: $1.0)! }
     }
     
