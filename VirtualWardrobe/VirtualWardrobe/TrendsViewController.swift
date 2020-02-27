@@ -5,6 +5,8 @@
 //  Created by John Geiger on 12/9/19.
 //  Copyright © 2019 John Geiger. All rights reserved.
 //
+//  Bugs:
+//      - Weeks will be messed up at turn of new year in sortFor function
 
 import UIKit
 import SwiftCharts
@@ -43,12 +45,7 @@ class TrendsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         barChart?.view.removeFromSuperview()
         
-        var graphBars : [(String, Double)] = []
-        for (timePeriod, count) in clothesQuantityXAxis! {
-            graphBars.append((timePeriod, Double(count)))
-        }
-        let sorter = sortFor(timePeriod: barXAxisTitle)
-        graphBars.sort(by: sorter)
+        let graphBars : [(String, Double)] = createGraphBars()
         
         var chartFrame = chartView.frame
         chartFrame.size.width = self.view.frame.width - chartFrame.origin.x * 2
@@ -63,20 +60,34 @@ class TrendsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         trendsTableView.contentSize = CGSize(width: trendsTableView.frame.width, height: trendsTableView.contentSize.height)
     }
     
-    // Convert the Strings into dates to compare thems
+    func createGraphBars() -> [(String, Double)] {
+        
+        var graphBars : [(String, Double)] = []
+        for (timePeriod, count) in clothesQuantityXAxis! {
+            graphBars.append((timePeriod, Double(count)))
+        }
+        let sorter = sortFor(timePeriod: barXAxisTitle)
+        graphBars.sort(by: sorter)
+        
+        return graphBars
+    }
+    
+    // Convert the Date Strings into Dates to compare them
     func sortFor(timePeriod: String) -> ((String, Double), (String, Double)) -> Bool {
         
         let currentYear = Calendar.current.component(.year, from: Date())
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = TimeZone.current
         switch timePeriod {
         case "Year":
-            dateFormatter.dateFormat = "YYYY"
+            dateFormatter.dateFormat = "yyyy"
             
         case "Month":
-            dateFormatter.dateFormat = "MMM"
+            dateFormatter.dateFormat = "MM-yyyy"
             
         case "Week":
-            dateFormatter.dateFormat = "MM/dd-YYYY"
+            dateFormatter.dateFormat = "MM/dd-yyyy"
             let sorter : ((String, Double), (String, Double)) -> Bool = { (date1, date2) in
                 
                 let (firstWeek, _) = date1
@@ -86,6 +97,7 @@ class TrendsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 
                 let secondWeekRange = secondWeek.startIndex..<secondWeek.index(secondWeek.startIndex, offsetBy: 5)
                 let secondWeekDate = String(secondWeek[secondWeekRange]) + "-" + String(currentYear)
+                
                 return dateFormatter.date(from: String(firstWeekDate))! < dateFormatter.date(from: String(secondWeekDate))!
             }
             return sorter

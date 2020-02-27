@@ -45,37 +45,13 @@ extension Date {
             return String(year)
             
         case .month:
+            let year = String(Calendar.current.component(.year, from: self))
             let monthNumber = Calendar.current.component(.month, from: self)
-            var month = "Jan"
-            switch monthNumber {
-            case 1:
-                month = "Jan"
-            case 2:
-                month = "Feb"
-            case 3:
-                month = "Mar"
-            case 4:
-                month = "Apr"
-            case 5:
-                month = "May"
-            case 6:
-                month = "June"
-            case 7:
-                month = "July"
-            case 8:
-                month = "Aug"
-            case 9:
-                month = "Sep"
-            case 10:
-                month = "Oct"
-            case 11:
-                month = "Nov"
-            case 12:
-                month = "Dec"
-            default:
-                break
-            }
-            return month
+            
+            // Create MM-\nyyyy string
+            let dateString = String(monthNumber) + "-\n" + String(year)
+
+            return dateString
             
         case .weekOfYear:
             let dateFormatter = DateFormatter()
@@ -83,7 +59,7 @@ extension Date {
             
             // Give string representation of the week starting on this date
             let oneWeekFromNow = Calendar.current.date(byAdding: .weekOfYear, value: 1, to: self)!
-            let week = dateFormatter.string(from: self) + " - \n" + dateFormatter.string(from: oneWeekFromNow)
+            let week = dateFormatter.string(from: self) + "-\n" + dateFormatter.string(from: oneWeekFromNow)
             return week
             
         default:
