@@ -48,8 +48,8 @@ extension Date {
             let year = String(Calendar.current.component(.year, from: self))
             let monthNumber = Calendar.current.component(.month, from: self)
             
-            // Create MM-yyyy string
-            let dateString = String(monthNumber) + "-" + String(year)
+            // Create MM-\nyyyy string
+            let dateString = String(monthNumber) + "-\n" + String(year)
 
             return dateString
             
@@ -59,7 +59,7 @@ extension Date {
             
             // Give string representation of the week starting on this date
             let oneWeekFromNow = Calendar.current.date(byAdding: .weekOfYear, value: 1, to: self)!
-            let week = dateFormatter.string(from: self) + " - \n" + dateFormatter.string(from: oneWeekFromNow)
+            let week = dateFormatter.string(from: self) + "-\n" + dateFormatter.string(from: oneWeekFromNow)
             return week
             
         default:

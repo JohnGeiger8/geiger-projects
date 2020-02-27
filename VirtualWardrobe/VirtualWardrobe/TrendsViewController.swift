@@ -5,6 +5,8 @@
 //  Created by John Geiger on 12/9/19.
 //  Copyright © 2019 John Geiger. All rights reserved.
 //
+//  Bugs:
+//      - Weeks will be messed up at turn of new year in sortFor function
 
 import UIKit
 import SwiftCharts
@@ -85,7 +87,7 @@ class TrendsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             dateFormatter.dateFormat = "MM-yyyy"
             
         case "Week":
-            dateFormatter.dateFormat = "MM/dd-YYYY"
+            dateFormatter.dateFormat = "MM/dd-yyyy"
             let sorter : ((String, Double), (String, Double)) -> Bool = { (date1, date2) in
                 
                 let (firstWeek, _) = date1
@@ -95,6 +97,7 @@ class TrendsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 
                 let secondWeekRange = secondWeek.startIndex..<secondWeek.index(secondWeek.startIndex, offsetBy: 5)
                 let secondWeekDate = String(secondWeek[secondWeekRange]) + "-" + String(currentYear)
+                
                 return dateFormatter.date(from: String(firstWeekDate))! < dateFormatter.date(from: String(secondWeekDate))!
             }
             return sorter
@@ -103,7 +106,6 @@ class TrendsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         default:
             assert(false, "Unhandled format")
         }
-        print(dateFormatter.date(from: "1-2019"))
         return { dateFormatter.date(from: $0.0)! < dateFormatter.date(from: $1.0)! }
     }
     
