@@ -83,7 +83,7 @@ class IndeedWebScraper(JobWebScraper):
 
         super().__init__()
 
-    def retrieve_Indeed_jobs(self, jobDescription, jobLocation="USA"):
+    def retrieve_jobs(self, jobDescription, jobLocation="USA"):
         """ Get Indeed search results from the described job """
 
         jobs, companies, locations = [], [], []
