@@ -20,17 +20,21 @@ from bs4 import BeautifulSoup
 class JobWebScraper:
     """ Used to scrape job sites for open positions """
 
-    validJobSites = ["LinkedIn", "Indeed"]
-    jobSite = ""
+    def __init__(self):
+        pass
 
-    def __init__(self, jobSite):
+    def retrieve_jobs(self, jobDescription, jobLocation="USA"):
+        pass
 
-        if jobSite not in self.validJobSites:
-            raise ValueError
-        else:
-            self.jobSite = jobSite
 
-    def retrieve_LinkedIn_jobs(self, jobDescription, jobLocation="USA"):
+class LinkedInWebScraper(JobWebScraper):
+    """ Used to scrape LinkedIn for open positions """
+
+    def __init__(self):
+
+        super().__init__()
+
+    def retrieve_jobs(self, jobDescription, jobLocation="USA"):
         """ Get LinkedIn search results for the described job """
 
         # Items that will be returned
@@ -71,8 +75,16 @@ class JobWebScraper:
 
         return (jobs, jobLinks, companies, locations)
 
+
+class IndeedWebScraper(JobWebScraper):
+    """ Used to scrape Indeed for open positions """
+
+    def __init__(self):
+
+        super().__init__()
+
     def retrieve_Indeed_jobs(self, jobDescription, jobLocation="USA"):
-        """ Get Indeed search results from the BeatifulSoup object """
+        """ Get Indeed search results from the described job """
 
         jobs, companies, locations = [], [], []
 
