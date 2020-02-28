@@ -12,11 +12,11 @@ Command line job searching program that uses JobWebScraper.
 """
 
 import sys
-from JobWebScraper import JobWebScraper
+from JobWebScraper import LinkedInWebScraper, IndeedWebScraper
 
 try:
-    linkedInScraper = JobWebScraper("LinkedIn")
-    indeedScraper = JobWebScraper("Indeed")
+    linkedInScraper = LinkedInWebScraper()
+    indeedScraper = IndeedWebScraper()
 
 except ValueError:
 
@@ -28,7 +28,7 @@ location = input("Job location:\n")
 print()
 
 try:
-    jobs, links, companies, locations = linkedInScraper.retrieve_LinkedIn_jobs(
+    jobs, links, companies, locations = linkedInScraper.retrieve_jobs(
             keyword, location)
 
     print("LinkedIn Jobs:")
@@ -36,8 +36,7 @@ try:
         print(job, "with", company, "in " + location +
               ". Apply at", link, "\n")
 
-    jobs, companies, locations = indeedScraper.retrieve_Indeed_jobs(keyword,
-                                                                    location)
+    jobs, companies, locations = indeedScraper.retrieve_jobs(keyword, location)
 
     print("Indeed Jobs:")
     for job, company, location in zip(jobs, companies, locations):

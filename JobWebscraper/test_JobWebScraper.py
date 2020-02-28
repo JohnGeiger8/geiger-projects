@@ -9,7 +9,7 @@ Web Scraper Unit tests
 
 """
 
-from JobWebScraper import JobWebScraper
+from JobWebScraper import LinkedInWebScraper, IndeedWebScraper
 
 
 class TestWebScraper:
@@ -18,10 +18,10 @@ class TestWebScraper:
     def test_linkedIn_scrape(self):
         """ Test scraping of LinkedIn job site """
 
-        scraper = JobWebScraper("LinkedIn")
+        scraper = LinkedInWebScraper()
 
         try:
-            jobs, links, companies, locations = scraper.retrieve_LinkedIn_jobs(
+            jobs, links, companies, locations = scraper.retrieve_jobs(
                             jobDescription="Software engineer",
                             jobLocation="Milwaukee, Wisconsin")
         except AttributeError as error:
@@ -40,10 +40,10 @@ class TestWebScraper:
     def test_indeed_scrape(self):
         """ Test scraping of Indeed job site """
 
-        scraper = JobWebScraper("Indeed")
+        scraper = IndeedWebScraper()
 
         try:
-            jobs, companies, locations = scraper.retrieve_Indeed_jobs(
+            jobs, companies, locations = scraper.retrieve_jobs(
                             jobDescription="Software engineer",
                             jobLocation="Madison, Wisconsin, United States")
 
