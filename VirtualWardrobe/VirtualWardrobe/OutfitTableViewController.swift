@@ -62,10 +62,11 @@ class OutfitTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
+            // Delete the outfit from the data source
             wardrobeModel.deleteOutfitAt(indexPath: indexPath)
-            tableView.deleteSections(IndexSet(indexPath), with: .left)
-            tableView.deleteRows(at: [indexPath], with: .left)
+            let indexSet = IndexSet(arrayLiteral: indexPath.section)
+            tableView.deleteSections(indexSet, with: .left)
+            
         } else if editingStyle == .insert {
             
         }    
@@ -76,8 +77,8 @@ class OutfitTableViewController: UITableViewController {
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete Outfit") { (action, view, completion) in
             
             self.wardrobeModel.deleteOutfitAt(indexPath: indexPath)
-            self.tableView.deleteSections(IndexSet(indexPath), with: .left)
-            self.tableView.deleteRows(at: [indexPath], with: .left)
+            let indexSet = IndexSet(arrayLiteral: indexPath.section)
+            self.tableView.deleteSections(indexSet, with: .left)
         }
         let swipeAction = UISwipeActionsConfiguration(actions: [deleteAction])
         return swipeAction

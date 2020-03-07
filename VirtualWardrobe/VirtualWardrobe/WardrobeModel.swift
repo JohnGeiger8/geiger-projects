@@ -231,10 +231,9 @@ extension WardrobeModel {
         for item in wardrobeItems {
             newOutfit.addToIsMadeUpOf(item) // Add each part of outfit to it
         }
-        allOutfits.append(newOutfit)
-        filteredOutfits = allOutfits
-        
         dataManager.saveContext()
+        allOutfits.append(newOutfit)
+        resetOutfitFilter()
     }
     
     func addItemToOutfitFor(indexPath: IndexPath, item: WardrobeItemMO) {
