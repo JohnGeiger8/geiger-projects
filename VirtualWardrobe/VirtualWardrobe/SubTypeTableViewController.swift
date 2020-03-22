@@ -33,6 +33,7 @@ class SubTypeTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SubTypeTableViewCell", for: indexPath)
 
         cell.textLabel!.text = wardrobeModel.subTypeFor(indexPath: indexPath)
+        cell.textLabel!.textColor = .primaryTextColor
         cell.backgroundColor = .backgroundColor
 
         return cell

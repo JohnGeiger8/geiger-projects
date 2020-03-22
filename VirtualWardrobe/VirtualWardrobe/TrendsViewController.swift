@@ -166,6 +166,7 @@ class TrendsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.textLabel?.textColor = .primaryTextColor
         cell.detailTextLabel?.text = wardrobeModel.favoriteOf(trendName)
         cell.detailTextLabel?.font = UIFont(name: font.fontName, size: 14.0)
+        cell.detailTextLabel?.textColor = .secondaryTextColor
         cell.backgroundColor = .backgroundColor
 
         return cell
