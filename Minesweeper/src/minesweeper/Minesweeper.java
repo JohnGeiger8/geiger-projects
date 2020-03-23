@@ -1,11 +1,7 @@
 /*
  */
 package minesweeper;
-import java.util.Random;
-import java.util.ArrayList;
 import javax.swing.JFrame;
-import java.io.*;
-import java.util.*;
 
 /** Minesweeper project
  *

@@ -11,12 +11,14 @@ import UIKit
 
 extension UIColor {
     
-    static var navigationColor : UIColor { return UIColor(red: 255.0/255.0, green: 161.0/255.0, blue: 161.0/255.0, alpha: 1.0)}
+    static var navigationColor : UIColor { return UIColor(red: 0/255.0, green: 255/255.0, blue: 247/255.0, alpha: 1.0)}
     
     static var backgroundColor : UIColor { return UIColor(red: 255.0/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1.0) }
     
-    static var primaryTextColor : UIColor { return UIColor(red: 69.0/255.0, green: 3.0/255.0, blue: 6.0/255.0, alpha: 1.0) }
-    
+    static var primaryTextColor : UIColor { return UIColor(red: 255/255.0, green: 132/255.0, blue: 0/255.0, alpha: 1.0) }
+
+    static var secondaryTextColor : UIColor { return UIColor(red: 255/255.0, green: 7/255.0, blue: 3/255.0, alpha: 1.0) }
+
     static var brightBlue : UIColor { return UIColor(red: 0.0, green: 122.0/255.0, blue: 255.0/255.0, alpha: 1.0)}
     
     static var disabledBrightBlue : UIColor { return UIColor(red: 28.0/255.0, green: 151.0/255.0, blue: 255.0/255.0, alpha: 1.0)}

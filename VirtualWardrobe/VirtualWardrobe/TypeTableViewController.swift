@@ -38,6 +38,7 @@ class TypeTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TypeTableViewCell", for: indexPath)
 
         cell.textLabel?.text = wardrobeModel.typeFor(indexPath: indexPath)
+        cell.textLabel?.textColor = .primaryTextColor
         cell.backgroundColor = .backgroundColor
 
         return cell

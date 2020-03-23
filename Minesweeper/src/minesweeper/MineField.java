@@ -4,13 +4,16 @@
  *
  */
 package minesweeper;
-import java.awt.*;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.*;
 import java.util.Random;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import java.net.URL;
 
 /**

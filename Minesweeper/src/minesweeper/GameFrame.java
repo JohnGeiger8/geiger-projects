@@ -6,9 +6,10 @@ package minesweeper;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.URL;
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /*
  * @author JohnGeiger

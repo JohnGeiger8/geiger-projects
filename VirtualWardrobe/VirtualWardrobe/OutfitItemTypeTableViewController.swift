@@ -33,6 +33,7 @@ class OutfitItemTypeTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TypeCell", for: indexPath)
         cell.textLabel?.text = wardrobeModel.filteredTypeFor(indexPath: indexPath)
+        cell.textLabel?.textColor = .primaryTextColor
         cell.backgroundColor = .backgroundColor
         
         return cell
