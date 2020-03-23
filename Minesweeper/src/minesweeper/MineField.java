@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import java.net.URL;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,22 +29,23 @@ public class MineField {
         Hard: 24x13 grid with 80 mines
     */
     private int width, height, bomb_count;
-    private String diff;                    // difficulty level
-    private JButton[][] field;              // the minefield itself
+    private int numberOfTiles;                    // Count of number tiles to reveal
+    private String diff;                          // difficulty level
+    private JButton[][] field;                    // the minefield itself
     private ImageIcon flagIcon;
     private ImageIcon bombIcon;
     private ImageIcon unpressedTileIcon;
     private ImageIcon pressedTileIcon;
-    private boolean[][] bombs;              // keeps track of where the bombs are
-    private boolean[][] exposedPoints;      // keeps track of points that have been exposed
-    static private boolean flag;            // indicates if flag button is pushed
+    private final boolean[][] bombs;              // keeps track of where the bombs are
+    private final boolean[][] exposedPoints;      // keeps track of points that have been exposed
+    static private boolean flag;                  // indicates if flag button is pushed
 
     
     public MineField(String difficulty)
     {
-        boolean flag;
         setDiff(difficulty);
         setDims(difficulty);
+        setNumberOfTiles();
         bombs = new boolean[height][width];
         exposedPoints = new boolean[height][width];
         setIcons();
@@ -67,6 +69,9 @@ public class MineField {
         JButton currentTile = field[height][width];
         int tileNumber = countBombs(height, width);
         
+        if (getExposedPoints()[height][width])
+            return;
+        
         if (!getBombsArr()[height][width]) // If not a bomb tile
         {
             field[height][width].setIcon(pressedTileIcon);
@@ -75,6 +80,9 @@ public class MineField {
             currentTile.setText(Integer.toString(tileNumber));
             currentTile.setHorizontalTextPosition(JButton.CENTER);
             currentTile.setVerticalTextPosition(JButton.CENTER);
+            
+            // Decrease number of tiles left to reveal
+            numberOfTiles -= 1; 
         }
         else
             field[height][width].setIcon(bombIcon);
@@ -107,6 +115,10 @@ public class MineField {
             height = 0;
             bomb_count = 0;
         }
+    }
+    public void setNumberOfTiles()
+    {
+        this.numberOfTiles = width * height - bomb_count;
     }
     public void setFlag(boolean isPressed)
     {
@@ -189,7 +201,6 @@ public class MineField {
         
         // bombs list to store bombs
         int numberOfBombs = getBombCount();
-        ArrayList<Point> bombs = new ArrayList<>(numberOfBombs);
         
         Point bomb;
         
@@ -197,7 +208,6 @@ public class MineField {
         for (int i = 0; i < numberOfBombs; i++)
         {
             bomb = new Point(rand.nextInt(getHeight()), rand.nextInt(getWidth()));
-            bombs.add(bomb);
             setBombsArr(bomb.x, bomb.y, true);
         }
     }
@@ -242,9 +252,7 @@ public class MineField {
     }
     
     private void exposeAllPoints() 
-    {
-        JButton[][] field = getField();
-        
+    {        
         for (int i = 0; i < getHeight(); i++)
         {
             for (int j = 0; j < getWidth(); j++)
@@ -261,12 +269,12 @@ public class MineField {
         */
         
         // Check that positions are in range
-        if (rowPosition < 0 || rowPosition > getHeight()-1 || columnPosition < 0 || columnPosition > getWidth()-1)
+        if (rowPosition < 0 || rowPosition > getHeight()-1 || columnPosition < 0
+                || columnPosition > getWidth()-1)
         {
             return;
         }
         
-        JButton[][] field = getField();
         JButton currentTile = field[rowPosition][columnPosition];
         int tileNumber = countBombs(rowPosition, columnPosition);
         
@@ -303,6 +311,21 @@ public class MineField {
         }
         
     }
+    
+    private boolean isGameWon() 
+    {
+        // Check if game was won
+        if (this.numberOfTiles == 0)
+            return true;
+        else
+            return false;
+    }
+    
+    private void displayWinningMessage() 
+    {
+        JOptionPane.showMessageDialog(null, "You Won!", "Minesweeper", 
+                JOptionPane.INFORMATION_MESSAGE);
+    }
         
     private class ButtonHandler implements ActionListener
     {
@@ -314,11 +337,12 @@ public class MineField {
         @Override
         public void actionPerformed(ActionEvent event)
         {
+            Object buttonClicked = event.getSource();
             for (int i = 0; i < getHeight(); i++)
             {
                 for (int j = 0; j < getWidth(); j++)
                 {
-                    if (event.getSource().equals(getField()[i][j]))
+                    if (buttonClicked.equals(getField()[i][j]))
                     {                        
                         if (!getExposedPoints()[i][j])
                         {
@@ -326,13 +350,18 @@ public class MineField {
                             {
                                 // Remove flag from button
                                 field[i][j].setIcon(unpressedTileIcon);
-                                break;
+                                return;
                             }
                             else if (getFlag() && field[i][j].getIcon() != flagIcon)
                             {
                                 // Add flag to button
                                 field[i][j].setIcon(flagIcon);
-                                break;
+                                return;
+                            }
+                            else if (!getFlag() && field[i][j].getIcon() == flagIcon) 
+                            {
+                                // Don't reveal if tile is flagged
+                                return;
                             }
                             else // Flag isn't pressed so just reveal tile
                             {
@@ -350,6 +379,11 @@ public class MineField {
                                 }
                                 
                                 setExpPoints(i, j, true);
+                                
+                                if (isGameWon()) {
+                                    displayWinningMessage();
+                                }
+                                return;
                             }
                         }
                     }
