@@ -7,7 +7,7 @@
 - Made for academic and learning purposes only. Do not use to scrape LinkedIn or Indeed without first viewing their Terms of Service
 - Runs from the command line
 
-## How to Use
+## How to Run
 1. Pull geiger-projects
 2. Go to JobWebScraper directory of geiger-projects
 3. Assuming you have python 3 installed, run "python JobSearch.py" from the command line
