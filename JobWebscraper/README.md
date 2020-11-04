@@ -3,7 +3,7 @@
 ## Summary
 - Made with Python
 - Uses BeatifulSoup and Requests libraries to scrape the web
-- Uses pytest and CircleCI for unit and integration testing
+- Uses pytest for unit testing
 - Made for academic and learning purposes only. Do not use to scrape LinkedIn or Indeed without first viewing their Terms of Service
 - Runs from the command line
 
