@@ -17,4 +17,4 @@ Personal projects I've completed or worked on for my own development as a progra
 - Written in Python, the Job WebScraper is a command-line web scraper that uses the BeatifulSoup and Requests libraries to scrape the LinkedIn and Indeed job sites for input job titles and locations.  It was created purely for fun and learning purposes and should not be used without viewing LinkedIn and Indeed's Terms of Service.
 
 ## Currently working on...
-I am actively learning Web Design and Development and am hoping to have my personal website online within a month or so.  If you have any questions, please feel free to message me!
+I am actively learning Web Design and Development, which includes learning Angular/Typescript, C#/.NET, Javascript, etc. If you have any questions, please feel free to message me!
