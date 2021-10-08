@@ -7,8 +7,8 @@ Personal projects I've completed or worked on for my own development as a progra
 **[Virtual Wardrobe](https://github.com/JohnGeiger8/geiger-projects/tree/master/VirtualWardrobe)**
 - Written in Swift, Virtual Wardrobe is an iOS application that allows users to add their clothing, jewelry, and other wardrobe items to the app, via pictures and information input. Users can also examine their shopping trends over time as they add more items.
 
-**[Minesweeper Clone](https://github.com/JohnGeiger8/geiger-projects/tree/master/Minesweeper)**
-- Written in Java, the Minesweeper clone uses a simple GUI and mimics the classic computer game Minesweeper.  It contains some simple pixel art for mines, tiles, and flags, and it has a few different difficulty levels to add some variety to it.
+**[Bombsweeper](https://github.com/JohnGeiger8/geiger-projects/tree/master/Minesweeper)**
+- Written in Java, Bombsweeper uses a simple GUI and contains some simple pixel art for mines, tiles, and flags, and it has a few different difficulty levels to add some variety to it.
 
 **[Snake Clone](https://github.com/JohnGeiger8/geiger-projects/tree/master/Snake)**
 - Written in Python, the Snake clone follows the gameplay of the classic Snake game.  It uses simple artwork and the PyQt5 library to create the GUI and other functionality.
